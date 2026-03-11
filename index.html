@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ndMax Phase 1 — Engineering Architecture</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #0a0e1a;
+    color: #C9D1D9;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .infographic { width: 1100px; max-width: 100%; }
+
+  /* Header */
+  .header { text-align: center; margin-bottom: 40px; }
+  .header .badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    color: #38BDF8;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    padding: 5px 14px;
+    border-radius: 4px;
+    margin-bottom: 14px;
+  }
+  .header h1 {
+    font-size: 30px;
+    font-weight: 800;
+    color: #E6EDF3;
+    margin-bottom: 6px;
+  }
+  .header h1 span { color: #38BDF8; }
+  .header .subtitle {
+    font-size: 13px;
+    color: #6B7280;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .epic-ref {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #4B5563;
+    margin-top: 8px;
+  }
+  .epic-ref a { color: #38BDF8; text-decoration: none; }
+
+  /* Section titles */
+  .section-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #6B7280;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(107, 114, 128, 0.2);
+  }
+
+  /* Architecture diagram */
+  .arch-diagram {
+    display: grid;
+    grid-template-columns: 1fr 100px 1fr;
+    gap: 0;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  /* System columns */
+  .system-col {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .system-col .sys-header {
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .system-col.cb .sys-header { background: rgba(56, 189, 248, 0.08); border-bottom: 1px solid rgba(56, 189, 248, 0.12); }
+  .system-col.nd .sys-header { background: rgba(168, 85, 247, 0.08); border-bottom: 1px solid rgba(168, 85, 247, 0.12); }
+  .sys-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px; font-weight: 700; color: #fff;
+  }
+  .cb .sys-icon { background: #0EA5E9; }
+  .nd .sys-icon { background: #8B5CF6; }
+  .sys-name { font-size: 16px; font-weight: 700; color: #E6EDF3; }
+  .sys-desc {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: #6B7280; margin-top: 1px;
+  }
+  .system-col .sys-body {
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .system-col.cb { border: 1px solid rgba(56, 189, 248, 0.12); }
+  .system-col.nd { border: 1px solid rgba(168, 85, 247, 0.12); }
+
+  /* Component blocks */
+  .component {
+    border-radius: 8px;
+    padding: 12px 14px;
+    position: relative;
+  }
+  .cb .component {
+    background: rgba(56, 189, 248, 0.04);
+    border: 1px solid rgba(56, 189, 248, 0.1);
+  }
+  .nd .component {
+    background: rgba(168, 85, 247, 0.04);
+    border: 1px solid rgba(168, 85, 247, 0.1);
+  }
+  .component .comp-header {
+    display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
+  }
+  .comp-icon {
+    width: 22px; height: 22px; border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+  }
+  .cb .comp-icon { background: rgba(56, 189, 248, 0.12); }
+  .nd .comp-icon { background: rgba(168, 85, 247, 0.12); }
+  .comp-name {
+    font-size: 12px; font-weight: 600; color: #D1D5DB;
+  }
+  .comp-detail {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; color: #6B7280; line-height: 1.6;
+  }
+  .comp-detail .highlight {
+    color: #38BDF8;
+    background: rgba(56, 189, 248, 0.08);
+    padding: 0 4px;
+    border-radius: 3px;
+  }
+  .comp-detail .highlight-purple {
+    color: #A78BFA;
+    background: rgba(168, 85, 247, 0.08);
+    padding: 0 4px;
+    border-radius: 3px;
+  }
+  .comp-ticket {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 3px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  .cb .comp-ticket {
+    background: rgba(56, 189, 248, 0.1);
+    color: #38BDF8;
+  }
+  .nd .comp-ticket {
+    background: rgba(168, 85, 247, 0.1);
+    color: #A78BFA;
+  }
+
+  /* Middle connector */
+  .connector-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 40px 0;
+  }
+  .conn-line {
+    width: 2px;
+    flex: 1;
+    background: linear-gradient(180deg, rgba(56, 189, 248, 0.3), rgba(168, 85, 247, 0.3));
+  }
+  .conn-node {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    margin: 8px 0;
+    position: relative;
+    z-index: 2;
+  }
+  .conn-node.api {
+    background: linear-gradient(135deg, #0EA5E9, #8B5CF6);
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  }
+  .conn-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    color: #4B5563;
+    text-align: center;
+    writing-mode: horizontal-tb;
+    padding: 4px 0;
+  }
+  .conn-arrow {
+    display: flex;
+    align-items: center;
+    margin: 4px 0;
+  }
+
+  /* API sequence section */
+  .api-sequence {
+    margin-bottom: 40px;
+  }
+  .sequence-track {
+    display: flex;
+    gap: 0;
+    position: relative;
+  }
+  .seq-step {
+    flex: 1;
+    position: relative;
+    padding: 0 6px;
+  }
+  .seq-step-inner {
+    border-radius: 10px;
+    padding: 16px 14px;
+    min-height: 170px;
+    position: relative;
+  }
+  .seq-step.cb .seq-step-inner {
+    background: rgba(56, 189, 248, 0.04);
+    border: 1px solid rgba(56, 189, 248, 0.12);
+  }
+  .seq-step.nd .seq-step-inner {
+    background: rgba(168, 85, 247, 0.04);
+    border: 1px solid rgba(168, 85, 247, 0.12);
+  }
+  .seq-step.api .seq-step-inner {
+    background: rgba(16, 185, 129, 0.04);
+    border: 1px solid rgba(16, 185, 129, 0.12);
+  }
+  .seq-num {
+    width: 24px; height: 24px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 700; color: #fff;
+    margin-bottom: 10px;
+  }
+  .seq-step.cb .seq-num { background: #0EA5E9; }
+  .seq-step.nd .seq-num { background: #8B5CF6; }
+  .seq-step.api .seq-num { background: #10B981; }
+  .seq-title {
+    font-size: 12px; font-weight: 700; color: #E6EDF3;
+    margin-bottom: 8px;
+  }
+  .seq-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    line-height: 1.7;
+    color: #9CA3AF;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    padding: 10px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    overflow-x: auto;
+  }
+  .seq-code .kw { color: #F472B6; }
+  .seq-code .str { color: #34D399; }
+  .seq-code .url { color: #38BDF8; }
+  .seq-code .method { color: #FBBF24; font-weight: 600; }
+  .seq-code .comment { color: #4B5563; font-style: italic; }
+  .seq-connector {
+    position: absolute;
+    top: 28px;
+    right: -7px;
+    z-index: 3;
+    width: 14px; height: 14px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .seq-connector svg { display: block; }
+  .seq-step:last-child .seq-connector { display: none; }
+  .seq-system-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 2px 6px;
+    border-radius: 3px;
+  }
+  .seq-step.cb .seq-system-tag { background: rgba(56, 189, 248, 0.1); color: #38BDF8; }
+  .seq-step.nd .seq-system-tag { background: rgba(168, 85, 247, 0.1); color: #A78BFA; }
+  .seq-step.api .seq-system-tag { background: rgba(16, 185, 129, 0.1); color: #34D399; }
+
+  /* Endpoints reference */
+  .endpoints-section {
+    margin-bottom: 40px;
+  }
+  .endpoints-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .endpoint-card {
+    border-radius: 10px;
+    padding: 16px;
+    background: rgba(16, 185, 129, 0.03);
+    border: 1px solid rgba(16, 185, 129, 0.1);
+  }
+  .endpoint-method {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-right: 6px;
+  }
+  .endpoint-method.get { background: rgba(56, 189, 248, 0.15); color: #38BDF8; }
+  .endpoint-method.post { background: rgba(16, 185, 129, 0.15); color: #34D399; }
+  .endpoint-method.put { background: rgba(251, 191, 36, 0.15); color: #FBBF24; }
+  .endpoint-method.delete { background: rgba(239, 68, 68, 0.15); color: #EF4444; }
+  .endpoint-name {
+    font-size: 12px; font-weight: 600; color: #D1D5DB;
+    margin-bottom: 6px;
+  }
+  .endpoint-url {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #6B7280;
+    word-break: break-all;
+    margin-bottom: 6px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 6px 8px;
+    border-radius: 4px;
+    line-height: 1.5;
+  }
+  .endpoint-url .var { color: #FBBF24; }
+  .endpoint-note {
+    font-size: 10px;
+    color: #4B5563;
+    line-height: 1.5;
+  }
+
+  /* Error handling */
+  .error-section {
+    margin-bottom: 40px;
+  }
+  .error-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .error-card {
+    border-radius: 8px;
+    padding: 14px;
+    background: rgba(239, 68, 68, 0.03);
+    border: 1px solid rgba(239, 68, 68, 0.1);
+  }
+  .error-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 4px;
+  }
+  .error-card:nth-child(1) .error-code { color: #FBBF24; }
+  .error-card:nth-child(2) .error-code { color: #F97316; }
+  .error-card:nth-child(3) .error-code { color: #EF4444; }
+  .error-card:nth-child(4) .error-code { color: #6B7280; }
+  .error-label {
+    font-size: 11px; font-weight: 600; color: #9CA3AF;
+    margin-bottom: 6px;
+  }
+  .error-action {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #6B7280;
+    line-height: 1.6;
+  }
+  .error-action .action-kw {
+    color: #34D399;
+    font-weight: 600;
+  }
+
+  /* Auth flow */
+  .auth-section {
+    margin-bottom: 40px;
+  }
+  .auth-flow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: rgba(251, 191, 36, 0.03);
+    border: 1px solid rgba(251, 191, 36, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .auth-step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+  }
+  .auth-step-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    margin: 0 auto 8px;
+    background: rgba(251, 191, 36, 0.1);
+  }
+  .auth-step-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; font-weight: 600; color: #FBBF24;
+    margin-bottom: 4px;
+  }
+  .auth-step-detail {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px; color: #6B7280; line-height: 1.5;
+  }
+  .auth-arrow {
+    flex-shrink: 0;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4B5563;
+  }
+
+  /* Region table */
+  .region-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    margin-top: 12px;
+  }
+  .region-table th {
+    text-align: left;
+    font-weight: 600;
+    color: #6B7280;
+    padding: 8px 12px;
+    border-bottom: 1px solid rgba(107, 114, 128, 0.15);
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .region-table td {
+    padding: 8px 12px;
+    color: #9CA3AF;
+    border-bottom: 1px solid rgba(107, 114, 128, 0.06);
+  }
+  .region-table td:nth-child(3) { color: #38BDF8; }
+
+  /* Data model */
+  .data-model-section { margin-bottom: 40px; }
+  .data-model-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .model-card {
+    border-radius: 10px;
+    padding: 18px;
+    overflow: hidden;
+  }
+  .model-card.matters {
+    background: rgba(56, 189, 248, 0.03);
+    border: 1px solid rgba(56, 189, 248, 0.1);
+  }
+  .model-card.contacts {
+    background: rgba(168, 85, 247, 0.03);
+    border: 1px solid rgba(168, 85, 247, 0.1);
+  }
+  .model-card h4 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; font-weight: 700; margin-bottom: 12px;
+  }
+  .model-card.matters h4 { color: #38BDF8; }
+  .model-card.contacts h4 { color: #A78BFA; }
+  .schema-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    border-bottom: 1px solid rgba(107, 114, 128, 0.06);
+  }
+  .schema-row:last-child { border-bottom: none; }
+  .schema-field { color: #D1D5DB; flex: 1; }
+  .schema-type {
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 9px;
+    font-weight: 600;
+  }
+  .type-key { background: rgba(251, 191, 36, 0.12); color: #FBBF24; }
+  .type-string { background: rgba(16, 185, 129, 0.12); color: #34D399; }
+  .type-date { background: rgba(56, 189, 248, 0.12); color: #38BDF8; }
+  .type-number { background: rgba(244, 114, 182, 0.12); color: #F472B6; }
+  .schema-col {
+    color: #4B5563;
+    font-size: 9px;
+    width: 36px;
+    text-align: right;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid rgba(107, 114, 128, 0.1);
+  }
+  .footer p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #374151;
+  }
+
+  /* Critical callout */
+  .callout {
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .callout.warning {
+    background: rgba(251, 191, 36, 0.06);
+    border: 1px solid rgba(251, 191, 36, 0.15);
+    color: #D1D5DB;
+  }
+  .callout .callout-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .callout code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    background: rgba(0,0,0,0.3);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: #FBBF24;
+  }
+</style>
+</head>
+<body>
+<div class="infographic">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="badge">CC-47140 &middot; ENGINEERING REFERENCE</div>
+    <h1>ndMax Phase 1 <span>&mdash;</span> Architecture</h1>
+    <div class="subtitle">Centerbase &rarr; NetDocs Data Tables API Integration</div>
+    <div class="epic-ref">
+      <a href="https://centerbase1.atlassian.net/browse/CC-47140">CC-47140</a> &middot;
+      CC-47635 &middot; CC-47636 &middot; CC-47637 &middot; CC-47638 &middot; CC-47639
+    </div>
+  </div>
+
+  <!-- Architecture Diagram -->
+  <div class="section-title">System Architecture</div>
+  <div class="arch-diagram">
+    <!-- Centerbase -->
+    <div class="system-col cb">
+      <div class="sys-header">
+        <div class="sys-icon">CB</div>
+        <div>
+          <div class="sys-name">Centerbase</div>
+          <div class="sys-desc">orchestration + workflow engine</div>
+        </div>
+      </div>
+      <div class="sys-body">
+        <div class="component">
+          <div class="comp-ticket">CC-47635</div>
+          <div class="comp-header">
+            <div class="comp-icon">⚡</div>
+            <div class="comp-name">Workflow Engine</div>
+          </div>
+          <div class="comp-detail">
+            New action node: <span class="highlight">Send to NetDocs Data Table</span><br>
+            Trigger: entity create / update<br>
+            Config: field picker + column mapping
+          </div>
+        </div>
+        <div class="component">
+          <div class="comp-ticket">CC-47636</div>
+          <div class="comp-header">
+            <div class="comp-icon">🔐</div>
+            <div class="comp-name">OAuth Layer</div>
+          </div>
+          <div class="comp-detail">
+            Existing: <span class="highlight">NetDocumentsHelper</span><br>
+            Extend: validate token against DT API<br>
+            Handle: refresh + region routing
+          </div>
+        </div>
+        <div class="component">
+          <div class="comp-ticket">CC-47637</div>
+          <div class="comp-header">
+            <div class="comp-icon">📡</div>
+            <div class="comp-name">API Client</div>
+          </div>
+          <div class="comp-detail">
+            Target: <span class="highlight">services-{region}.netdocuments.com</span><br>
+            Ops: create-table, insert-row, query<br>
+            Pattern: upsert by uniqueKey
+          </div>
+        </div>
+        <div class="component">
+          <div class="comp-ticket">CC-47638</div>
+          <div class="comp-header">
+            <div class="comp-icon">📊</div>
+            <div class="comp-name">Logging + Retry Queue</div>
+          </div>
+          <div class="comp-detail">
+            Log: every DT API call + status<br>
+            Retry: 5m &rarr; 30m &rarr; 2h &rarr; fail<br>
+            Surface: admin sync dashboard
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Connector -->
+    <div class="connector-col">
+      <div class="conn-label">OAuth 2.0<br>Bearer Token</div>
+      <div class="conn-line"></div>
+      <div class="conn-node api">🔗</div>
+      <div class="conn-line"></div>
+      <div class="conn-label">REST / JSON<br>HTTPS</div>
+    </div>
+
+    <!-- NetDocs -->
+    <div class="system-col nd">
+      <div class="sys-header">
+        <div class="sys-icon">ND</div>
+        <div>
+          <div class="sys-name">NetDocuments</div>
+          <div class="sys-desc">data tables + AI execution</div>
+        </div>
+      </div>
+      <div class="sys-body">
+        <div class="component">
+          <div class="comp-header">
+            <div class="comp-icon">🗄️</div>
+            <div class="comp-name">Data Tables API</div>
+          </div>
+          <div class="comp-detail">
+            Base: <span class="highlight-purple">services-{region}.netdocuments.com/datatables</span><br>
+            Stores: structured rows by repository<br>
+            Schema: key, string, date, number, rich_text
+          </div>
+        </div>
+        <div class="component">
+          <div class="comp-header">
+            <div class="comp-icon">⚙️</div>
+            <div class="comp-name">PatternBuilder</div>
+          </div>
+          <div class="comp-detail">
+            Consumes data table rows<br>
+            Drives: conditional doc generation<br>
+            Triggers: on row insert/update
+          </div>
+        </div>
+        <div class="component">
+          <div class="comp-header">
+            <div class="comp-icon">🤖</div>
+            <div class="comp-name">ndMAX (AI)</div>
+          </div>
+          <div class="comp-detail">
+            AI-assisted document logic<br>
+            Extraction + intelligence<br>
+            <span class="highlight-purple">Phase 2: returns data to CB</span>
+          </div>
+        </div>
+        <div class="component">
+          <div class="comp-header">
+            <div class="comp-icon">📂</div>
+            <div class="comp-name">Workspaces</div>
+          </div>
+          <div class="comp-detail">
+            Existing: auto-created on matter save<br>
+            Generated docs route here<br>
+            Surfaced in CB via iframe tab
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Critical note -->
+  <div class="callout warning">
+    <div class="callout-icon">⚠️</div>
+    <div>
+      <strong>Different base URL:</strong> The Data Tables API is <strong>not</strong> on <code>api.vault.netvoyage.com</code>.
+      It lives at <code>services-{region}.netdocuments.com/datatables</code>. Existing OAuth tokens need validation against this endpoint (CC-47636).
+    </div>
+  </div>
+
+  <!-- Request Sequence -->
+  <div class="api-sequence">
+    <div class="section-title">Request Sequence — Matter Sync</div>
+    <div class="sequence-track">
+      <div class="seq-step cb">
+        <div class="seq-step-inner">
+          <div class="seq-system-tag">CENTERBASE</div>
+          <div class="seq-num">1</div>
+          <div class="seq-title">Workflow Fires</div>
+          <div class="seq-code">
+            <span class="comment">// matter.save() triggers</span><br>
+            <span class="comment">// workflow action node</span><br>
+            <span class="kw">event</span>: <span class="str">matter.created</span><br>
+            <span class="kw">action</span>: <span class="str">SendToNetDocs</span><br>
+            <span class="kw">fields</span>: [configured set]
+          </div>
+        </div>
+        <div class="seq-connector">
+          <svg width="14" height="14"><polygon points="0,0 14,7 0,14" fill="#4B5563"/></svg>
+        </div>
+      </div>
+
+      <div class="seq-step cb">
+        <div class="seq-step-inner">
+          <div class="seq-system-tag">CENTERBASE</div>
+          <div class="seq-num">2</div>
+          <div class="seq-title">Build Payload</div>
+          <div class="seq-code">
+            <span class="comment">// map CB fields → DT cols</span><br>
+            { <span class="str">"uniqueKey"</span>: matterId,<br>
+            &nbsp;&nbsp;<span class="str">"contents"</span>: {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"col2"</span>: matterName,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span class="str">"col3"</span>: clientName,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;...mapped fields<br>
+            &nbsp;&nbsp;}}
+          </div>
+        </div>
+        <div class="seq-connector">
+          <svg width="14" height="14"><polygon points="0,0 14,7 0,14" fill="#4B5563"/></svg>
+        </div>
+      </div>
+
+      <div class="seq-step api">
+        <div class="seq-step-inner">
+          <div class="seq-system-tag">HTTPS</div>
+          <div class="seq-num">3</div>
+          <div class="seq-title">API Upsert</div>
+          <div class="seq-code">
+            <span class="method">POST</span> <span class="url">/datatables<br>/{repoId}/insert-row</span><br><br>
+            <span class="kw">Header</span>:<br>
+            Authorization: Bearer<br>
+            Content-Type: json<br>
+            X-User-Agent: CenterbaseAPI
+          </div>
+        </div>
+        <div class="seq-connector">
+          <svg width="14" height="14"><polygon points="0,0 14,7 0,14" fill="#4B5563"/></svg>
+        </div>
+      </div>
+
+      <div class="seq-step nd">
+        <div class="seq-step-inner">
+          <div class="seq-system-tag">NETDOCS</div>
+          <div class="seq-num">4</div>
+          <div class="seq-title">Row Upserted</div>
+          <div class="seq-code">
+            <span class="comment">// NetDocs handles:</span><br>
+            <span class="kw">if</span> uniqueKey exists:<br>
+            &nbsp;&nbsp;<span class="str">→ update row</span><br>
+            <span class="kw">else</span>:<br>
+            &nbsp;&nbsp;<span class="str">→ create row</span><br><br>
+            <span class="comment">// triggers downstream apps</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Endpoints Reference -->
+  <div class="endpoints-section">
+    <div class="section-title">Data Tables API — Key Endpoints</div>
+    <div class="endpoints-grid">
+      <div class="endpoint-card">
+        <div class="endpoint-name"><span class="endpoint-method post">POST</span> Create Data Table</div>
+        <div class="endpoint-url"><span class="var">{dtBase}</span>/datatables/<span class="var">{repoId}</span>/create-table</div>
+        <div class="endpoint-note">Creates table with column schema. Run once per entity type on first activation. Check existence with GET first.</div>
+      </div>
+      <div class="endpoint-card">
+        <div class="endpoint-name"><span class="endpoint-method post">POST</span> Upsert Row (preferred)</div>
+        <div class="endpoint-url"><span class="var">{dtBase}</span>/datatables/<span class="var">{repoId}</span>/insert-row</div>
+        <div class="endpoint-note">Insert or update by <code style="font-family:'JetBrains Mono';font-size:10px;color:#FBBF24;background:rgba(0,0,0,.3);padding:1px 4px;border-radius:2px;">uniqueKey</code>. Prevents duplicates on entity updates. Primary write method.</div>
+      </div>
+      <div class="endpoint-card">
+        <div class="endpoint-name"><span class="endpoint-method get">GET</span> List Data Tables</div>
+        <div class="endpoint-url"><span class="var">{dtBase}</span>/datatables/<span class="var">{repoId}</span></div>
+        <div class="endpoint-note">Check if CB tables already exist before creating. Also used for target table selection in workflow config UI.</div>
+      </div>
+      <div class="endpoint-card">
+        <div class="endpoint-name"><span class="endpoint-method get">GET</span> Get Table Data</div>
+        <div class="endpoint-url"><span class="var">{dtBase}</span>/datatables/<span class="var">{repoId}</span>/<span class="var">{tableId}</span>/data</div>
+        <div class="endpoint-note">Read rows back for verification. Used in sync status dashboard and E2E testing.</div>
+      </div>
+      <div class="endpoint-card">
+        <div class="endpoint-name"><span class="endpoint-method get">GET</span> Get Table Schema</div>
+        <div class="endpoint-url"><span class="var">{dtBase}</span>/datatables/<span class="var">{repoId}</span>/<span class="var">{tableId}</span>/schema</div>
+        <div class="endpoint-note">Retrieve column definitions. Use to validate mapping config matches actual table structure.</div>
+      </div>
+      <div class="endpoint-card">
+        <div class="endpoint-name"><span class="endpoint-method put">PUT</span> Update Table Schema</div>
+        <div class="endpoint-url"><span class="var">{dtBase}</span>/datatables/<span class="var">{repoId}</span>/<span class="var">{tableId}</span>/update-table</div>
+        <div class="endpoint-note">Modify columns when field mapping changes after initial setup. Handle schema migration gracefully.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Auth Flow -->
+  <div class="auth-section">
+    <div class="section-title">OAuth Flow &amp; Region Routing</div>
+    <div class="auth-flow">
+      <div class="auth-step">
+        <div class="auth-step-icon">🔑</div>
+        <div class="auth-step-title">Auth Code Grant</div>
+        <div class="auth-step-detail">
+          vault.netvoyage.com<br>/neWeb2/OAuth.aspx
+        </div>
+      </div>
+      <div class="auth-arrow">&rarr;</div>
+      <div class="auth-step">
+        <div class="auth-step-icon">🎟️</div>
+        <div class="auth-step-title">Access Token</div>
+        <div class="auth-step-detail">
+          api.{host}/v1/OAuth<br>45-90 min TTL
+        </div>
+      </div>
+      <div class="auth-arrow">&rarr;</div>
+      <div class="auth-step">
+        <div class="auth-step-icon">🔄</div>
+        <div class="auth-step-title">Refresh Token</div>
+        <div class="auth-step-detail">
+          Auto-refresh on 401<br>Max 24-48h lifetime
+        </div>
+      </div>
+      <div class="auth-arrow">&rarr;</div>
+      <div class="auth-step">
+        <div class="auth-step-icon">📡</div>
+        <div class="auth-step-title">Region Route</div>
+        <div class="auth-step-detail">
+          services-{region}<br>.netdocuments.com
+        </div>
+      </div>
+    </div>
+    <table class="region-table">
+      <tr><th>Region</th><th>Code</th><th>Data Tables Base URL</th><th>Standard API</th></tr>
+      <tr><td>United States</td><td>US</td><td>https://services-us.netdocuments.com/datatables</td><td>api.vault.netvoyage.com</td></tr>
+      <tr><td>United Kingdom</td><td>EU</td><td>https://services-eu.netdocuments.com/datatables</td><td>api.eu.netdocuments.com</td></tr>
+      <tr><td>Australia</td><td>AU</td><td>https://services-au.netdocuments.com/datatables</td><td>api.au.netdocuments.com</td></tr>
+      <tr><td>Germany</td><td>DE</td><td>https://services-de.netdocuments.com/datatables</td><td>api.de.netdocuments.com</td></tr>
+    </table>
+  </div>
+
+  <!-- Data Model -->
+  <div class="data-model-section">
+    <div class="section-title">Data Table Schemas — MVP</div>
+    <div class="data-model-grid">
+      <div class="model-card matters">
+        <h4>📋 centerbase_matters</h4>
+        <div class="schema-row"><span class="schema-col">col1</span> <span class="schema-field">Matter ID</span> <span class="schema-type type-key">key</span></div>
+        <div class="schema-row"><span class="schema-col">col2</span> <span class="schema-field">Matter Name</span> <span class="schema-type type-string">string</span></div>
+        <div class="schema-row"><span class="schema-col">col3</span> <span class="schema-field">Client Name</span> <span class="schema-type type-string">string</span></div>
+        <div class="schema-row"><span class="schema-col">col4</span> <span class="schema-field">Practice Area</span> <span class="schema-type type-string">string</span></div>
+        <div class="schema-row"><span class="schema-col">col5</span> <span class="schema-field">Responsible Attorney</span> <span class="schema-type type-string">string</span></div>
+        <div class="schema-row"><span class="schema-col">col6</span> <span class="schema-field">Open Date</span> <span class="schema-type type-date">date</span></div>
+        <div class="schema-row"><span class="schema-col">col7</span> <span class="schema-field">Billing Number</span> <span class="schema-type type-number">number</span></div>
+        <div class="schema-row"><span class="schema-col">col8</span> <span class="schema-field">Status</span> <span class="schema-type type-string">string</span></div>
+      </div>
+      <div class="model-card contacts">
+        <h4>👤 centerbase_contacts</h4>
+        <div class="schema-row"><span class="schema-col">col1</span> <span class="schema-field">Contact ID</span> <span class="schema-type type-key">key</span></div>
+        <div class="schema-row"><span class="schema-col">col2</span> <span class="schema-field">First Name</span> <span class="schema-type type-string">string</span></div>
+        <div class="schema-row"><span class="schema-col">col3</span> <span class="schema-field">Last Name</span> <span class="schema-type type-string">string</span></div>
+        <div class="schema-row"><span class="schema-col">col4</span> <span class="schema-field">Email Address</span> <span class="schema-type type-string">string</span></div>
+        <div class="schema-row"><span class="schema-col">col5</span> <span class="schema-field">Phone Number</span> <span class="schema-type type-string">string</span></div>
+        <div class="schema-row"><span class="schema-col">col6</span> <span class="schema-field">Company / Org</span> <span class="schema-type type-string">string</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error handling -->
+  <div class="error-section">
+    <div class="section-title">Error Handling Strategy (CC-47638)</div>
+    <div class="error-grid">
+      <div class="error-card">
+        <div class="error-code">401</div>
+        <div class="error-label">Unauthorized</div>
+        <div class="error-action">
+          <span class="action-kw">→ refresh</span> token<br>
+          <span class="action-kw">→ retry</span> 1x<br>
+          <span class="action-kw">→ log</span> if still fails
+        </div>
+      </div>
+      <div class="error-card">
+        <div class="error-code">429</div>
+        <div class="error-label">Rate Limited</div>
+        <div class="error-action">
+          <span class="action-kw">→ backoff</span> exponential<br>
+          <span class="action-kw">→ retry</span> 3x<br>
+          <span class="action-kw">→ queue</span> if exhausted
+        </div>
+      </div>
+      <div class="error-card">
+        <div class="error-code">5xx</div>
+        <div class="error-label">Server Error</div>
+        <div class="error-action">
+          <span class="action-kw">→ retry</span> 3x w/ backoff<br>
+          <span class="action-kw">→ queue</span> 5m/30m/2h<br>
+          <span class="action-kw">→ alert</span> admin panel
+        </div>
+      </div>
+      <div class="error-card">
+        <div class="error-code">NET</div>
+        <div class="error-label">Timeout</div>
+        <div class="error-action">
+          <span class="action-kw">→ retry</span> 1x<br>
+          <span class="action-kw">→ queue</span> for later<br>
+          <span class="action-kw">→ never</span> block CB save
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>CC-47140 &middot; ndMax Phase 1 Engineering Architecture &middot; Target: Early April 2026 &middot; Never block entity creation on API failure</p>
+  </div>
+
+</div>
+</body>
+</html>
