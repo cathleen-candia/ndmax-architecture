@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centerbase × NetDocs — Lo-Fi Workflow Mockups</title>
+<style>
+  :root {
+    --cb-blue: #4A90D9;
+    --cb-blue-light: #E8F0FE;
+    --cb-green: #5CB85C;
+    --cb-orange: #F0AD4E;
+    --cb-red: #D9534F;
+    --cb-gray: #6c757d;
+    --cb-gray-light: #f5f5f5;
+    --cb-border: #ddd;
+    --nd-purple: #6B4C9A;
+    --nd-purple-light: #F0EBF8;
+    --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --wireframe-bg: #FAFAFA;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font);
+    background: #fff;
+    color: #333;
+    line-height: 1.5;
+  }
+
+  /* ── Navigation ── */
+  .mockup-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #fff;
+    border-bottom: 2px solid var(--cb-blue);
+    padding: 12px 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .mockup-nav h1 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--cb-blue);
+    white-space: nowrap;
+  }
+  .mockup-nav .screens {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .mockup-nav button {
+    padding: 6px 14px;
+    border: 1px solid var(--cb-border);
+    border-radius: 4px;
+    background: #fff;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all .15s;
+  }
+  .mockup-nav button:hover { background: var(--cb-blue-light); }
+  .mockup-nav button.active {
+    background: var(--cb-blue);
+    color: #fff;
+    border-color: var(--cb-blue);
+  }
+
+  /* ── Screen container ── */
+  .screen {
+    display: none;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 24px 80px;
+  }
+  .screen.active { display: block; }
+
+  /* ── Wireframe frame ── */
+  .wireframe {
+    background: var(--wireframe-bg);
+    border: 2px solid var(--cb-border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 20px 0;
+  }
+  .wireframe-header {
+    background: #f0f0f0;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--cb-border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .wireframe-header .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: #ccc;
+  }
+  .wireframe-header .dot.red { background: #ff5f57; }
+  .wireframe-header .dot.yellow { background: #ffbd2e; }
+  .wireframe-header .dot.green { background: #28c840; }
+  .wireframe-header span {
+    font-size: 12px;
+    color: #888;
+    margin-left: 8px;
+  }
+  .wireframe-body {
+    padding: 24px;
+  }
+
+  /* ── Annotations ── */
+  .annotation {
+    background: #FFF9E6;
+    border-left: 4px solid var(--cb-orange);
+    padding: 12px 16px;
+    margin: 16px 0;
+    font-size: 13px;
+    border-radius: 0 4px 4px 0;
+  }
+  .annotation strong { color: var(--cb-orange); }
+  .annotation.new-feature {
+    background: var(--nd-purple-light);
+    border-left-color: var(--nd-purple);
+  }
+  .annotation.new-feature strong { color: var(--nd-purple); }
+
+  /* ── Screen title ── */
+  .screen-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 4px;
+  }
+  .screen-subtitle {
+    font-size: 14px;
+    color: var(--cb-gray);
+    margin-bottom: 24px;
+  }
+
+  /* ── CB Workflow Toolbar ── */
+  .cb-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .cb-toolbar h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+  }
+  .cb-btn {
+    padding: 5px 14px;
+    border: 1px solid var(--cb-border);
+    border-radius: 3px;
+    background: #fff;
+    font-size: 13px;
+    cursor: pointer;
+    color: #555;
+  }
+  .cb-btn:hover { background: #f0f0f0; }
+  .cb-btn.primary {
+    background: var(--cb-blue);
+    color: #fff;
+    border-color: var(--cb-blue);
+  }
+
+  /* ── Breadcrumb ── */
+  .breadcrumb {
+    background: #e9ecef;
+    padding: 8px 16px;
+    font-size: 13px;
+    color: #555;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+  .breadcrumb a {
+    color: var(--cb-blue);
+    text-decoration: none;
+  }
+
+  /* ── Node chips ── */
+  .node {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    margin: 2px;
+  }
+  .node.start { background: var(--cb-green); }
+  .node.wait { background: var(--cb-gray); }
+  .node.condition { background: var(--cb-orange); }
+  .node.task { background: #5bc0de; }
+  .node.end { background: var(--cb-red); }
+  .node.netdocs { background: var(--nd-purple); }
+
+  .node-badge {
+    display: inline-block;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    margin-right: 4px;
+  }
+
+  /* ── Workflow Detail View ── */
+  .wf-nodes {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .wf-node-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 0;
+  }
+  .wf-node-row .node-chip {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+    min-width: 120px;
+  }
+  .wf-node-row .node-chip .letter {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.3);
+    text-align: center;
+    line-height: 18px;
+    font-size: 11px;
+  }
+  .wf-node-row .gear { color: #999; cursor: pointer; font-size: 14px; }
+
+  .wf-action-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 0 4px 40px;
+    font-size: 13px;
+    color: #555;
+    flex-wrap: wrap;
+  }
+  .wf-action-row .action-type {
+    background: #eee;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #666;
+  }
+  .wf-action-row .to-node {
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .wf-action-row .tag {
+    font-size: 11px;
+    color: #888;
+  }
+
+  .wf-command-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 2px 0 2px 72px;
+    font-size: 12px;
+    color: #777;
+  }
+  .wf-command-row .cmd-icon {
+    width: 18px; height: 18px;
+    background: #ddd;
+    border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+  }
+
+  /* ── Form mockups ── */
+  .form-group {
+    margin-bottom: 16px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 4px;
+  }
+  .form-group .form-hint {
+    font-size: 11px;
+    color: #999;
+    margin-top: 2px;
+  }
+  .form-control {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--cb-border);
+    border-radius: 4px;
+    font-size: 13px;
+    background: #fff;
+    color: #333;
+  }
+  select.form-control { appearance: auto; }
+  .form-control:focus {
+    outline: none;
+    border-color: var(--cb-blue);
+    box-shadow: 0 0 0 2px rgba(74,144,217,.15);
+  }
+  .form-row {
+    display: flex;
+    gap: 16px;
+  }
+  .form-row > .form-group { flex: 1; }
+
+  /* ── Field mapping table ── */
+  .field-map-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 8px 0;
+  }
+  .field-map-table th {
+    text-align: left;
+    padding: 8px 12px;
+    background: #f5f5f5;
+    border: 1px solid var(--cb-border);
+    font-weight: 600;
+    color: #555;
+    font-size: 12px;
+  }
+  .field-map-table td {
+    padding: 6px 12px;
+    border: 1px solid var(--cb-border);
+    vertical-align: middle;
+  }
+  .field-map-table .drag-handle {
+    color: #ccc;
+    cursor: grab;
+    font-size: 14px;
+  }
+  .field-map-table .remove-btn {
+    color: var(--cb-red);
+    cursor: pointer;
+    font-weight: 700;
+    border: none;
+    background: none;
+    font-size: 16px;
+  }
+  .field-map-table .arrow {
+    color: #999;
+    font-size: 16px;
+    text-align: center;
+  }
+  .field-map-table input[type="text"] {
+    width: 100%;
+    padding: 4px 8px;
+    border: 1px solid var(--cb-border);
+    border-radius: 3px;
+    font-size: 13px;
+  }
+  .field-map-table select {
+    width: 100%;
+    padding: 4px 8px;
+    border: 1px solid var(--cb-border);
+    border-radius: 3px;
+    font-size: 13px;
+  }
+
+  .add-field-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 0;
+  }
+  .add-field-row button {
+    background: none;
+    border: 1px dashed var(--cb-blue);
+    color: var(--cb-blue);
+    padding: 4px 12px;
+    border-radius: 3px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  /* ── Status / sync panel ── */
+  .sync-card {
+    border: 1px solid var(--cb-border);
+    border-radius: 6px;
+    padding: 16px;
+    margin: 8px 0;
+    background: #fff;
+  }
+  .sync-card h4 {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #333;
+  }
+  .status-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    font-size: 13px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .status-row:last-child { border: none; }
+  .status-row .label { color: #777; }
+  .status-row .value { font-weight: 600; color: #333; }
+  .status-row .value.success { color: var(--cb-green); }
+  .status-row .value.error { color: var(--cb-red); }
+
+  /* ── Divider ── */
+  .section-divider {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 32px 0;
+  }
+
+  /* ── Highlight box ── */
+  .highlight-box {
+    border: 2px dashed var(--nd-purple);
+    border-radius: 8px;
+    padding: 16px;
+    background: var(--nd-purple-light);
+    position: relative;
+  }
+  .highlight-box::before {
+    content: 'NEW';
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    background: var(--nd-purple);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 3px;
+    letter-spacing: .5px;
+  }
+
+  /* ── Checkbox ── */
+  .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #555;
+    margin: 4px 0;
+  }
+  .checkbox-row input[type="checkbox"] {
+    width: 16px; height: 16px;
+    accent-color: var(--cb-blue);
+  }
+
+  /* ── Connector line ── */
+  .connector {
+    width: 2px;
+    height: 20px;
+    background: #ccc;
+    margin-left: 24px;
+  }
+
+  /* ── Tag ── */
+  .tag-pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .tag-pill.purple { background: var(--nd-purple-light); color: var(--nd-purple); }
+  .tag-pill.blue { background: var(--cb-blue-light); color: var(--cb-blue); }
+  .tag-pill.green { background: #e6f9e6; color: #2d8a2d; }
+
+  /* ── Overview grid ── */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  @media (max-width: 700px) {
+    .overview-grid { grid-template-columns: 1fr; }
+    .form-row { flex-direction: column; }
+  }
+  .overview-card {
+    border: 1px solid var(--cb-border);
+    border-radius: 6px;
+    padding: 16px;
+    background: #fff;
+  }
+  .overview-card h4 {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--cb-gray);
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    margin-bottom: 8px;
+  }
+  .overview-card p {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.6;
+  }
+
+  .screen-number {
+    display: inline-block;
+    background: var(--cb-blue);
+    color: #fff;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 28px;
+    font-size: 14px;
+    font-weight: 700;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav class="mockup-nav">
+  <h1>CB × NetDocs Lo-Fi Mockups</h1>
+  <div class="screens">
+    <button class="active" onclick="showScreen('overview')">Overview</button>
+    <button onclick="showScreen('screen1')">1 — Create Action</button>
+    <button onclick="showScreen('screen2')">2 — Field Mapping</button>
+    <button onclick="showScreen('screen3')">3 — Workflow Details</button>
+    <button onclick="showScreen('screen4')">4 — Sync Status</button>
+    <button onclick="showScreen('screen5')">5 — Error &amp; Retry</button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- OVERVIEW                                          -->
+<!-- ══════════════════════════════════════════════════ -->
+<section id="overview" class="screen active">
+  <h2 class="screen-title">Lo-Fi Mockups: "Send to NetDocs Data Table" Workflow Action</h2>
+  <p class="screen-subtitle">5 screens showing how the new NetDocs integration fits into the existing Centerbase workflow builder. Based on the Basic &amp; Advanced Workflow Workshop documentation.</p>
+
+  <div class="overview-grid">
+    <div class="overview-card">
+      <h4>Design Principle</h4>
+      <p>The new "Send to NetDocs Data Table" action follows the same patterns as existing Centerbase workflow actions (User Action, Automatic Action, Update Command, Create Command). An admin adds it from the same gear menu, configures it in the same form layout, and it appears in the Workflow Details view using the same node/action hierarchy.</p>
+    </div>
+    <div class="overview-card">
+      <h4>What's New</h4>
+      <p>A new <strong>action type</strong> ("Send to NetDocs Data Table") and a new <strong>field mapping configuration panel</strong> that lets admins pick Centerbase fields and map them to NetDocs data table columns. The new elements use a purple accent to visually distinguish NetDocs-specific features from native Centerbase actions.</p>
+    </div>
+    <div class="overview-card">
+      <h4>Screens Included</h4>
+      <p><span class="screen-number">1</span> Create Action form with new action type<br>
+         <span class="screen-number">2</span> Field mapping configuration panel<br>
+         <span class="screen-number">3</span> Workflow Details view with NetDocs action<br>
+         <span class="screen-number">4</span> Sync status dashboard (admin settings)<br>
+         <span class="screen-number">5</span> Error handling &amp; retry panel</p>
+    </div>
+    <div class="overview-card">
+      <h4>Jira Tickets Covered</h4>
+      <p><strong>CC-47635</strong> — Workflow action node (Screens 1–3)<br>
+         <strong>CC-47637</strong> — Data table integration (Screen 2)<br>
+         <strong>CC-47638</strong> — Logging &amp; error handling (Screens 4–5)</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- SCREEN 1 — Create Action                          -->
+<!-- ══════════════════════════════════════════════════ -->
+<section id="screen1" class="screen">
+  <h2 class="screen-title"><span class="screen-number">1</span> Create Action — New Action Type</h2>
+  <p class="screen-subtitle">Admin adds a new action from the gear menu on a Wait or Condition node, just like today. The "Type" dropdown now includes a new option.</p>
+
+  <div class="wireframe">
+    <div class="wireframe-header">
+      <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+      <span>Centerbase — Workflow Manager</span>
+    </div>
+    <div class="wireframe-body">
+      <div class="breadcrumb">
+        <a href="#">Workflow: New Matter Onboarding</a> / <a href="#">Node: Matter Created</a> / <strong>Create Action</strong>
+      </div>
+
+      <h3 style="font-size:18px; margin-bottom:16px; color:#333;">Create Action</h3>
+
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" class="form-control" value="Send Matter Data to NetDocs" readonly>
+      </div>
+
+      <div class="form-group">
+        <label>Description <span style="color:#999; font-weight:normal;">(Optional)</span></label>
+        <input type="text" class="form-control" value="Sends matter fields to NetDocs data table for document generation" readonly>
+      </div>
+
+      <div class="highlight-box" style="margin: 20px 0;">
+        <div class="form-group" style="margin-bottom:0;">
+          <label>Type</label>
+          <select class="form-control" style="border-color: var(--nd-purple);">
+            <option>User Action</option>
+            <option>Automatic Action</option>
+            <option selected>Send to NetDocs Data Table</option>
+          </select>
+          <div class="form-hint">New action type — sends Centerbase field data to a NetDocs data table when this action fires.</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>From Node</label>
+          <select class="form-control">
+            <option selected>Matter Created</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>To Node</label>
+          <select class="form-control">
+            <option selected>Assign Paralegals</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Source Entity</label>
+        <select class="form-control">
+          <option selected>Matter</option>
+          <option>Contact</option>
+        </select>
+        <div class="form-hint">Which Centerbase entity's fields will be sent to NetDocs.</div>
+      </div>
+
+      <div class="form-group">
+        <label>Query <span style="color:#999; font-weight:normal;">(Optional)</span></label>
+        <select class="form-control">
+          <option selected>(None — always fire)</option>
+          <option>WF: Matter is Assigned</option>
+          <option>WF: Retainer Already Received</option>
+        </select>
+        <div class="form-hint">Optionally restrict when this action fires, just like existing Automatic Actions.</div>
+      </div>
+
+      <div style="margin-top:20px; display:flex; gap:12px; align-items:center;">
+        <button class="cb-btn primary">Save</button>
+        <a href="#" style="color: var(--cb-blue); font-size:13px;">Cancel</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="annotation new-feature">
+    <strong>Design note:</strong> The new "Send to NetDocs Data Table" action type follows the same form layout as existing Automatic Actions (Name, Type, From Node, To Node, Query). The only additions are the <strong>Source Entity</strong> dropdown and the purple-highlighted Type option. After saving, the admin configures field mapping (Screen 2) via the gear menu, similar to how "Add Form" works for User Actions today.
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- SCREEN 2 — Field Mapping                          -->
+<!-- ══════════════════════════════════════════════════ -->
+<section id="screen2" class="screen">
+  <h2 class="screen-title"><span class="screen-number">2</span> Field Mapping Configuration</h2>
+  <p class="screen-subtitle">After saving the action, the admin clicks the gear icon → "Configure Field Mapping" to select which Centerbase fields to send and how they map to NetDocs data table columns. This is analogous to the "Add Form" flow for User Actions.</p>
+
+  <div class="wireframe">
+    <div class="wireframe-header">
+      <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+      <span>Centerbase — Field Mapping Configuration</span>
+    </div>
+    <div class="wireframe-body">
+      <div class="breadcrumb">
+        <a href="#">Workflow: New Matter Onboarding</a> / <a href="#">Node: Matter Created</a> / <a href="#">Action: Send Matter Data to NetDocs</a> / <strong>Field Mapping</strong>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px; margin-bottom:20px;">
+        <div>
+          <h3 style="font-size:18px; color:#333; margin-bottom:4px;">Configure Field Mapping</h3>
+          <p style="font-size:13px; color:#777;">Map Centerbase matter fields to NetDocs data table columns.</p>
+        </div>
+        <div style="text-align:right;">
+          <span class="tag-pill purple">NetDocs Integration</span>
+        </div>
+      </div>
+
+      <!-- Target Data Table -->
+      <div class="highlight-box" style="margin-bottom:24px;">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Target Data Table</label>
+            <select class="form-control" style="border-color: var(--nd-purple);">
+              <option selected>Centerbase Matters</option>
+              <option>Centerbase Contacts</option>
+              <option>+ Create New Data Table...</option>
+            </select>
+            <div class="form-hint">Select an existing NetDocs data table or create a new one. Tables are created in your firm's NetDocs repository.</div>
+          </div>
+          <div class="form-group">
+            <label>NetDocs Repository</label>
+            <select class="form-control">
+              <option selected>Main Repository (CA-12345678)</option>
+            </select>
+            <div class="form-hint">Auto-detected from your firm's NetDocs configuration.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Field Mapping Table -->
+      <h4 style="font-size:14px; font-weight:600; color:#555; margin-bottom:8px;">Field Mappings</h4>
+      <p style="font-size:12px; color:#999; margin-bottom:12px;">Select Centerbase fields and map them to NetDocs data table column names. The first field marked as "Key" will be used to prevent duplicate rows.</p>
+
+      <table class="field-map-table">
+        <thead>
+          <tr>
+            <th style="width:30px;"></th>
+            <th>Centerbase Field</th>
+            <th style="width:40px;"></th>
+            <th>NetDocs Column Name</th>
+            <th style="width:80px;">Type</th>
+            <th style="width:50px;">Key?</th>
+            <th style="width:30px;"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="drag-handle">⋮⋮</td>
+            <td>
+              <select>
+                <option selected>Matter ID</option>
+                <option>Matter Name</option>
+                <option>Client Name</option>
+              </select>
+            </td>
+            <td class="arrow">→</td>
+            <td><input type="text" value="Key" readonly style="background:#f9f9f9;"></td>
+            <td><span class="tag-pill green">key</span></td>
+            <td style="text-align:center;"><input type="radio" name="keyField" checked></td>
+            <td><button class="remove-btn">×</button></td>
+          </tr>
+          <tr>
+            <td class="drag-handle">⋮⋮</td>
+            <td>
+              <select>
+                <option>Matter ID</option>
+                <option selected>Matter Name</option>
+                <option>Client Name</option>
+              </select>
+            </td>
+            <td class="arrow">→</td>
+            <td><input type="text" value="Matter Name"></td>
+            <td><span class="tag-pill blue">string</span></td>
+            <td style="text-align:center;"><input type="radio" name="keyField"></td>
+            <td><button class="remove-btn">×</button></td>
+          </tr>
+          <tr>
+            <td class="drag-handle">⋮⋮</td>
+            <td>
+              <select>
+                <option>Matter ID</option>
+                <option>Matter Name</option>
+                <option selected>Client Name</option>
+              </select>
+            </td>
+            <td class="arrow">→</td>
+            <td><input type="text" value="Client Name"></td>
+            <td><span class="tag-pill blue">string</span></td>
+            <td style="text-align:center;"><input type="radio" name="keyField"></td>
+            <td><button class="remove-btn">×</button></td>
+          </tr>
+          <tr>
+            <td class="drag-handle">⋮⋮</td>
+            <td>
+              <select>
+                <option selected>Practice Area</option>
+              </select>
+            </td>
+            <td class="arrow">→</td>
+            <td><input type="text" value="Practice Area"></td>
+            <td><span class="tag-pill blue">string</span></td>
+            <td style="text-align:center;"><input type="radio" name="keyField"></td>
+            <td><button class="remove-btn">×</button></td>
+          </tr>
+          <tr>
+            <td class="drag-handle">⋮⋮</td>
+            <td>
+              <select>
+                <option selected>Responsible Attorney</option>
+              </select>
+            </td>
+            <td class="arrow">→</td>
+            <td><input type="text" value="Responsible Attorney"></td>
+            <td><span class="tag-pill blue">string</span></td>
+            <td style="text-align:center;"><input type="radio" name="keyField"></td>
+            <td><button class="remove-btn">×</button></td>
+          </tr>
+          <tr>
+            <td class="drag-handle">⋮⋮</td>
+            <td>
+              <select>
+                <option selected>Open Date</option>
+              </select>
+            </td>
+            <td class="arrow">→</td>
+            <td><input type="text" value="Open Date"></td>
+            <td><span class="tag-pill purple">date</span></td>
+            <td style="text-align:center;"><input type="radio" name="keyField"></td>
+            <td><button class="remove-btn">×</button></td>
+          </tr>
+          <tr>
+            <td class="drag-handle">⋮⋮</td>
+            <td>
+              <select>
+                <option selected>Status</option>
+              </select>
+            </td>
+            <td class="arrow">→</td>
+            <td><input type="text" value="Status"></td>
+            <td><span class="tag-pill blue">string</span></td>
+            <td style="text-align:center;"><input type="radio" name="keyField"></td>
+            <td><button class="remove-btn">×</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="add-field-row">
+        <button>+ Add Field Mapping</button>
+        <span style="font-size:11px; color:#999;">Select another Centerbase field to include in the data sent to NetDocs</span>
+      </div>
+
+      <hr class="section-divider">
+
+      <div class="checkbox-row">
+        <input type="checkbox" checked>
+        <span>Auto-create data table in NetDocs if it doesn't exist</span>
+      </div>
+      <div class="checkbox-row">
+        <input type="checkbox" checked>
+        <span>Use upsert mode (update existing row if key matches, create new row otherwise)</span>
+      </div>
+
+      <div style="margin-top:20px; display:flex; gap:12px; align-items:center;">
+        <button class="cb-btn primary">Save Mapping</button>
+        <a href="#" style="color: var(--cb-blue); font-size:13px;">Cancel</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="annotation new-feature">
+    <strong>Design note:</strong> This field mapping panel is accessed from the gear menu on the action (gear → "Configure Field Mapping"), following the same pattern as gear → "Add Form" for User Actions today. The Centerbase field dropdown is populated from the source entity's field list (standard + custom fields). The NetDocs column name auto-fills from the field name but can be overridden. The "Key" column maps to the <code>uniqueKey</code> parameter in the Data Tables API upsert endpoint.
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- SCREEN 3 — Workflow Details View                  -->
+<!-- ══════════════════════════════════════════════════ -->
+<section id="screen3" class="screen">
+  <h2 class="screen-title"><span class="screen-number">3</span> Workflow Details — With NetDocs Action</h2>
+  <p class="screen-subtitle">How the new NetDocs action appears in the Workflow Details page alongside existing actions. Uses the same visual hierarchy as the workshop documentation: color-coded nodes with expandable actions beneath them.</p>
+
+  <div class="wireframe">
+    <div class="wireframe-header">
+      <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+      <span>Centerbase — Workflow Details</span>
+    </div>
+    <div class="wireframe-body">
+
+      <div class="cb-toolbar">
+        <h2>Workflow Details</h2>
+        <button class="cb-btn">Edit</button>
+        <button class="cb-btn">New Node</button>
+      </div>
+      <div class="breadcrumb">
+        <a href="#">Workflow: New Matter Onboarding</a> / Details
+      </div>
+
+      <!-- Start Node -->
+      <div class="wf-nodes">
+        <div class="wf-node-row">
+          <div class="node-chip" style="background: var(--cb-green);">
+            <span class="letter">S</span> Start
+          </div>
+          <span class="gear">⚙</span>
+        </div>
+
+        <!-- AA: Start Action -->
+        <div class="wf-action-row">
+          <span class="action-type">AA</span>
+          <span>Start Action</span>
+          <span>To</span>
+          <span class="to-node" style="background: var(--cb-orange);">Splitter</span>
+          <span class="tag">Type: Automatic Action</span>
+          <span class="gear">⚙</span>
+        </div>
+
+        <!-- Splitter -->
+        <div class="wf-node-row">
+          <div class="node-chip" style="background: var(--cb-orange);">
+            <span class="letter">C</span> Splitter
+          </div>
+          <span style="font-size:12px; color:#888;">Is-Multi-Result ✓</span>
+          <span class="gear">⚙</span>
+        </div>
+
+        <!-- AA: Send Welcome Email -->
+        <div class="wf-action-row">
+          <span class="action-type">AA</span>
+          <span>Send Welcome Email</span>
+          <span>To</span>
+          <span class="to-node" style="background: var(--cb-gray);">Wait for Retainer</span>
+          <span class="tag">Type: Automatic Action &nbsp; All Users ✕</span>
+          <span class="gear">⚙</span>
+        </div>
+
+        <!-- NEW: NetDocs Action -->
+        <div class="highlight-box" style="margin: 8px 0 8px 0; padding: 10px 16px;">
+          <div class="wf-action-row" style="padding-left:0;">
+            <span class="action-type" style="background: var(--nd-purple-light); color: var(--nd-purple);">ND</span>
+            <span style="font-weight:600;">Send Matter Data to NetDocs</span>
+            <span>To</span>
+            <span class="to-node" style="background: var(--cb-gray);">Assign Paralegals</span>
+            <span class="tag">Type: Send to NetDocs Data Table &nbsp; 7 fields mapped</span>
+            <span class="gear">⚙</span>
+          </div>
+          <div class="wf-command-row" style="padding-left:32px;">
+            <div class="cmd-icon" style="background: var(--nd-purple-light); color: var(--nd-purple); font-size:9px;">↗</div>
+            <span>Target: <strong>Centerbase Matters</strong> table &nbsp;|&nbsp; Key: Matter ID &nbsp;|&nbsp; Mode: Upsert</span>
+          </div>
+        </div>
+
+        <!-- AA: Split to Always Available -->
+        <div class="wf-action-row">
+          <span class="action-type">AA</span>
+          <span>Split to Actions</span>
+          <span>To</span>
+          <span class="to-node" style="background: var(--cb-gray);">Actions that Are Always Available</span>
+          <span class="tag">Type: Automatic Action &nbsp; All Users ✕</span>
+          <span class="gear">⚙</span>
+        </div>
+
+        <!-- Wait for Retainer -->
+        <div class="wf-node-row">
+          <div class="node-chip" style="background: var(--cb-gray);">
+            <span class="letter">W</span> Wait for Retainer
+          </div>
+          <span class="gear">⚙</span>
+        </div>
+        <div class="wf-action-row">
+          <span class="action-type">UA</span>
+          <span>Retainer Received</span>
+          <span>To</span>
+          <span class="to-node" style="background: var(--cb-orange);">Is Matter Assigned?</span>
+          <span class="tag">Type: User Action &nbsp; Has Form ✓ &nbsp; All Users ✕</span>
+          <span class="gear">⚙</span>
+        </div>
+
+        <!-- Assign Paralegals -->
+        <div class="wf-node-row">
+          <div class="node-chip" style="background: var(--cb-gray);">
+            <span class="letter">W</span> Assign Paralegals
+          </div>
+          <span class="gear">⚙</span>
+        </div>
+
+        <!-- Actions Always Available -->
+        <div class="wf-node-row">
+          <div class="node-chip" style="background: var(--cb-gray);">
+            <span class="letter">W</span> Actions that Are Always Available
+          </div>
+          <span class="gear">⚙</span>
+        </div>
+        <div class="wf-action-row">
+          <span class="action-type">UA</span>
+          <span>Update Matter Status</span>
+          <span>To</span>
+          <span class="to-node" style="background: var(--cb-gray);">Actions that Are Always Available</span>
+          <span class="tag">Type: User Action &nbsp; Has Form ✓ &nbsp; All Users ✕</span>
+          <span class="gear">⚙</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="annotation new-feature">
+    <strong>Design note:</strong> The NetDocs action uses a purple "ND" badge instead of "AA" or "UA" to visually distinguish it from native actions. Beneath the action row, a summary line shows the target data table, key field, and sync mode — giving admins at-a-glance visibility without opening the configuration. The gear menu on this action includes: Edit, Configure Field Mapping, View Sync Log, Delete.
+  </div>
+
+  <div class="annotation">
+    <strong>Gear menu options for the NetDocs action:</strong><br>
+    • <strong>Edit</strong> — Modify action name, from/to nodes, query (same as today)<br>
+    • <strong>Configure Field Mapping</strong> — Opens Screen 2<br>
+    • <strong>View Sync Log</strong> — Opens filtered view of Screen 4<br>
+    • <strong>Delete</strong> — Removes the action (same as today)
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- SCREEN 4 — Sync Status                            -->
+<!-- ══════════════════════════════════════════════════ -->
+<section id="screen4" class="screen">
+  <h2 class="screen-title"><span class="screen-number">4</span> Sync Status Dashboard</h2>
+  <p class="screen-subtitle">Accessed from the NetDocs settings area (Gear → System Settings → NetDocuments). Shows overall health of the integration and recent sync activity. Maps to Jira ticket CC-47638.</p>
+
+  <div class="wireframe">
+    <div class="wireframe-header">
+      <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+      <span>Centerbase — System Settings — NetDocuments</span>
+    </div>
+    <div class="wireframe-body">
+      <div class="breadcrumb">
+        <a href="#">System Settings</a> / <a href="#">NetDocuments</a> / <strong>Data Table Sync Status</strong>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; gap:12px;">
+        <h3 style="font-size:18px; color:#333;">NetDocs Data Table Sync Status</h3>
+        <div>
+          <span class="tag-pill green" style="font-size:12px; padding:4px 12px;">● Connected</span>
+          <span style="font-size:12px; color:#999; margin-left:8px;">Region: US</span>
+        </div>
+      </div>
+
+      <!-- Summary Cards -->
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px,1fr)); gap:12px; margin-bottom:24px;">
+        <div class="sync-card" style="text-align:center;">
+          <div style="font-size:28px; font-weight:700; color: var(--cb-green);">247</div>
+          <div style="font-size:12px; color:#777;">Records Synced</div>
+        </div>
+        <div class="sync-card" style="text-align:center;">
+          <div style="font-size:28px; font-weight:700; color: var(--cb-blue);">3</div>
+          <div style="font-size:12px; color:#777;">Active Workflows</div>
+        </div>
+        <div class="sync-card" style="text-align:center;">
+          <div style="font-size:28px; font-weight:700; color: var(--cb-orange);">2</div>
+          <div style="font-size:12px; color:#777;">Pending Retry</div>
+        </div>
+        <div class="sync-card" style="text-align:center;">
+          <div style="font-size:28px; font-weight:700; color: var(--cb-red);">1</div>
+          <div style="font-size:12px; color:#777;">Failed (Needs Attention)</div>
+        </div>
+      </div>
+
+      <!-- Recent Sync Log -->
+      <h4 style="font-size:14px; font-weight:600; color:#555; margin-bottom:8px;">Recent Sync Activity</h4>
+      <table class="field-map-table">
+        <thead>
+          <tr>
+            <th>Timestamp</th>
+            <th>Entity</th>
+            <th>Record</th>
+            <th>Data Table</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-size:12px; color:#888;">Mar 11, 2026 2:34 PM</td>
+            <td>Matter</td>
+            <td>Smith v. Jones (#4521)</td>
+            <td>Centerbase Matters</td>
+            <td><span class="tag-pill green">✓ Synced</span></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td style="font-size:12px; color:#888;">Mar 11, 2026 2:30 PM</td>
+            <td>Contact</td>
+            <td>Jane Smith (#1102)</td>
+            <td>Centerbase Contacts</td>
+            <td><span class="tag-pill green">✓ Synced</span></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td style="font-size:12px; color:#888;">Mar 11, 2026 2:28 PM</td>
+            <td>Matter</td>
+            <td>Garcia Estate (#4519)</td>
+            <td>Centerbase Matters</td>
+            <td><span style="color: var(--cb-orange); font-weight:600; font-size:12px;">⏳ Retry in 25 min</span></td>
+            <td><button class="cb-btn" style="font-size:11px; padding:2px 8px;">Retry Now</button></td>
+          </tr>
+          <tr style="background:#fff5f5;">
+            <td style="font-size:12px; color:#888;">Mar 11, 2026 1:15 PM</td>
+            <td>Matter</td>
+            <td>Patel v. Acme Corp (#4512)</td>
+            <td>Centerbase Matters</td>
+            <td><span style="color: var(--cb-red); font-weight:600; font-size:12px;">✕ Failed</span></td>
+            <td><button class="cb-btn" style="font-size:11px; padding:2px 8px;">Retry Now</button> <button class="cb-btn" style="font-size:11px; padding:2px 8px;">Details</button></td>
+          </tr>
+          <tr>
+            <td style="font-size:12px; color:#888;">Mar 11, 2026 12:45 PM</td>
+            <td>Matter</td>
+            <td>Lee Bankruptcy (#4510)</td>
+            <td>Centerbase Matters</td>
+            <td><span class="tag-pill green">✓ Synced</span></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top:12px; text-align:right;">
+        <a href="#" style="font-size:13px; color: var(--cb-blue);">View full sync log →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="annotation">
+    <strong>Design note:</strong> This dashboard lives in the existing NetDocs settings area (where workspace configuration is already managed). The summary cards give firm admins a quick health check. The log table supports manual retry and drill-down into error details. The "Records Synced" and "Active Workflows" metrics map directly to PRD Section 6.1 usage tracking requirements.
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════ -->
+<!-- SCREEN 5 — Error & Retry                          -->
+<!-- ══════════════════════════════════════════════════ -->
+<section id="screen5" class="screen">
+  <h2 class="screen-title"><span class="screen-number">5</span> Error Details &amp; Retry Panel</h2>
+  <p class="screen-subtitle">When an admin clicks "Details" on a failed sync, they see a plain-language error description with the option to retry. Maps to Jira ticket CC-47638's requirement for "plain-language descriptions (not raw API errors)."</p>
+
+  <div class="wireframe">
+    <div class="wireframe-header">
+      <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+      <span>Centerbase — Sync Error Details</span>
+    </div>
+    <div class="wireframe-body">
+      <div class="breadcrumb">
+        <a href="#">System Settings</a> / <a href="#">NetDocuments</a> / <a href="#">Sync Status</a> / <strong>Error Details</strong>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
+        <div style="width:40px; height:40px; border-radius:50%; background:#FDECEA; display:flex; align-items:center; justify-content:center; font-size:20px; color:var(--cb-red);">!</div>
+        <div>
+          <h3 style="font-size:16px; color:#333; margin-bottom:2px;">Sync Failed: Patel v. Acme Corp (#4512)</h3>
+          <p style="font-size:12px; color:#888;">Failed at Mar 11, 2026 1:15 PM &nbsp;•&nbsp; 3 retries attempted</p>
+        </div>
+      </div>
+
+      <div class="sync-card" style="border-color: var(--cb-red); border-left: 4px solid var(--cb-red);">
+        <h4 style="color: var(--cb-red);">What happened</h4>
+        <p style="font-size:14px; color:#333; margin-bottom:12px;">
+          Centerbase was unable to send matter data to the NetDocs data table. The NetDocs server returned a "service unavailable" error, which usually means NetDocs is experiencing temporary downtime or maintenance.
+        </p>
+        <h4 style="margin-top:12px;">What to do</h4>
+        <p style="font-size:14px; color:#333;">
+          Click "Retry Now" to attempt the sync again. If this keeps failing, check the <a href="#" style="color: var(--cb-blue);">NetDocs status page</a> or contact your NetDocs administrator.
+        </p>
+      </div>
+
+      <div class="sync-card" style="margin-top:16px;">
+        <h4>Sync Details</h4>
+        <div class="status-row">
+          <span class="label">Entity</span>
+          <span class="value">Matter</span>
+        </div>
+        <div class="status-row">
+          <span class="label">Record</span>
+          <span class="value">Patel v. Acme Corp (#4512)</span>
+        </div>
+        <div class="status-row">
+          <span class="label">Target Data Table</span>
+          <span class="value">Centerbase Matters</span>
+        </div>
+        <div class="status-row">
+          <span class="label">Fields to Sync</span>
+          <span class="value">7 fields (Matter ID, Matter Name, Client Name, ...)</span>
+        </div>
+        <div class="status-row">
+          <span class="label">Workflow</span>
+          <span class="value">New Matter Onboarding</span>
+        </div>
+        <div class="status-row">
+          <span class="label">Error Type</span>
+          <span class="value error">503 — Service Unavailable</span>
+        </div>
+        <div class="status-row">
+          <span class="label">Retry History</span>
+          <span class="value">Attempt 1 (1:15 PM) → 503 &nbsp;|&nbsp; Attempt 2 (1:20 PM) → 503 &nbsp;|&nbsp; Attempt 3 (1:50 PM) → 503</span>
+        </div>
+        <div class="status-row">
+          <span class="label">Entity saved in Centerbase?</span>
+          <span class="value success">✓ Yes — matter was saved normally</span>
+        </div>
+      </div>
+
+      <div style="margin-top:20px; display:flex; gap:12px; align-items:center;">
+        <button class="cb-btn primary">Retry Now</button>
+        <button class="cb-btn">Back to Sync Status</button>
+      </div>
+
+      <div class="annotation" style="margin-top:20px;">
+        <strong>Key requirement:</strong> The last row confirms that the Centerbase entity was saved successfully even though the NetDocs sync failed. This is the "never block entity creation" requirement from the PRD.
+      </div>
+    </div>
+  </div>
+
+  <div class="annotation">
+    <strong>Design note:</strong> Error messages are translated into plain language for firm admins — they should never see raw API responses. The retry history gives visibility into what's been attempted. The "Entity saved in Centerbase?" confirmation is critical for user trust: admins need to know that a sync failure did not cause data loss in their own system.
+  </div>
+</section>
+
+<script>
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.mockup-nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
