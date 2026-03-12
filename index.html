@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ndMax Phase 1 — Project Resources</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f5f7fa;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+  .container {
+    max-width: 600px;
+    width: 100%;
+  }
+  h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 6px;
+  }
+  .subtitle {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 32px;
+  }
+  a.card {
+    display: block;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow .15s, border-color .15s;
+  }
+  a.card:hover {
+    border-color: #4A90D9;
+    box-shadow: 0 4px 12px rgba(74,144,217,.15);
+  }
+  a.card h2 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #4A90D9;
+    margin-bottom: 4px;
+  }
+  a.card p {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.5;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-top: 8px;
+  }
+  .tag.eng { background: #e8f0fe; color: #4A90D9; }
+  .tag.design { background: #f0ebf8; color: #6B4C9A; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>ndMax Phase 1</h1>
+  <p class="subtitle">Centerbase × NetDocs Integration — Project Resources</p>
+
+  <a class="card" href="architecture.html">
+    <h2>Engineering Architecture Diagram</h2>
+    <p>Technical architecture for Phase 1 showing system components, API endpoints, OAuth flow, data table schemas, and error handling strategy.</p>
+    <span class="tag eng">Engineering</span>
+  </a>
+
+  <a class="card" href="mockups.html">
+    <h2>Workflow Action — Lo-Fi Mockups</h2>
+    <p>5 interactive screens showing how the "Send to NetDocs Data Table" action fits into the Centerbase workflow builder UI.</p>
+    <span class="tag design">Product Design</span>
+  </a>
+</div>
+</body>
+</html>
