@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centerbase × NetDocs ndMax — Interactive Conference Demo</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+:root {
+  --cb-teal: #0B3D4C; --cb-teal-hover: #0E4F63; --cb-green-btn: #5CB85C;
+  --cb-teal-btn: #3AAFB9; --cb-orange: #E8830C; --cb-red: #DC3545;
+  --cb-blue-link: #337AB7; --nd-blue: #00508C; --nd-bg: #F5F6F8;
+  --green: #28A745; --green-light: #D4EDDA; --purple: #7C3AED; --purple-light: #F3EEFF;
+  --gray-50: #F8F9FA; --gray-100: #F1F3F5; --gray-200: #DEE2E6; --gray-300: #CED4DA;
+  --gray-400: #ADB5BD; --gray-500: #6C757D; --gray-600: #495057; --gray-700: #343A40; --gray-800: #212529;
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --shadow: 0 1px 3px rgba(0,0,0,.12); --shadow-md: 0 4px 8px rgba(0,0,0,.1); --radius: 4px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:#E8EAED;color:var(--gray-800);overflow-x:hidden;font-size:13px}
+
+/* DEMO BAR */
+.demo-bar{position:fixed;top:0;left:0;right:0;z-index:9999;background:linear-gradient(135deg,#1a1a2e,#16213e);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.demo-bar .brand{display:flex;align-items:center;gap:10px}
+.demo-bar .bt{font-size:14px;font-weight:700;color:#fff}.bt span{color:#a78bfa}
+.demo-bar .bs{font-size:11px;color:#94a3b8;margin-left:12px}
+.demo-steps{display:flex;align-items:center;gap:3px}
+.sp{width:8px;height:8px;border-radius:50%;background:#4a5568;cursor:pointer;transition:all .2s}
+.sp.active{background:#fff;transform:scale(1.4)}.sp.done{background:#34d399}
+.sc{width:14px;height:2px;background:#4a5568}.sc.done{background:#34d399}
+.nav-btns{display:flex;gap:6px}
+.db{padding:6px 16px;border-radius:5px;font-size:12px;font-weight:600;cursor:pointer;border:none;transition:all .12s}
+.db.bk{background:#374151;color:#d1d5db}.db.bk:hover{background:#4b5563}
+.db.nx{background:#6366f1;color:#fff}.db.nx:hover{background:#4f46e5}
+.db:disabled{opacity:.3;cursor:default}
+
+/* SHELL */
+.cb-shell{margin-top:44px;display:flex;min-height:calc(100vh - 44px)}
+.cb-sidebar{width:200px;background:var(--cb-teal);color:#fff;display:flex;flex-direction:column;flex-shrink:0;font-size:13px;overflow-y:auto}
+.cb-sidebar-logo{padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.1)}
+.cb-sidebar-logo img{width:28px;height:28px;flex-shrink:0}
+.cb-sidebar-logo span{font-size:15px;font-weight:600;letter-spacing:-.3px}
+.sb-search{margin:10px 12px;padding:6px 10px;background:rgba(255,255,255,.1);border-radius:var(--radius);font-size:12px;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.08)}
+.ni{display:flex;align-items:center;gap:8px;padding:8px 16px;color:rgba(255,255,255,.75);cursor:pointer;transition:all .1s;font-size:13px}
+.ni:hover{background:var(--cb-teal-hover);color:#fff}
+.ni.active{background:rgba(255,255,255,.12);color:#fff;font-weight:600;border-left:3px solid #2dd4bf}
+.ni .ic{width:18px;text-align:center;font-size:14px}
+.ni .ch{margin-left:auto;font-size:10px;color:rgba(255,255,255,.3)}
+.nd-div{height:1px;background:rgba(255,255,255,.08);margin:4px 0}
+.cb-main{flex:1;background:#fff;display:flex;flex-direction:column;overflow:hidden}
+
+/* SCREENS */
+.screen{display:none;flex-direction:column;flex:1;overflow-y:auto}
+.screen.active{display:flex;animation:fadeSlide .3s ease}
+@keyframes fadeSlide{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
+
+/* MATTER HEADER */
+.mh{padding:12px 20px;border-bottom:1px solid var(--gray-200);background:#fff}
+.mh h1{font-size:17px;font-weight:600;color:var(--gray-800)}
+.mh .mt{font-size:12px;color:var(--gray-500)}
+.mh .ab{display:flex;gap:6px;margin-top:8px}
+.mb{padding:5px 14px;border-radius:var(--radius);font-size:12px;font-weight:600;cursor:pointer;border:none;color:#fff;transition:all .12s}
+.mb.gr{background:var(--cb-green-btn)}.mb.gr:hover{background:#4CAE4C}
+.mb.tl{background:var(--cb-teal-btn)}.mb.tl:hover{background:#2E99A3}
+.mb.pp{background:var(--purple)}.mb.pp:hover{background:#6D28D9}
+
+/* FINANCE ROW */
+.fr{display:flex;gap:0;border-bottom:1px solid var(--gray-200)}
+.fc{flex:1;text-align:center;padding:12px 8px;border-right:1px solid var(--gray-200)}
+.fc:last-child{border-right:none}
+.fc .am{font-size:16px;font-weight:600}.fc .lb{font-size:11px;color:var(--gray-500);margin-top:2px}
+
+/* TAB BAR */
+.tb{display:flex;gap:0;border-bottom:1px solid var(--gray-200);overflow-x:auto;background:#fff;padding:0 12px}
+.ti{padding:10px 14px;font-size:12px;color:var(--gray-500);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all .1s}
+.ti:hover{color:var(--gray-700)}.ti.active{color:var(--cb-teal);font-weight:600;border-bottom-color:var(--cb-teal)}
+
+/* NETDOCS IFRAME */
+.ndi{flex:1;background:var(--nd-bg);display:flex;flex-direction:column}
+.ndh{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:#fff;border-bottom:1px solid var(--gray-200)}
+.ndl{font-size:16px;font-weight:600;color:var(--nd-blue);letter-spacing:-.3px}
+.ndsb{display:flex;align-items:center;gap:6px;padding:6px 12px;border:1px solid var(--gray-300);border-radius:var(--radius);font-size:12px;color:var(--gray-400);min-width:280px}
+.ndt{display:flex;gap:0;background:var(--nd-blue);padding:0 12px}
+.nt{padding:10px 16px;font-size:12px;font-weight:600;color:rgba(255,255,255,.7);cursor:pointer;text-transform:uppercase;letter-spacing:.3px}
+.nt.active{color:#fff;border-bottom:2px solid #fff}
+.ndwh{padding:14px 16px;display:flex;align-items:center;gap:10px}
+.nddt{display:flex;gap:0;padding:0 16px;border-bottom:1px solid var(--gray-200)}
+.nddti{padding:8px 16px;font-size:12px;color:var(--gray-500);cursor:pointer;border-bottom:2px solid transparent;text-transform:uppercase;font-weight:500}
+.nddti.active{color:var(--nd-blue);border-bottom-color:var(--nd-blue)}
+
+/* DOC TABLE */
+.dt{width:100%;border-collapse:collapse;font-size:12px}
+.dt th{text-align:left;padding:8px 12px;background:var(--gray-50);border-bottom:1px solid var(--gray-200);color:var(--gray-500);font-weight:600;font-size:11px}
+.dt td{padding:10px 12px;border-bottom:1px solid var(--gray-100);color:var(--gray-700)}
+.dt tr:hover td{background:#F0F7FF}
+.dt .dn{color:var(--cb-blue-link);font-weight:500;cursor:pointer}
+.dt .vb{display:inline-block;width:20px;height:20px;line-height:20px;text-align:center;background:var(--green);color:#fff;border-radius:3px;font-size:10px;font-weight:700}
+.hlr td{background:#FFFDE7!important}
+.ni-tag{display:inline-block;background:var(--cb-orange);color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:2px;margin-left:6px;text-transform:uppercase;letter-spacing:.3px;animation:pulse 1.5s ease infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+
+/* WORKFLOW NODES */
+.wfh{border:2px dashed var(--purple);border-radius:6px;padding:10px;background:var(--purple-light);position:relative;margin:8px 0}
+.wfh::before{content:'NEW — ndMax';position:absolute;top:-10px;left:12px;background:var(--purple);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;letter-spacing:.3px}
+.wfa{margin-left:48px;padding:6px 12px;border-left:2px solid var(--gray-200);font-size:12px;color:var(--gray-500);display:flex;align-items:center;gap:6px}
+.wab{font-size:10px;font-weight:700;padding:2px 6px;border-radius:2px;background:var(--gray-100);color:var(--gray-600)}
+.wab.nd{background:var(--purple-light);color:var(--purple)}
+.wfc{margin-left:18px;width:2px;height:16px;background:var(--gray-200)}
+.wnb{padding:4px 10px;border-radius:var(--radius);color:#fff;font-size:12px;font-weight:700;min-width:28px;text-align:center}
+
+/* TITLE SCREENS */
+.ts{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 44px);padding:40px;text-align:center;background:linear-gradient(165deg,#f8fafc,#ede9fe,#ecfdf5)}
+.ts h1{font-size:38px;font-weight:700;line-height:1.2;color:var(--gray-800)}.ts h1 span{color:var(--purple)}
+.ts .sub{font-size:17px;color:var(--gray-500);margin-top:8px;max-width:550px;line-height:1.6}
+.fv{display:flex;align-items:center;justify-content:center;gap:10px;margin:32px 0;flex-wrap:wrap}
+.fch{padding:12px 20px;border-radius:8px;font-weight:600;font-size:13px;text-align:center;box-shadow:var(--shadow-md)}
+.fch.cb{background:var(--cb-teal);color:#fff}.fch.nd{background:var(--purple);color:#fff}
+.fch.dc{background:#fff;border:2px solid var(--green);color:var(--green)}
+.fa{font-size:20px;color:var(--gray-400)}
+
+/* USE CASE SELECTOR */
+.uc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;max-width:720px;margin:32px auto 0}
+.uc-card{background:#fff;border:2px solid var(--gray-200);border-radius:12px;padding:24px 20px;cursor:pointer;transition:all .2s;text-align:center}
+.uc-card:hover{border-color:var(--purple);box-shadow:0 8px 24px rgba(124,58,237,.15);transform:translateY(-4px)}
+.uc-card.selected{border-color:var(--purple);background:var(--purple-light)}
+.uc-card .uc-icon{font-size:36px;margin-bottom:8px}
+.uc-card h3{font-size:14px;font-weight:700;color:var(--gray-800);margin-bottom:4px}
+.uc-card p{font-size:12px;color:var(--gray-500);line-height:1.4}
+.uc-card .uc-tag{display:inline-block;margin-top:8px;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600;background:var(--purple-light);color:var(--purple)}
+
+/* TYPING ANIMATION */
+.type-field{position:relative;overflow:hidden}
+.type-field .cursor{display:inline-block;width:2px;height:16px;background:var(--cb-teal);animation:blink .6s step-end infinite;vertical-align:text-bottom;margin-left:1px}
+@keyframes blink{50%{opacity:0}}
+.field-box{padding:8px 10px;border:1px solid var(--gray-300);border-radius:var(--radius);font-size:13px;background:#fff;min-height:36px}
+.field-box.auto{background:var(--gray-50);color:var(--gray-400);border-color:var(--gray-200)}
+.field-label{font-size:11px;font-weight:600;color:var(--gray-500);display:block;margin-bottom:3px}
+
+/* DOC PREVIEW OVERLAY */
+.doc-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:10000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
+.doc-overlay.visible{display:flex;animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.doc-panel{background:#fff;border-radius:8px;box-shadow:0 20px 60px rgba(0,0,0,.3);width:680px;max-height:85vh;overflow-y:auto;position:relative}
+.doc-panel-bar{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-bottom:1px solid var(--gray-200);background:var(--gray-50);border-radius:8px 8px 0 0}
+.doc-panel-bar .title{font-size:14px;font-weight:600;color:var(--gray-700)}
+.doc-close{background:none;border:none;font-size:20px;cursor:pointer;color:var(--gray-400);padding:4px 8px;border-radius:4px}
+.doc-close:hover{background:var(--gray-100);color:var(--gray-700)}
+.doc-body{padding:40px 48px;font-family:'Times New Roman',Georgia,serif;line-height:1.7;color:#222}
+.doc-body .lh{text-align:center;margin-bottom:28px;padding-bottom:14px;border-bottom:2px solid var(--gray-800)}
+.doc-body .lh h2{font-size:18px;font-weight:700;letter-spacing:2px;color:var(--gray-800)}
+.doc-body .lh p{font-size:10px;color:var(--gray-500);letter-spacing:.5px}
+.doc-body p{margin-bottom:12px;font-size:13px}
+.doc-body .fval{background:var(--purple-light);color:var(--purple);padding:1px 5px;border-radius:3px;font-weight:600;font-family:var(--font);font-size:12px}
+.doc-body .dt-lbl{color:var(--gray-500);font-size:12px;margin-bottom:20px}
+.doc-body .sig{margin-top:32px}
+.doc-body .sig .ln{width:180px;border-bottom:1px solid #333;margin-bottom:4px}
+
+/* SYNC OVERLAY */
+.sync-ov{position:absolute;inset:0;background:rgba(255,255,255,.92);display:none;align-items:center;justify-content:center;flex-direction:column;gap:12px;z-index:100;backdrop-filter:blur(2px)}
+.sync-ov.visible{display:flex}
+.sync-ov .st{font-size:14px;font-weight:600;color:var(--purple)}
+.sync-ov .ss{font-size:12px;color:var(--gray-500)}
+.spinner{width:28px;height:28px;border:3px solid var(--gray-200);border-top-color:var(--purple);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cpop{font-size:32px;animation:popIn .3s ease}
+@keyframes popIn{from{transform:scale(0)}to{transform:scale(1)}}
+
+/* TOAST */
+.toast{position:fixed;bottom:20px;right:20px;z-index:9998;background:var(--gray-800);color:#fff;padding:12px 18px;border-radius:6px;box-shadow:var(--shadow-md);font-size:13px;display:none;align-items:center;gap:8px;animation:toastIn .25s ease}
+.toast.visible{display:flex}
+@keyframes toastIn{from{transform:translateY(16px);opacity:0}to{transform:translateY(0);opacity:1}}
+
+/* PRESENTER NOTES */
+.pn{position:fixed;bottom:0;left:0;right:0;z-index:9990;background:rgba(15,23,42,.95);color:#cbd5e1;padding:10px 20px;font-size:13px;line-height:1.5;transform:translateY(100%);transition:transform .25s ease}
+.pn.visible{transform:translateY(0)}.pn strong{color:#fff}
+.pnt{position:fixed;bottom:8px;left:8px;z-index:9991;background:var(--gray-700);color:var(--gray-400);border:none;padding:4px 8px;border-radius:3px;font-size:10px;cursor:pointer;opacity:.5}
+.pnt:hover{opacity:1}
+
+/* STAT */
+.stat-row{display:flex;gap:32px;justify-content:center;margin:32px 0}
+.stat-card{text-align:center}.stat-card .num{font-size:36px;font-weight:700}
+.stat-card .num.cb{color:var(--cb-teal)}.stat-card .num.nd{color:var(--purple)}.stat-card .num.gn{color:var(--green)}
+.stat-card .desc{font-size:13px;color:var(--gray-500)}
+
+/* CLICKABLE HINT */
+.click-hint{position:relative}
+.click-hint::after{content:'👆 Click';position:absolute;top:-22px;left:50%;transform:translateX(-50%);background:var(--purple);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;white-space:nowrap;animation:bounce 1s ease infinite;font-family:var(--font)}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-4px)}}
+
+/* PROGRESS DOTS (in-screen) */
+.doc-progress{display:flex;gap:8px;align-items:center;justify-content:center;padding:12px;font-size:12px;color:var(--gray-500)}
+.doc-progress .dp{width:10px;height:10px;border-radius:50%;background:var(--gray-200);transition:all .3s}
+.doc-progress .dp.filled{background:var(--green);transform:scale(1.2)}
+.doc-progress .dp-line{width:24px;height:2px;background:var(--gray-200);transition:all .3s}
+.doc-progress .dp-line.filled{background:var(--green)}
+
+/* ═══ ADMIN / FORM SCREENS (new workflow setup screens) ═══ */
+.admin-header{padding:16px 20px;background:#fff;border-bottom:1px solid var(--gray-200)}
+.admin-header h2{font-size:17px;font-weight:600;color:var(--gray-800)}
+.admin-header .crumbs{font-size:12px;color:var(--gray-500);margin-top:2px}
+.admin-header .crumbs a{color:var(--cb-blue-link);text-decoration:none}
+.admin-body{padding:20px;overflow-y:auto;flex:1}
+
+.fm-group{margin-bottom:16px}
+.fm-group label{display:block;font-size:12px;font-weight:600;color:var(--gray-600);margin-bottom:4px}
+.fm-group .hint{font-size:11px;color:var(--gray-400);margin-top:3px}
+.fm-input{width:100%;padding:8px 12px;border:1px solid var(--gray-300);border-radius:var(--radius);font-size:13px;background:#fff;color:var(--gray-800);font-family:var(--font)}
+.fm-input:focus{outline:none;border-color:var(--cb-teal)}
+select.fm-input{appearance:auto}
+.fm-row{display:flex;gap:16px}.fm-row>.fm-group{flex:1}
+.new-box{border:2px dashed var(--purple);border-radius:6px;padding:16px;background:var(--purple-light);position:relative;margin:16px 0}
+.new-box::before{content:'NEW';position:absolute;top:-10px;left:14px;background:var(--purple);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;letter-spacing:.5px}
+
+/* FIELD MAP TABLE */
+.fmt{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
+.fmt th{text-align:left;padding:8px 10px;background:var(--gray-50);border:1px solid var(--gray-200);font-weight:600;color:var(--gray-500);font-size:11px}
+.fmt td{padding:7px 10px;border:1px solid var(--gray-200);vertical-align:middle}
+.fmt .drag{color:var(--gray-300);cursor:grab;font-size:14px}
+.fmt .arrow{color:var(--gray-400);font-size:14px;text-align:center}
+.fmt select,.fmt input[type=text]{width:100%;padding:5px 8px;border:1px solid var(--gray-300);border-radius:3px;font-size:12px;font-family:var(--font)}
+.type-tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600}
+.type-tag.key{background:var(--green-light);color:var(--green)}
+.type-tag.str{background:#E8F0FE;color:#337AB7}
+.type-tag.date{background:var(--purple-light);color:var(--purple)}
+.rm-btn{color:var(--cb-red);cursor:pointer;font-weight:700;border:none;background:none;font-size:16px}
+.add-row{display:flex;align-items:center;gap:8px;padding:6px 0}
+.add-row button{background:none;border:1px dashed var(--cb-blue-link);color:var(--cb-blue-link);padding:4px 12px;border-radius:3px;font-size:12px;cursor:pointer;font-family:var(--font)}
+.chk-row{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-600);margin:6px 0}
+.chk-row input{width:16px;height:16px;accent-color:var(--cb-teal)}
+
+/* Gear dropdown for workflow detail */
+.gear-menu{position:relative;display:inline-block}
+.gear-btn{background:none;border:none;font-size:14px;color:var(--gray-400);cursor:pointer;padding:2px 4px;border-radius:3px}
+.gear-btn:hover{background:var(--gray-100);color:var(--gray-700)}
+.gear-drop{display:none;position:absolute;right:0;top:100%;background:#fff;border:1px solid var(--gray-200);border-radius:4px;box-shadow:var(--shadow-md);min-width:180px;z-index:50;font-size:12px}
+.gear-drop.open{display:block}
+.gear-drop div{padding:8px 14px;cursor:pointer;color:var(--gray-700)}
+.gear-drop div:hover{background:var(--gray-50)}
+.gear-drop div.hl{color:var(--purple);font-weight:600;background:var(--purple-light)}
+
+@media(max-width:900px){.cb-sidebar{display:none}}
+</style>
+</head>
+<body>
+
+<!-- DEMO BAR -->
+<div class="demo-bar">
+  <div class="brand"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImcxIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNFMEUwRTAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjODg4Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJnMiIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjRkZGIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0NDQyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZzMiIHgxPSIxIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzk5OSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1NTUiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxwYXRoIGQ9Ik04LDI4IEwyMCwzNCBMMzIsMjggTDMyLDE4IEwyMCwyNCBMOCwxOCBaIiBmaWxsPSJ1cmwoI2cxKSIvPgogIDxwYXRoIGQ9Ik0yMCwxMiBMMzIsNiBMMzIsMTggTDIwLDI0IFoiIGZpbGw9InVybCgjZzMpIi8+CiAgPHBhdGggZD0iTTgsMTggTDIwLDEyIEwyMCwyNCBMOCwxOCBaIiBmaWxsPSJ1cmwoI2cyKSIvPgogIDxwYXRoIGQ9Ik04LDE4IEwyMCwxMiBMMzIsNiBMMzIsMTggTDIwLDI0IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjMpIiBzdHJva2Utd2lkdGg9IjAuNSIvPgogIDxwYXRoIGQ9Ik0xNSwxNSBRMTIsMjAgMTUsMjUgTDIwLDI4IEwyMCwyNCBMMTcsMjIgUTE1LDIwIDE3LDE4IEwyMCwxNiBMMjAsMTIgWiIgZmlsbD0icmdiYSgwLDAsMCwwLjE1KSIvPgo8L3N2Zz4K" alt="" style="width:22px;height:22px"><div class="bt">Centerbase <span>× NetDocs</span></div><div class="bs">ndMax Integration Demo</div></div>
+  <div class="demo-steps" id="demoSteps"></div>
+  <div class="nav-btns"><button class="db bk" id="prevBtn" onclick="prev()" disabled>← Back</button><button class="db nx" id="nextBtn" onclick="next()">Next →</button></div>
+</div>
+
+<!-- SHELL -->
+<div class="cb-shell">
+  <div class="cb-sidebar">
+    <div class="cb-sidebar-logo"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImcxIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNFMEUwRTAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjODg4Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJnMiIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjRkZGIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0NDQyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZzMiIHgxPSIxIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzk5OSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1NTUiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxwYXRoIGQ9Ik04LDI4IEwyMCwzNCBMMzIsMjggTDMyLDE4IEwyMCwyNCBMOCwxOCBaIiBmaWxsPSJ1cmwoI2cxKSIvPgogIDxwYXRoIGQ9Ik0yMCwxMiBMMzIsNiBMMzIsMTggTDIwLDI0IFoiIGZpbGw9InVybCgjZzMpIi8+CiAgPHBhdGggZD0iTTgsMTggTDIwLDEyIEwyMCwyNCBMOCwxOCBaIiBmaWxsPSJ1cmwoI2cyKSIvPgogIDxwYXRoIGQ9Ik04LDE4IEwyMCwxMiBMMzIsNiBMMzIsMTggTDIwLDI0IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjMpIiBzdHJva2Utd2lkdGg9IjAuNSIvPgogIDxwYXRoIGQ9Ik0xNSwxNSBRMTIsMjAgMTUsMjUgTDIwLDI4IEwyMCwyNCBMMTcsMjIgUTE1LDIwIDE3LDE4IEwyMCwxNiBMMjAsMTIgWiIgZmlsbD0icmdiYSgwLDAsMCwwLjE1KSIvPgo8L3N2Zz4K" alt="Centerbase" style="width:28px;height:28px"><span>Centerbase</span></div>
+    <div class="sb-search">🔍 search for anything</div>
+    <div class="ni"><span class="ic">📊</span> Dashboard</div>
+    <div class="ni"><span class="ic">📅</span> Calendar</div>
+    <div class="ni"><span class="ic">🕐</span> Recent <span class="ch">▾</span></div>
+    <div class="ni"><span class="ic">⏱</span> Timekeeping <span class="ch">▾</span></div>
+    <div class="ni active" id="sM"><span class="ic">📁</span> Matters</div>
+    <div class="ni"><span class="ic">📋</span> Pre-Bill Approval</div>
+    <div class="ni"><span class="ic">👤</span> Contacts</div>
+    <div class="ni"><span class="ic">⚖</span> Conflict Check</div>
+    <div class="ni"><span class="ic">📌</span> Activities <span class="ch">▾</span></div>
+    <div class="nd-div"></div>
+    <div class="ni"><span class="ic">📄</span> Doc Management <span class="ch">▾</span></div>
+    <div class="ni"><span class="ic">💰</span> Billing <span class="ch">▾</span></div>
+    <div class="ni"><span class="ic">💳</span> Payments <span class="ch">▾</span></div>
+    <div class="ni"><span class="ic">🏦</span> Accounting <span class="ch">▾</span></div>
+    <div class="nd-div"></div>
+    <div class="ni" id="sNav"><span class="ic">⚙</span> Settings</div>
+  </div>
+
+  <div class="cb-main" id="mainContent">
+
+    <!-- ═══════════════════════════════════════════════════════
+         S0: TITLE + USE CASE SELECTOR
+         ═══════════════════════════════════════════════════════ -->
+    <div class="screen active" id="s0">
+      <div class="ts">
+        <div>
+          <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:16px"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImcxIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNFMEUwRTAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjODg4Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJnMiIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjRkZGIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0NDQyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZzMiIHgxPSIxIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzk5OSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1NTUiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxwYXRoIGQ9Ik04LDI4IEwyMCwzNCBMMzIsMjggTDMyLDE4IEwyMCwyNCBMOCwxOCBaIiBmaWxsPSJ1cmwoI2cxKSIvPgogIDxwYXRoIGQ9Ik0yMCwxMiBMMzIsNiBMMzIsMTggTDIwLDI0IFoiIGZpbGw9InVybCgjZzMpIi8+CiAgPHBhdGggZD0iTTgsMTggTDIwLDEyIEwyMCwyNCBMOCwxOCBaIiBmaWxsPSJ1cmwoI2cyKSIvPgogIDxwYXRoIGQ9Ik04LDE4IEwyMCwxMiBMMzIsNiBMMzIsMTggTDIwLDI0IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjMpIiBzdHJva2Utd2lkdGg9IjAuNSIvPgogIDxwYXRoIGQ9Ik0xNSwxNSBRMTIsMjAgMTUsMjUgTDIwLDI4IEwyMCwyNCBMMTcsMjIgUTE1LDIwIDE3LDE4IEwyMCwxNiBMMjAsMTIgWiIgZmlsbD0icmdiYSgwLDAsMCwwLjE1KSIvPgo8L3N2Zz4K" alt="Centerbase" style="width:56px;height:56px"><span style="font-size:34px;font-weight:700;color:var(--gray-800);letter-spacing:-0.5px">Centerbase</span></div>
+          <h1 style="font-size:32px"><span>× NetDocs</span></h1>
+          <p class="sub">Create a matter. Your documents are already waiting in NetDocs.</p>
+          <p style="font-size:14px;color:var(--gray-600);margin-top:24px;font-weight:600">Choose a use case to demo:</p>
+          <div class="uc-grid">
+            <div class="uc-card" id="uc1" onclick="selectUC(1)">
+              <div class="uc-icon">📄</div>
+              <h3>Engagement Letter</h3>
+              <p>New matter triggers auto-generated engagement letter</p>
+              <div class="uc-tag">~2 min</div>
+            </div>
+            <div class="uc-card" id="uc2" onclick="selectUC(2)">
+              <div class="uc-icon">📋</div>
+              <h3>Document Package</h3>
+              <p>Full package: engagement letter + conflict check + fee agreement</p>
+              <div class="uc-tag">~3 min</div>
+            </div>
+            <div class="uc-card" id="uc3" onclick="selectUC(3)">
+              <div class="uc-icon">🤝</div>
+              <h3>NDA from Contact</h3>
+              <p>Contact creation triggers NDA auto-generation</p>
+              <div class="uc-tag">~2 min</div>
+            </div>
+          </div>
+          <p style="font-size:12px;color:var(--gray-400);margin-top:24px">Select a card above, or press <strong>Next →</strong> for the full demo</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         S1: CREATE ACTION (new — from lo-fi Screen 1)
+         ═══════════════════════════════════════════════════════ -->
+    <div class="screen" id="s1">
+      <div class="admin-header">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px"><span style="font-size:16px">⚙</span><h2>Create Action</h2></div>
+        <div class="crumbs"><a href="#">Settings</a> → <a href="#">Workflows</a> → <a href="#" id="s1WfCrumb">New Matter Onboarding</a> → <a href="#">Start Node</a> → <strong>Create Action</strong></div>
+      </div>
+      <div class="admin-body">
+        <div style="max-width:640px">
+          <div class="fm-group">
+            <label>Name</label>
+            <input type="text" class="fm-input" id="s1ActName" value="Send Matter Data to NetDocs" readonly>
+          </div>
+
+          <div class="fm-group">
+            <label>Description <span style="color:var(--gray-400);font-weight:normal">(Optional)</span></label>
+            <input type="text" class="fm-input" value="Sends matter fields to NetDocs data table for document generation" readonly style="color:var(--gray-500)">
+          </div>
+
+          <div class="new-box">
+            <div class="fm-group" style="margin-bottom:0">
+              <label>Type</label>
+              <select class="fm-input" style="border-color:var(--purple);font-weight:600;color:var(--purple)">
+                <option>User Action</option>
+                <option>Automatic Action</option>
+                <option selected>Send to NetDocs Data Table</option>
+              </select>
+              <div class="hint">New action type — sends Centerbase field data to a NetDocs data table when this action fires.</div>
+            </div>
+          </div>
+
+          <div class="fm-row">
+            <div class="fm-group">
+              <label>From Node</label>
+              <select class="fm-input">
+                <option selected>Start</option>
+              </select>
+            </div>
+            <div class="fm-group">
+              <label>To Node</label>
+              <select class="fm-input">
+                <option selected>Wait for Retainer</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="fm-group">
+            <label>Source Entity</label>
+            <select class="fm-input" id="s1Entity">
+              <option selected>Matter</option>
+              <option>Contact</option>
+            </select>
+            <div class="hint">Which Centerbase entity's fields will be sent to NetDocs.</div>
+          </div>
+
+          <div class="fm-group">
+            <label>Query <span style="color:var(--gray-400);font-weight:normal">(Optional)</span></label>
+            <select class="fm-input">
+              <option selected>(None — always fire)</option>
+              <option>WF: Matter is Assigned</option>
+              <option>WF: Retainer Already Received</option>
+            </select>
+            <div class="hint">Optionally restrict when this action fires, just like existing Automatic Actions.</div>
+          </div>
+
+          <div style="margin-top:20px;display:flex;gap:10px;align-items:center">
+            <button class="mb pp click-hint" style="padding:8px 24px;font-size:13px" onclick="next()">💾 Save Action</button>
+            <span style="font-size:12px;color:var(--gray-400)">Cancel</span>
+          </div>
+
+          <div style="margin-top:24px;padding:14px 16px;background:var(--purple-light);border-radius:6px;border-left:3px solid var(--purple)">
+            <div style="font-size:12px;font-weight:600;color:var(--purple);margin-bottom:4px">Design Note</div>
+            <div style="font-size:12px;color:var(--gray-600);line-height:1.5">Same form layout as existing Automatic Actions. The only additions are the new <strong>Type</strong> option and <strong>Source Entity</strong> dropdown. After saving, the admin configures field mapping via the gear menu — same pattern as gear → "Add Form" for User Actions.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         S2: FIELD MAPPING CONFIGURATION (new — from lo-fi Screen 2)
+         ═══════════════════════════════════════════════════════ -->
+    <div class="screen" id="s2">
+      <div class="admin-header">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px"><span style="font-size:16px">🔗</span><h2>Configure Field Mapping</h2><span style="display:inline-block;padding:3px 10px;border-radius:10px;font-size:10px;font-weight:600;background:var(--purple-light);color:var(--purple)">NetDocs Integration</span></div>
+        <div class="crumbs"><a href="#">Settings</a> → <a href="#">Workflows</a> → <a href="#" id="s2WfCrumb">New Matter Onboarding</a> → <a href="#" id="s2ActCrumb">Send Matter Data to NetDocs</a> → <strong>Field Mapping</strong></div>
+      </div>
+      <div class="admin-body">
+        <p style="font-size:13px;color:var(--gray-500);margin-bottom:16px">Map Centerbase fields to NetDocs data table columns. The gear menu on the action opens this panel — same pattern as "Add Form" for User Actions.</p>
+
+        <!-- Target Data Table -->
+        <div class="new-box" style="margin-bottom:24px">
+          <div class="fm-row">
+            <div class="fm-group">
+              <label>Target Data Table</label>
+              <select class="fm-input" style="border-color:var(--purple)">
+                <option selected>Centerbase Matters</option>
+                <option>Centerbase Contacts</option>
+                <option>+ Create New Data Table...</option>
+              </select>
+              <div class="hint">Select an existing NetDocs data table or create a new one.</div>
+            </div>
+            <div class="fm-group">
+              <label>NetDocs Repository</label>
+              <select class="fm-input">
+                <option selected>Main Repository (CA-12345678)</option>
+              </select>
+              <div class="hint">Auto-detected from your firm's NetDocs configuration.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Field Mapping Table -->
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <div>
+            <span style="font-size:14px;font-weight:600;color:var(--gray-700)">Field Mappings</span>
+            <span style="font-size:11px;color:var(--gray-400);margin-left:8px" id="fieldCountLabel">7 fields mapped</span>
+          </div>
+        </div>
+        <p style="font-size:11px;color:var(--gray-400);margin-bottom:10px">Select Centerbase fields and map them to NetDocs data table column names. The first field marked as "Key" prevents duplicate rows.</p>
+
+        <table class="fmt">
+          <thead>
+            <tr><th style="width:30px"></th><th>Centerbase Field</th><th style="width:36px"></th><th>NetDocs Column Name</th><th style="width:70px">Type</th><th style="width:46px">Key?</th><th style="width:30px"></th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="drag">⋮⋮</td>
+              <td><select><option selected>Matter ID</option><option>Matter Name</option><option>Client Name</option></select></td>
+              <td class="arrow">→</td>
+              <td><input type="text" value="Key" readonly style="background:var(--gray-50)"></td>
+              <td><span class="type-tag key">key</span></td>
+              <td style="text-align:center"><input type="radio" name="keyF" checked></td>
+              <td><button class="rm-btn">×</button></td>
+            </tr>
+            <tr>
+              <td class="drag">⋮⋮</td>
+              <td><select><option>Matter ID</option><option selected>Matter Name</option></select></td>
+              <td class="arrow">→</td>
+              <td><input type="text" value="Matter Name"></td>
+              <td><span class="type-tag str">string</span></td>
+              <td style="text-align:center"><input type="radio" name="keyF"></td>
+              <td><button class="rm-btn">×</button></td>
+            </tr>
+            <tr>
+              <td class="drag">⋮⋮</td>
+              <td><select><option selected>Client Name</option></select></td>
+              <td class="arrow">→</td>
+              <td><input type="text" value="Client Name"></td>
+              <td><span class="type-tag str">string</span></td>
+              <td style="text-align:center"><input type="radio" name="keyF"></td>
+              <td><button class="rm-btn">×</button></td>
+            </tr>
+            <tr>
+              <td class="drag">⋮⋮</td>
+              <td><select><option selected>Practice Area</option></select></td>
+              <td class="arrow">→</td>
+              <td><input type="text" value="Practice Area"></td>
+              <td><span class="type-tag str">string</span></td>
+              <td style="text-align:center"><input type="radio" name="keyF"></td>
+              <td><button class="rm-btn">×</button></td>
+            </tr>
+            <tr>
+              <td class="drag">⋮⋮</td>
+              <td><select><option selected>Responsible Attorney</option></select></td>
+              <td class="arrow">→</td>
+              <td><input type="text" value="Responsible Attorney"></td>
+              <td><span class="type-tag str">string</span></td>
+              <td style="text-align:center"><input type="radio" name="keyF"></td>
+              <td><button class="rm-btn">×</button></td>
+            </tr>
+            <tr>
+              <td class="drag">⋮⋮</td>
+              <td><select><option selected>Open Date</option></select></td>
+              <td class="arrow">→</td>
+              <td><input type="text" value="Open Date"></td>
+              <td><span class="type-tag date">date</span></td>
+              <td style="text-align:center"><input type="radio" name="keyF"></td>
+              <td><button class="rm-btn">×</button></td>
+            </tr>
+            <tr>
+              <td class="drag">⋮⋮</td>
+              <td><select><option selected>Status</option></select></td>
+              <td class="arrow">→</td>
+              <td><input type="text" value="Status"></td>
+              <td><span class="type-tag str">string</span></td>
+              <td style="text-align:center"><input type="radio" name="keyF"></td>
+              <td><button class="rm-btn">×</button></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="add-row">
+          <button>+ Add Field Mapping</button>
+          <span style="font-size:11px;color:var(--gray-400)">Select another Centerbase field to include</span>
+        </div>
+
+        <div style="border-top:1px solid var(--gray-200);margin:20px 0;padding-top:16px">
+          <div class="chk-row"><input type="checkbox" checked><span>Auto-create data table in NetDocs if it doesn't exist</span></div>
+          <div class="chk-row"><input type="checkbox" checked><span>Use upsert mode (update existing row if key matches, create new row otherwise)</span></div>
+        </div>
+
+        <div style="display:flex;gap:10px;align-items:center">
+          <button class="mb pp click-hint" style="padding:8px 24px;font-size:13px" onclick="next()">💾 Save Mapping</button>
+          <span style="font-size:12px;color:var(--gray-400)">Cancel</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         S3: WORKFLOW DETAILS WITH ND BADGE (new — from lo-fi Screen 3)
+         ═══════════════════════════════════════════════════════ -->
+    <div class="screen" id="s3">
+      <div style="padding:16px 20px;background:#fff;border-bottom:1px solid var(--gray-200)">
+        <div style="display:flex;align-items:center;gap:8px"><h2 style="font-size:17px;font-weight:600">Workflow Details</h2><button class="mb tl" style="font-size:11px;padding:3px 10px">Edit</button><button class="mb gr" style="font-size:11px;padding:3px 10px">New Node</button></div>
+        <p style="font-size:12px;color:var(--gray-500)" id="wfDetailName">Workflow: New Matter Onboarding + NetDocs / Details</p>
+      </div>
+      <div style="padding:20px;overflow-y:auto;flex:1">
+        <div style="display:flex;flex-direction:column;gap:4px">
+
+          <!-- Start Node -->
+          <div style="display:flex;align-items:center;gap:8px;padding:8px 12px"><span class="wnb" style="background:var(--green)">S</span><strong>Start</strong> <span style="font-size:14px;color:var(--gray-400);cursor:pointer">⚙</span></div>
+          <div class="wfa"><span class="wab">AA</span> Start Action → <span style="background:var(--gray-500);color:#fff;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600">Splitter</span></div>
+          <div class="wfc"></div>
+
+          <!-- Splitter -->
+          <div style="display:flex;align-items:center;gap:8px;padding:8px 12px"><span class="wnb" style="background:var(--cb-orange)">C</span><strong>Splitter</strong><span style="font-size:11px;color:var(--gray-400);margin-left:4px">Is-Multi-Result ✓</span></div>
+          <div class="wfa"><span class="wab">AA</span> Send Welcome Email → <span style="background:var(--gray-500);color:#fff;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600">Wait for Retainer</span></div>
+          <div class="wfa"><span class="wab">AA</span> Create NetDocs Workspace → <span style="background:var(--gray-500);color:#fff;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600">Wait for Retainer</span></div>
+
+          <!-- NEW: NetDocs Action (highlighted) -->
+          <div class="wfh">
+            <div class="wfa" style="border-left:2px solid var(--purple);margin-left:0"><span class="wab nd">ND</span><strong style="color:var(--purple)" id="wfActionLabel">Send Matter Data to NetDocs Data Table</strong> → <span style="background:var(--gray-500);color:#fff;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600">Wait for Retainer</span>
+              <!-- Gear dropdown -->
+              <div class="gear-menu" style="margin-left:auto">
+                <button class="gear-btn" onclick="event.stopPropagation();this.nextElementSibling.classList.toggle('open')">⚙ ▾</button>
+                <div class="gear-drop" id="gearDrop">
+                  <div>Edit</div>
+                  <div class="hl">Configure Field Mapping</div>
+                  <div>View Sync Log</div>
+                  <div style="color:var(--cb-red)">Delete</div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-left:32px;padding:4px 12px;font-size:12px;color:var(--gray-500);display:flex;align-items:center;gap:6px">
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;background:var(--purple-light);color:var(--purple);border-radius:3px;font-size:9px">↗</span>
+              <span id="wfActionDetail">Target: <strong>Centerbase Matters</strong> table · Key: Matter ID · Mode: Upsert · 7 fields mapped</span>
+            </div>
+          </div>
+
+          <div class="wfa"><span class="wab">AA</span> Split to Always Available</div>
+          <div class="wfc"></div>
+
+          <!-- Wait for Retainer -->
+          <div style="display:flex;align-items:center;gap:8px;padding:8px 12px"><span class="wnb" style="background:var(--gray-500)">W</span><strong>Wait for Retainer</strong></div>
+          <div class="wfa"><span class="wab">UA</span> Retainer Received → <span style="background:var(--cb-orange);color:#fff;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600">Is Matter Assigned?</span></div>
+          <div class="wfc"></div>
+
+          <!-- Always Available -->
+          <div style="display:flex;align-items:center;gap:8px;padding:8px 12px"><span class="wnb" style="background:var(--gray-500)">W</span><strong>Always Available</strong></div>
+        </div>
+
+        <div style="margin-top:24px;text-align:center">
+          <button class="mb pp click-hint" style="padding:8px 24px;font-size:13px" onclick="next()">Continue to Live Demo →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         S4: MATTER CREATION WITH TYPING (was s3)
+         ═══════════════════════════════════════════════════════ -->
+    <div class="screen" id="s4">
+      <div style="padding:20px;background:#fff;border-bottom:1px solid var(--gray-200)">
+        <h2 style="font-size:17px;font-weight:600" id="s4Title">New Matter</h2>
+        <p style="font-size:12px;color:var(--gray-500)">Fill in details. The workflow fires automatically on save.</p>
+      </div>
+      <div style="padding:20px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:700px">
+          <div><span class="field-label" id="fl0">MATTER NAME</span><div class="field-box" id="f0"></div></div>
+          <div><span class="field-label" id="fl1">MATTER NUMBER</span><div class="field-box auto" id="f1"></div></div>
+          <div><span class="field-label" id="fl2">CLIENT</span><div class="field-box" id="f2"></div></div>
+          <div><span class="field-label" id="fl3">PRACTICE AREA</span><div class="field-box" id="f3"></div></div>
+          <div><span class="field-label" id="fl4">RESPONSIBLE ATTORNEY</span><div class="field-box" id="f4"></div></div>
+          <div><span class="field-label" id="fl5">BILLING RATE</span><div class="field-box" id="f5"></div></div>
+          <div><span class="field-label" id="fl6">OPEN DATE</span><div class="field-box" id="f6"></div></div>
+          <div><span class="field-label" id="fl7">STATUS</span><div class="field-box" id="f7"></div></div>
+        </div>
+        <div style="margin-top:20px;display:flex;gap:8px">
+          <button class="mb gr click-hint" id="saveBtn" style="padding:8px 24px;font-size:13px;opacity:.4;pointer-events:none" onclick="next()">💾 Save Matter</button>
+          <button class="mb tl" style="padding:8px 16px;font-size:13px;opacity:.5">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         S5: MATTER DETAIL + SYNC + NETDOCS IFRAME (was s4)
+         ═══════════════════════════════════════════════════════ -->
+    <div class="screen" id="s5" style="position:relative">
+      <div class="mh">
+        <div style="display:flex;align-items:center;gap:12px"><span style="font-size:18px;color:var(--gray-500);cursor:pointer">‹</span><div><h1 id="matterTitle">Whitfield Commercial RE Closing - 2026-0148 - Whitfield Properties</h1><div class="mt">Matter</div></div></div>
+        <div class="ab"><button class="mb gr">Matter Actions ▾</button><button class="mb tl">Workflow ▾</button><span style="font-size:14px;color:var(--gray-400);cursor:pointer">⚙ &nbsp;❓</span></div>
+      </div>
+      <div class="fr">
+        <div class="fc"><div class="am" style="color:var(--green)">Active</div><div class="lb">Status</div></div>
+        <div class="fc"><div class="am" style="color:var(--green)">$0.00</div><div class="lb">Fee WIP</div></div>
+        <div class="fc"><div class="am">$0.00</div><div class="lb">Unbilled Costs</div></div>
+        <div class="fc"><div class="am">$0.00</div><div class="lb">Fees Collected</div></div>
+        <div class="fc"><div class="am">$0.00</div><div class="lb">Matter Balance</div></div>
+        <div class="fc"><div class="am" style="color:var(--cb-red)">$5,000.00</div><div class="lb">Trust Balance</div></div>
+      </div>
+      <div class="tb">
+        <div class="ti">Details</div><div class="ti">Contacts</div><div class="ti">Chat</div><div class="ti">Matter Metrics</div><div class="ti">Secure Chat</div><div class="ti active">NetDocuments</div><div class="ti">Deadlines</div><div class="ti">File Explorer</div><div class="ti">EMail</div><div class="ti">Documents</div><div class="ti">Activity</div><div class="ti">Notes</div><div class="ti">Billing Entries</div><div class="ti">Workflow History</div>
+      </div>
+      <div class="ndi" id="ndIframe">
+        <div class="ndh">
+          <div class="ndl">net<strong>documents</strong><span>·</span></div>
+          <div class="ndsb">🔍 Search Whitfield - 2026-0148...</div>
+          <div style="display:flex;align-items:center;gap:8px"><span style="font-size:14px">➕ Add</span><div style="font-size:12px;color:var(--gray-500)">Hi, Centerbase ▾</div></div>
+        </div>
+        <div class="ndt"><div class="nt active">DOCUMENTS</div><div class="nt">LAWBETA MATTERS</div><div class="nt">MY TASKS</div><div class="nt">APPS</div></div>
+        <div class="ndwh"><span style="font-size:24px;color:#E8A100">📁</span><span style="font-size:15px;font-weight:500;color:var(--gray-700)" id="ndWsName">Whitfield - 2026-0148 - Whitfield Properties (005910.003492) ▾</span></div>
+        <div class="nddt"><div class="nddti">OVERVIEW</div><div class="nddti active">DOCUMENTS</div><div class="nddti">COLLABSPACES</div><div class="nddti">SETS</div></div>
+        <div style="padding:12px 16px;font-size:12px;color:var(--gray-500)">🔽 ≡ <span id="docCount">0 items</span></div>
+        <div id="ndEmpty" style="text-align:center;padding:40px;color:var(--gray-400)"><div style="font-size:32px;margin-bottom:8px">📂</div><p>Workspace created. Waiting for documents...</p></div>
+        <div id="ndDocs" style="display:none;padding:0 16px">
+          <table class="dt"><thead><tr><th></th><th>Name</th><th>Versions</th><th>Created by</th><th>Last modified</th><th>Practice Area</th></tr></thead><tbody id="ndDocBody"></tbody></table>
+        </div>
+        <div class="doc-progress" id="docProgress" style="display:none">
+          <span id="dpLabel">Generating documents...</span>
+          <div class="dp" id="dp1"></div><div class="dp-line" id="dpl1"></div>
+          <div class="dp" id="dp2"></div><div class="dp-line" id="dpl2"></div>
+          <div class="dp" id="dp3"></div>
+        </div>
+      </div>
+      <div class="sync-ov" id="syncOv">
+        <div class="spinner" id="syncSp"></div>
+        <div class="st" id="syncTxt">Sending matter data to NetDocs...</div>
+        <div class="ss" id="syncSub">7 fields → Centerbase Matters data table</div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════════════
+         S6: CLOSING (was s5)
+         ═══════════════════════════════════════════════════════ -->
+    <div class="screen" id="s6">
+      <div class="ts">
+        <div>
+          <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:16px"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImcxIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNFMEUwRTAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjODg4Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJnMiIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjRkZGIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0NDQyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZzMiIHgxPSIxIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzk5OSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1NTUiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxwYXRoIGQ9Ik04LDI4IEwyMCwzNCBMMzIsMjggTDMyLDE4IEwyMCwyNCBMOCwxOCBaIiBmaWxsPSJ1cmwoI2cxKSIvPgogIDxwYXRoIGQ9Ik0yMCwxMiBMMzIsNiBMMzIsMTggTDIwLDI0IFoiIGZpbGw9InVybCgjZzMpIi8+CiAgPHBhdGggZD0iTTgsMTggTDIwLDEyIEwyMCwyNCBMOCwxOCBaIiBmaWxsPSJ1cmwoI2cyKSIvPgogIDxwYXRoIGQ9Ik04LDE4IEwyMCwxMiBMMzIsNiBMMzIsMTggTDIwLDI0IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjMpIiBzdHJva2Utd2lkdGg9IjAuNSIvPgogIDxwYXRoIGQ9Ik0xNSwxNSBRMTIsMjAgMTUsMjUgTDIwLDI4IEwyMCwyNCBMMTcsMjIgUTE1LDIwIDE3LDE4IEwyMCwxNiBMMjAsMTIgWiIgZmlsbD0icmdiYSgwLDAsMCwwLjE1KSIvPgo8L3N2Zz4K" alt="Centerbase" style="width:44px;height:44px"><span style="font-size:18px;font-weight:600;color:var(--gray-500)">Centerbase × NetDocs</span></div>
+          <h1>One matter. Zero re-typing.<br><span>Documents in seconds.</span></h1>
+          <p class="sub">Matter created in Centerbase → data synced to NetDocs → documents auto-generated by PatternBuilder — all inside the same window your team already uses.</p>
+          <div class="stat-row">
+            <div class="stat-card"><div class="num cb">0</div><div class="desc">Fields re-typed</div></div>
+            <div class="stat-card"><div class="num nd">&lt;30s</div><div class="desc">Matter to documents</div></div>
+            <div class="stat-card"><div class="num gn">100%</div><div class="desc">Data accuracy</div></div>
+          </div>
+          <div style="display:flex;gap:12px;justify-content:center">
+            <button class="mb gr" style="padding:10px 28px;font-size:14px" onclick="goTo(0)">↻ Restart Demo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- DOC PREVIEW OVERLAY -->
+<div class="doc-overlay" id="docOv" onclick="closeDoc()">
+  <div class="doc-panel" onclick="event.stopPropagation()">
+    <div class="doc-panel-bar"><span class="title" id="docOvTitle">📄 Client Engagement Letter</span><button class="doc-close" onclick="closeDoc()">✕</button></div>
+    <div class="doc-body" id="docOvBody">
+      <div class="lh"><h2>MITCHELL PARK & ASSOCIATES</h2><p>ATTORNEYS AT LAW · 200 COMMERCE STREET, SUITE 1400 · DALLAS, TX 75201</p></div>
+      <p class="dt-lbl">March 16, 2026</p>
+      <p><span class="fval" id="dClient">Whitfield Properties LLC</span><br>Attn: Managing Partner<br>4200 Main Street, Dallas, TX 75226</p>
+      <p>Re: <span class="fval" id="dMatter">Whitfield Commercial RE Closing</span> (Matter No. <span class="fval" id="dNum">2026-0148</span>)</p>
+      <p>Dear Client:</p>
+      <p>Thank you for selecting Mitchell Park & Associates to represent <span class="fval" id="dClient2">Whitfield Properties LLC</span> in connection with the above-referenced <span class="fval" id="dArea">Real Estate</span> matter. We are pleased to confirm the terms of our engagement.</p>
+      <p><strong>Scope of Representation.</strong> <span class="fval" id="dAtty">James Park</span> will serve as the responsible attorney for this matter and will be your primary point of contact.</p>
+      <p><strong>Fee Arrangement.</strong> Our services will be billed at the rate of <span class="fval" id="dRate">$425.00 per hour</span> for attorney time.</p>
+      <p>We look forward to working with you on this matter.</p>
+      <div class="sig"><p>Sincerely,</p><div class="ln"></div><p><strong><span class="fval" id="dAtty2">James Park</span></strong><br>Partner, Mitchell Park & Associates</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><span id="tI">⚡</span> <span id="tM"></span></div>
+
+<!-- NOTES -->
+<button class="pnt" onclick="document.getElementById('pn').classList.toggle('visible')">📝 Notes</button>
+<div class="pn" id="pn"><span id="nT"></span></div>
+
+<script>
+/* ═══════════════════════════════════════════
+   CONFIG
+   ═══════════════════════════════════════════ */
+const useCases = {
+  1: {
+    name: 'Engagement Letter',
+    wfName: 'New Matter Onboarding + NetDocs',
+    wfType: 'Matters', s4Title: 'New Matter',
+    actionLabel: 'Send Matter Data to NetDocs Data Table',
+    actionName: 'Send Matter Data to NetDocs',
+    actionDetail: 'Target: <strong>Centerbase Matters</strong> table · Key: Matter ID · Mode: Upsert · 7 fields mapped',
+    entity: 'Matter',
+    fields: ['Whitfield Commercial RE Closing','2026-0148 (auto)','Whitfield Properties LLC','Real Estate','James Park','$425.00 / hour','March 16, 2026','Active'],
+    fieldLabels: ['MATTER NAME','MATTER NUMBER','CLIENT','PRACTICE AREA','RESPONSIBLE ATTORNEY','BILLING RATE','OPEN DATE','STATUS'],
+    matterTitle: 'Whitfield Commercial RE Closing - 2026-0148 - Whitfield Properties',
+    wsName: 'Whitfield - 2026-0148 - Whitfield Properties (005910.003492) ▾',
+    docs: [
+      { icon:'📝', name:'Client Engagement Letter', area:'Real Estate' }
+    ]
+  },
+  2: {
+    name: 'Document Package',
+    wfName: 'New Matter Onboarding + NetDocs',
+    wfType: 'Matters', s4Title: 'New Matter',
+    actionLabel: 'Send Matter Data to NetDocs Data Table',
+    actionName: 'Send Matter Data to NetDocs',
+    actionDetail: 'Target: <strong>Centerbase Matters</strong> table · Key: Matter ID · Mode: Upsert · 7 fields mapped · 3 templates',
+    entity: 'Matter',
+    fields: ['Whitfield Commercial RE Closing','2026-0148 (auto)','Whitfield Properties LLC','Real Estate','James Park','$425.00 / hour','March 16, 2026','Active'],
+    fieldLabels: ['MATTER NAME','MATTER NUMBER','CLIENT','PRACTICE AREA','RESPONSIBLE ATTORNEY','BILLING RATE','OPEN DATE','STATUS'],
+    matterTitle: 'Whitfield Commercial RE Closing - 2026-0148 - Whitfield Properties',
+    wsName: 'Whitfield - 2026-0148 - Whitfield Properties (005910.003492) ▾',
+    docs: [
+      { icon:'📝', name:'Client Engagement Letter', area:'Real Estate' },
+      { icon:'🔍', name:'Conflict Check Form', area:'Real Estate' },
+      { icon:'💰', name:'Fee Agreement', area:'Real Estate' }
+    ]
+  },
+  3: {
+    name: 'NDA from Contact',
+    wfName: 'New Contact + NDA Generation',
+    wfType: 'Contacts', s4Title: 'New Contact',
+    actionLabel: 'Send Contact Data to NetDocs Data Table',
+    actionName: 'Send Contact Data to NetDocs',
+    actionDetail: 'Target: <strong>Centerbase Contacts</strong> table · Key: Contact ID · Mode: Upsert · 5 fields mapped · NDA template',
+    entity: 'Contact',
+    fields: ['Sarah Chen','(auto)','TechVault Inc.','Corporate','sarah.chen@techvault.com','VP of Operations','March 16, 2026','Active'],
+    fieldLabels: ['CONTACT NAME','CONTACT ID','COMPANY','PRACTICE AREA','EMAIL','TITLE','CREATED DATE','STATUS'],
+    matterTitle: 'Sarah Chen - TechVault Inc.',
+    wsName: 'TechVault Inc. - Chen (005910.003501) ▾',
+    docs: [
+      { icon:'🤝', name:'Non-Disclosure Agreement - TechVault Inc.', area:'Corporate' }
+    ]
+  }
+};
+let activeUC = 2; // default to package
+
+const steps = [
+  { screen:0, note:"<strong>TITLE</strong> — \"Today I'll show you how creating a single matter in Centerbase automatically generates documents in NetDocs. Let me pick a use case.\" Click a card or press Next." },
+  { screen:1, note:"<strong>CREATE ACTION</strong> — \"First, let me show you how easy it is to set up. In the Workflow Manager, we add a new action. The Type dropdown now has a new option: <em>Send to NetDocs Data Table</em>. Same form layout admins already know.\" <em>Click Save Action.</em>" },
+  { screen:2, note:"<strong>FIELD MAPPING</strong> — \"After saving, we configure which Centerbase fields map to NetDocs columns. Drag to reorder, set a key field to prevent duplicates, and choose upsert mode. This is the same gear-menu pattern as 'Add Form' for User Actions.\" <em>Click Save Mapping.</em>" },
+  { screen:3, note:"<strong>WORKFLOW DETAILS</strong> — \"Here's the finished workflow. Notice the purple 'ND' badge on our new action — it shows the target data table, key field, and sync mode right in the tree view. The gear menu includes 'Configure Field Mapping' and 'View Sync Log'.\" <em>Click Continue.</em>" },
+  { screen:4, note:"<strong>NEW MATTER</strong> — \"Now let's see it in action. Watch the fields fill in...\" <em>Fields type automatically, then the Save button activates. Click Save.</em>", onEnter: startTyping },
+  { screen:5, note:"<strong>SYNC + DOCS</strong> — \"The matter saves, the workflow fires, and watch — the documents appear right here in the NetDocs tab inside Centerbase. Click any document to preview it.\"", onEnter: runSync },
+  { screen:6, note:"<strong>CLOSING</strong> — \"One matter. Zero re-typing. Documents in seconds. That's the Centerbase × NetDocs integration.\" Pause for questions." }
+];
+let cur = 0;
+
+function selectUC(n) {
+  activeUC = n;
+  document.querySelectorAll('.uc-card').forEach(c => c.classList.remove('selected'));
+  document.getElementById('uc'+n).classList.add('selected');
+  applyUC();
+  setTimeout(() => next(), 400);
+}
+
+function applyUC() {
+  const uc = useCases[activeUC];
+  // Workflow detail
+  document.getElementById('wfDetailName').textContent = 'Workflow: ' + uc.wfName + ' / Details';
+  document.getElementById('wfActionLabel').textContent = uc.actionLabel;
+  document.getElementById('wfActionDetail').innerHTML = uc.actionDetail;
+  // Create Action screen
+  document.getElementById('s1WfCrumb').textContent = uc.wfName;
+  document.getElementById('s1ActName').value = uc.actionName;
+  document.getElementById('s1Entity').value = uc.entity;
+  // Field Mapping screen
+  document.getElementById('s2WfCrumb').textContent = uc.wfName;
+  document.getElementById('s2ActCrumb').textContent = uc.actionName;
+  // Matter creation
+  document.getElementById('s4Title').textContent = uc.s4Title;
+  document.getElementById('matterTitle').textContent = uc.matterTitle;
+  document.getElementById('ndWsName').textContent = uc.wsName;
+  for (let i = 0; i < 8; i++) {
+    document.getElementById('fl'+i).textContent = uc.fieldLabels[i];
+  }
+  // Sidebar highlight
+  const sM = document.getElementById('sM');
+  const sN = document.getElementById('sNav');
+  if (cur <= 3) {
+    sN.classList.add('active'); sM.classList.remove('active');
+  } else {
+    sM.classList.add('active'); sN.classList.remove('active');
+  }
+}
+
+/* ═══ TYPING ANIMATION ═══ */
+function startTyping() {
+  const uc = useCases[activeUC];
+  const fields = uc.fields;
+  for (let i=0;i<8;i++) { document.getElementById('f'+i).innerHTML = ''; }
+  const sb = document.getElementById('saveBtn');
+  sb.style.opacity = '.4'; sb.style.pointerEvents = 'none';
+  sb.classList.remove('click-hint');
+
+  let fieldIdx = 0;
+  function typeField() {
+    if (fieldIdx >= fields.length) {
+      sb.style.opacity = '1'; sb.style.pointerEvents = 'auto';
+      sb.classList.add('click-hint');
+      return;
+    }
+    const el = document.getElementById('f' + fieldIdx);
+    const text = fields[fieldIdx];
+    const isAuto = fieldIdx === 1;
+    if (isAuto) {
+      el.innerHTML = text;
+      fieldIdx++;
+      setTimeout(typeField, 200);
+      return;
+    }
+    let charIdx = 0;
+    el.innerHTML = '<span class="cursor"></span>';
+    const interval = setInterval(() => {
+      if (charIdx >= text.length) {
+        clearInterval(interval);
+        el.innerHTML = text;
+        fieldIdx++;
+        setTimeout(typeField, 150);
+        return;
+      }
+      el.innerHTML = text.substring(0, charIdx + 1) + '<span class="cursor"></span>';
+      charIdx++;
+    }, 30);
+  }
+  setTimeout(typeField, 500);
+}
+
+/* ═══ SYNC + PROGRESSIVE DOC APPEARANCE ═══ */
+function runSync() {
+  const uc = useCases[activeUC];
+  const ov = document.getElementById('syncOv');
+  const sp = document.getElementById('syncSp');
+  const st = document.getElementById('syncTxt');
+  const ss = document.getElementById('syncSub');
+  const empty = document.getElementById('ndEmpty');
+  const docs = document.getElementById('ndDocs');
+  const body = document.getElementById('ndDocBody');
+  const cnt = document.getElementById('docCount');
+  const prog = document.getElementById('docProgress');
+
+  ov.classList.add('visible');
+  sp.style.display = 'block';
+  st.textContent = 'Sending data to NetDocs...';
+  ss.textContent = uc.docs.length + ' document' + (uc.docs.length>1?'s':'') + ' queued for generation';
+  empty.style.display = 'block';
+  docs.style.display = 'none';
+  body.innerHTML = '';
+  cnt.textContent = '0 items';
+  prog.style.display = 'none';
+  for(let i=1;i<=3;i++){
+    const d=document.getElementById('dp'+i); if(d)d.className='dp';
+    const l=document.getElementById('dpl'+i); if(l)l.className='dp-line';
+  }
+
+  setTimeout(() => {
+    st.textContent = '✓ Data synced to NetDocs';
+    ss.textContent = 'PatternBuilder generating documents...';
+    showToast('Matter data synced to NetDocs','⚡');
+  }, 1600);
+
+  setTimeout(() => {
+    sp.style.display = 'none';
+    st.innerHTML = '<span class="cpop">✅</span>';
+    ss.textContent = '';
+  }, 2800);
+
+  setTimeout(() => {
+    ov.classList.remove('visible');
+    empty.style.display = 'none';
+    docs.style.display = 'block';
+    if(uc.docs.length > 1) { prog.style.display = 'flex'; document.getElementById('dpLabel').textContent = 'Generating...'; }
+    addDocOne(0);
+  }, 3400);
+
+  function addDocOne(idx) {
+    if(idx >= uc.docs.length) {
+      if(prog.style.display !== 'none') document.getElementById('dpLabel').textContent = 'All documents ready ✓';
+      return;
+    }
+    const d = uc.docs[idx];
+    const row = document.createElement('tr');
+    row.className = 'hlr';
+    row.style.animation = 'fadeSlide .3s ease';
+    row.style.cursor = 'pointer';
+    row.onclick = () => openDocPreview(d.name);
+    row.innerHTML = `<td><span style="font-size:16px;margin-right:6px">${d.icon}</span></td><td><span class="dn">${d.name}</span> <span class="ni-tag">NEW</span></td><td><span class="vb">1</span></td><td>Centerbase Workflow</td><td>Just now</td><td>${d.area}</td>`;
+    body.appendChild(row);
+    cnt.textContent = (idx+1) + ' item' + (idx>0?'s':'');
+    showToast(d.name + ' generated','📄');
+    const dp = document.getElementById('dp'+(idx+1));
+    if(dp) dp.classList.add('filled');
+    if(idx > 0) { const l = document.getElementById('dpl'+idx); if(l) l.classList.add('filled'); }
+    setTimeout(() => addDocOne(idx+1), 1200);
+  }
+}
+
+/* ═══ DOC PREVIEW ═══ */
+function openDocPreview(name) {
+  const uc = useCases[activeUC];
+  document.getElementById('docOvTitle').textContent = '📄 ' + name;
+  if(activeUC === 3) {
+    document.getElementById('dClient').textContent = uc.fields[2];
+    document.getElementById('dMatter').textContent = 'Non-Disclosure Agreement';
+    document.getElementById('dNum').textContent = uc.fields[1].replace(' (auto)','');
+    document.getElementById('dClient2').textContent = uc.fields[2];
+    document.getElementById('dArea').textContent = uc.fields[3];
+    document.getElementById('dAtty').textContent = uc.fields[0];
+    document.getElementById('dRate').textContent = '';
+    document.getElementById('dAtty2').textContent = 'Sarah Mitchell';
+  } else {
+    document.getElementById('dClient').textContent = uc.fields[2];
+    document.getElementById('dMatter').textContent = uc.fields[0];
+    document.getElementById('dNum').textContent = uc.fields[1].replace(' (auto)','');
+    document.getElementById('dClient2').textContent = uc.fields[2];
+    document.getElementById('dArea').textContent = uc.fields[3];
+    document.getElementById('dAtty').textContent = uc.fields[4];
+    document.getElementById('dRate').textContent = uc.fields[5];
+    document.getElementById('dAtty2').textContent = uc.fields[4];
+  }
+  document.getElementById('docOv').classList.add('visible');
+}
+function closeDoc() { document.getElementById('docOv').classList.remove('visible'); }
+
+/* ═══ NAVIGATION ═══ */
+function render() {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('s'+steps[cur].screen).classList.add('active');
+  document.getElementById('nT').innerHTML = steps[cur].note;
+  document.getElementById('prevBtn').disabled = cur === 0;
+  document.getElementById('nextBtn').textContent = cur === steps.length-1 ? '↻ Restart' : 'Next →';
+  // Close gear menu if open
+  const gd = document.getElementById('gearDrop'); if(gd) gd.classList.remove('open');
+  renderPips();
+  if(steps[cur].onEnter) setTimeout(steps[cur].onEnter, 400);
+}
+function renderPips() {
+  const c = document.getElementById('demoSteps'); c.innerHTML = '';
+  steps.forEach((_,i) => {
+    if(i>0){const cn=document.createElement('div');cn.className='sc'+(i<=cur?' done':'');c.appendChild(cn)}
+    const p=document.createElement('div');p.className='sp'+(i===cur?' active':i<cur?' done':'');
+    p.onclick=()=>goTo(i);c.appendChild(p);
+  });
+}
+function next(){if(cur>=steps.length-1){goTo(0);return}goTo(cur+1)}
+function prev(){if(cur>0)goTo(cur-1)}
+function goTo(i){cur=i;applyUC();render()}
+
+function showToast(m,ic){const t=document.getElementById('toast');document.getElementById('tM').textContent=m;document.getElementById('tI').textContent=ic||'⚡';t.classList.add('visible');setTimeout(()=>t.classList.remove('visible'),3500)}
+
+// Close gear dropdown on outside click
+document.addEventListener('click', () => { const gd = document.getElementById('gearDrop'); if(gd) gd.classList.remove('open'); });
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();next()}
+  if(e.key==='ArrowLeft'){e.preventDefault();prev()}
+  if(e.key==='n')document.getElementById('pn').classList.toggle('visible');
+  if(e.key==='Escape')closeDoc();
+});
+
+applyUC(); render();
+</script>
+</body>
+</html>
