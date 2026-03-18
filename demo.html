@@ -18,7 +18,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--font);background:#E8EAED;color:var(--gray-800);overflow-x:hidden;font-size:13px}
-
+ 
 /* DEMO BAR */
 .demo-bar{position:fixed;top:0;left:0;right:0;z-index:9999;background:linear-gradient(135deg,#1a1a2e,#16213e);padding:8px 20px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px rgba(0,0,0,.3)}
 .demo-bar .brand{display:flex;align-items:center;gap:10px}
@@ -33,12 +33,12 @@ body{font-family:var(--font);background:#E8EAED;color:var(--gray-800);overflow-x
 .db.bk{background:#374151;color:#d1d5db}.db.bk:hover{background:#4b5563}
 .db.nx{background:#6366f1;color:#fff}.db.nx:hover{background:#4f46e5}
 .db:disabled{opacity:.3;cursor:default}
-
+ 
 /* SHELL */
 .cb-shell{margin-top:44px;display:flex;min-height:calc(100vh - 44px)}
 .cb-sidebar{width:200px;background:var(--cb-teal);color:#fff;display:flex;flex-direction:column;flex-shrink:0;font-size:13px;overflow-y:auto}
 .cb-sidebar-logo{padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,.1)}
-.cb-sidebar-logo img{width:28px;height:28px;flex-shrink:0}
+.cb-sidebar-logo img{height:18px;width:auto;flex-shrink:0}
 .cb-sidebar-logo span{font-size:15px;font-weight:600;letter-spacing:-.3px}
 .sb-search{margin:10px 12px;padding:6px 10px;background:rgba(255,255,255,.1);border-radius:var(--radius);font-size:12px;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.08)}
 .ni{display:flex;align-items:center;gap:8px;padding:8px 16px;color:rgba(255,255,255,.75);cursor:pointer;transition:all .1s;font-size:13px}
@@ -48,12 +48,12 @@ body{font-family:var(--font);background:#E8EAED;color:var(--gray-800);overflow-x
 .ni .ch{margin-left:auto;font-size:10px;color:rgba(255,255,255,.3)}
 .nd-div{height:1px;background:rgba(255,255,255,.08);margin:4px 0}
 .cb-main{flex:1;background:#fff;display:flex;flex-direction:column;overflow:hidden}
-
+ 
 /* SCREENS */
 .screen{display:none;flex-direction:column;flex:1;overflow-y:auto}
 .screen.active{display:flex;animation:fadeSlide .3s ease}
 @keyframes fadeSlide{from{opacity:0;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
-
+ 
 /* MATTER HEADER */
 .mh{padding:12px 20px;border-bottom:1px solid var(--gray-200);background:#fff}
 .mh h1{font-size:17px;font-weight:600;color:var(--gray-800)}
@@ -63,18 +63,21 @@ body{font-family:var(--font);background:#E8EAED;color:var(--gray-800);overflow-x
 .mb.gr{background:var(--cb-green-btn)}.mb.gr:hover{background:#4CAE4C}
 .mb.tl{background:var(--cb-teal-btn)}.mb.tl:hover{background:#2E99A3}
 .mb.pp{background:var(--purple)}.mb.pp:hover{background:#6D28D9}
-
+.mb.outline{background:#fff;color:var(--gray-600);border:1px solid var(--gray-300)}.mb.outline:hover{background:var(--gray-50)}
+.mb.red{background:var(--cb-red)}.mb.red:hover{background:#c82333}
+.mb.blue{background:var(--cb-blue-link)}.mb.blue:hover{background:#286090}
+ 
 /* FINANCE ROW */
 .fr{display:flex;gap:0;border-bottom:1px solid var(--gray-200)}
 .fc{flex:1;text-align:center;padding:12px 8px;border-right:1px solid var(--gray-200)}
 .fc:last-child{border-right:none}
 .fc .am{font-size:16px;font-weight:600}.fc .lb{font-size:11px;color:var(--gray-500);margin-top:2px}
-
+ 
 /* TAB BAR */
 .tb{display:flex;gap:0;border-bottom:1px solid var(--gray-200);overflow-x:auto;background:#fff;padding:0 12px}
 .ti{padding:10px 14px;font-size:12px;color:var(--gray-500);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all .1s}
 .ti:hover{color:var(--gray-700)}.ti.active{color:var(--cb-teal);font-weight:600;border-bottom-color:var(--cb-teal)}
-
+ 
 /* NETDOCS IFRAME */
 .ndi{flex:1;background:var(--nd-bg);display:flex;flex-direction:column}
 .ndh{display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:#fff;border-bottom:1px solid var(--gray-200)}
@@ -87,7 +90,7 @@ body{font-family:var(--font);background:#E8EAED;color:var(--gray-800);overflow-x
 .nddt{display:flex;gap:0;padding:0 16px;border-bottom:1px solid var(--gray-200)}
 .nddti{padding:8px 16px;font-size:12px;color:var(--gray-500);cursor:pointer;border-bottom:2px solid transparent;text-transform:uppercase;font-weight:500}
 .nddti.active{color:var(--nd-blue);border-bottom-color:var(--nd-blue)}
-
+ 
 /* DOC TABLE */
 .dt{width:100%;border-collapse:collapse;font-size:12px}
 .dt th{text-align:left;padding:8px 12px;background:var(--gray-50);border-bottom:1px solid var(--gray-200);color:var(--gray-500);font-weight:600;font-size:11px}
@@ -98,26 +101,90 @@ body{font-family:var(--font);background:#E8EAED;color:var(--gray-800);overflow-x
 .hlr td{background:#FFFDE7!important}
 .ni-tag{display:inline-block;background:var(--cb-orange);color:#fff;font-size:9px;font-weight:700;padding:1px 5px;border-radius:2px;margin-left:6px;text-transform:uppercase;letter-spacing:.3px;animation:pulse 1.5s ease infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
-
-/* WORKFLOW NODES */
-.wfh{border:2px dashed var(--purple);border-radius:6px;padding:10px;background:var(--purple-light);position:relative;margin:8px 0}
-.wfh::before{content:'NEW — ndMax';position:absolute;top:-10px;left:12px;background:var(--purple);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;letter-spacing:.3px}
-.wfa{margin-left:48px;padding:6px 12px;border-left:2px solid var(--gray-200);font-size:12px;color:var(--gray-500);display:flex;align-items:center;gap:6px}
-.wab{font-size:10px;font-weight:700;padding:2px 6px;border-radius:2px;background:var(--gray-100);color:var(--gray-600)}
-.wab.nd{background:var(--purple-light);color:var(--purple)}
-.wfc{margin-left:18px;width:2px;height:16px;background:var(--gray-200)}
-.wnb{padding:4px 10px;border-radius:var(--radius);color:#fff;font-size:12px;font-weight:700;min-width:28px;text-align:center}
-
+ 
+/* ═══ FULL-PAGE WORKFLOW SCREENS (matching real CB UI) ═══ */
+.fp{flex:1;display:flex;flex-direction:column;overflow-y:auto;background:#fff}
+.fp-header{padding:20px 24px 12px;border-bottom:1px solid var(--gray-200)}
+.fp-header h1{font-size:24px;font-weight:400;color:var(--gray-800);display:inline}
+.fp-header .btn-bar{display:inline-flex;gap:4px;margin-left:12px;vertical-align:middle}
+.fp-header .btn-bar button{padding:4px 12px;border:1px solid var(--gray-300);border-radius:3px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:var(--gray-600)}
+.fp-header .crumbs{font-size:13px;color:var(--gray-500);margin-top:6px}
+.fp-header .crumbs a{color:var(--cb-blue-link);text-decoration:none}
+.fp-body{padding:20px 24px;flex:1;overflow-y:auto}
+ 
+/* Workflow table (matching real CB) */
+.wf-table{width:100%;border-collapse:collapse;font-size:13px}
+.wf-table th{text-align:left;padding:10px 12px;background:var(--gray-100);border:1px solid var(--gray-200);font-weight:600;color:var(--gray-600);font-size:12px;text-transform:uppercase}
+.wf-table td{padding:10px 12px;border:1px solid var(--gray-200);color:var(--gray-700)}
+.wf-table td a{color:var(--cb-blue-link);text-decoration:none;font-weight:500}
+.wf-table .act-btns{display:flex;gap:4px}
+ 
+/* Workflow node list (matching real CB - vertical with circles) */
+.wf-node{display:flex;align-items:center;gap:8px;padding:10px 0}
+.wf-node .circle{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+.wf-node .circle.s{background:var(--cb-green-btn)}.wf-node .circle.w{background:var(--gray-500)}.wf-node .circle.c{background:var(--cb-orange)}
+.wf-node .chip{display:inline-block;padding:4px 12px;border-radius:4px;font-size:13px;font-weight:600;color:#fff}
+.wf-node .chip.s{background:var(--cb-green-btn)}.wf-node .chip.w{background:var(--gray-500)}.wf-node .chip.c{background:var(--cb-orange)}
+.wf-node .meta{font-size:12px;color:var(--gray-500)}
+.wf-node .gear{font-size:14px;color:var(--gray-400);cursor:pointer}
+ 
+/* New ND action highlight */
+.nd-highlight{border:2px dashed var(--purple);border-radius:6px;padding:12px 16px;background:var(--purple-light);position:relative;margin:8px 0 8px 34px}
+.nd-highlight::before{content:'NEW — ndMax';position:absolute;top:-10px;left:12px;background:var(--purple);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;letter-spacing:.3px}
+.nd-highlight .wf-node{padding:4px 0}
+ 
+/* Edit Action panel (side panel style) */
+.edit-panel{background:#fff;border:1px solid var(--gray-200);border-radius:0;flex:1;display:flex;flex-direction:column}
+.edit-panel-header{padding:16px 24px;border-bottom:1px solid var(--gray-200);display:flex;align-items:center;justify-content:space-between}
+.edit-panel-header h2{font-size:22px;font-weight:400;color:var(--gray-800)}
+.edit-panel-header .close-x{font-size:24px;color:var(--gray-400);cursor:pointer;background:none;border:none}
+.edit-panel-body{padding:20px 24px;flex:1;overflow-y:auto}
+ 
+.fm-group{margin-bottom:16px}
+.fm-group label{display:block;font-size:13px;font-weight:600;color:var(--gray-800);margin-bottom:4px}
+.fm-group .hint{font-size:11px;color:var(--gray-400);margin-top:3px}
+.fm-input{width:100%;padding:8px 12px;border:1px solid var(--gray-300);border-radius:var(--radius);font-size:13px;background:#fff;color:var(--gray-800);font-family:var(--font)}
+select.fm-input{appearance:auto}
+.fm-row{display:flex;gap:16px}.fm-row>.fm-group{flex:1}
+.new-box{border:2px dashed var(--purple);border-radius:6px;padding:16px;background:var(--purple-light);position:relative;margin:16px 0}
+.new-box::before{content:'NEW';position:absolute;top:-10px;left:14px;background:var(--purple);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;letter-spacing:.5px}
+ 
+/* SIMPLIFIED FIELD PICKER TABLE (just CB field + remove) */
+.fpt{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0;max-width:500px}
+.fpt th{text-align:left;padding:8px 10px;background:var(--gray-50);border:1px solid var(--gray-200);font-weight:600;color:var(--gray-500);font-size:11px}
+.fpt td{padding:7px 10px;border:1px solid var(--gray-200);vertical-align:middle}
+.fpt select{width:100%;padding:6px 10px;border:1px solid var(--gray-300);border-radius:3px;font-size:13px;font-family:var(--font)}
+.rm-btn{color:var(--cb-red);cursor:pointer;font-weight:700;border:none;background:none;font-size:18px}
+.add-row{display:flex;align-items:center;gap:8px;padding:6px 0}
+.add-row button{background:none;border:1px dashed var(--cb-blue-link);color:var(--cb-blue-link);padding:4px 12px;border-radius:3px;font-size:12px;cursor:pointer;font-family:var(--font)}
+.chk-row{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-600);margin:6px 0}
+.chk-row input{width:16px;height:16px;accent-color:var(--cb-teal)}
+ 
+/* FULL-PAGE MATTER/CONTACT FORM (matching real CB) */
+.matter-form-header{padding:12px 24px;border-bottom:1px solid var(--gray-200);display:flex;align-items:center;justify-content:space-between;background:#fff}
+.matter-form-header .left{display:flex;align-items:center;gap:12px}
+.matter-form-header .left h1{font-size:22px;font-weight:400;color:var(--gray-800)}
+.matter-form-header .left .sub{font-size:13px;color:var(--gray-500)}
+.matter-form-header .right{display:flex;gap:6px}
+.matter-form-body{padding:20px 24px;flex:1;overflow-y:auto}
+.matter-form-body .section-label{font-size:13px;font-weight:600;color:var(--gray-800);margin-bottom:4px;border-bottom:1px solid var(--gray-200);padding-bottom:8px}
+.matter-form-body .editing-label{font-size:13px;font-weight:600;color:var(--gray-800);margin-bottom:12px}
+.field-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px 16px;margin-top:12px}
+.fg{display:flex;flex-direction:column}
+.fg label{font-size:11px;color:var(--gray-600);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fg input,.fg select{padding:6px 8px;border:1px solid var(--gray-300);border-radius:3px;font-size:13px;font-family:var(--font);background:#fff;color:var(--gray-800)}
+.fg input:focus,.fg select:focus{outline:none;border-color:var(--cb-teal)}
+.fg .search-field{position:relative}
+.fg .search-field input{width:100%;padding-right:36px}
+.fg .search-icons{position:absolute;right:4px;top:50%;transform:translateY(-50%);display:flex;gap:2px;font-size:12px;color:var(--gray-400)}
+.fg .search-icons span{cursor:pointer}
+.fg .search-icons .plus{color:var(--cb-green-btn);font-weight:700}
+ 
 /* TITLE SCREENS */
 .ts{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 44px);padding:40px;text-align:center;background:linear-gradient(165deg,#f8fafc,#ede9fe,#ecfdf5)}
 .ts h1{font-size:38px;font-weight:700;line-height:1.2;color:var(--gray-800)}.ts h1 span{color:var(--purple)}
 .ts .sub{font-size:17px;color:var(--gray-500);margin-top:8px;max-width:550px;line-height:1.6}
-.fv{display:flex;align-items:center;justify-content:center;gap:10px;margin:32px 0;flex-wrap:wrap}
-.fch{padding:12px 20px;border-radius:8px;font-weight:600;font-size:13px;text-align:center;box-shadow:var(--shadow-md)}
-.fch.cb{background:var(--cb-teal);color:#fff}.fch.nd{background:var(--purple);color:#fff}
-.fch.dc{background:#fff;border:2px solid var(--green);color:var(--green)}
-.fa{font-size:20px;color:var(--gray-400)}
-
+ 
 /* USE CASE SELECTOR */
 .uc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;max-width:720px;margin:32px auto 0}
 .uc-card{background:#fff;border:2px solid var(--gray-200);border-radius:12px;padding:24px 20px;cursor:pointer;transition:all .2s;text-align:center}
@@ -127,15 +194,11 @@ body{font-family:var(--font);background:#E8EAED;color:var(--gray-800);overflow-x
 .uc-card h3{font-size:14px;font-weight:700;color:var(--gray-800);margin-bottom:4px}
 .uc-card p{font-size:12px;color:var(--gray-500);line-height:1.4}
 .uc-card .uc-tag{display:inline-block;margin-top:8px;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600;background:var(--purple-light);color:var(--purple)}
-
+ 
 /* TYPING ANIMATION */
-.type-field{position:relative;overflow:hidden}
-.type-field .cursor{display:inline-block;width:2px;height:16px;background:var(--cb-teal);animation:blink .6s step-end infinite;vertical-align:text-bottom;margin-left:1px}
+.type-cursor{display:inline-block;width:2px;height:14px;background:var(--cb-teal);animation:blink .6s step-end infinite;vertical-align:text-bottom;margin-left:1px}
 @keyframes blink{50%{opacity:0}}
-.field-box{padding:8px 10px;border:1px solid var(--gray-300);border-radius:var(--radius);font-size:13px;background:#fff;min-height:36px}
-.field-box.auto{background:var(--gray-50);color:var(--gray-400);border-color:var(--gray-200)}
-.field-label{font-size:11px;font-weight:600;color:var(--gray-500);display:block;margin-bottom:3px}
-
+ 
 /* DOC PREVIEW OVERLAY */
 .doc-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:10000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
 .doc-overlay.visible{display:flex;animation:fadeIn .2s ease}
@@ -154,7 +217,7 @@ body{font-family:var(--font);background:#E8EAED;color:var(--gray-800);overflow-x
 .doc-body .dt-lbl{color:var(--gray-500);font-size:12px;margin-bottom:20px}
 .doc-body .sig{margin-top:32px}
 .doc-body .sig .ln{width:180px;border-bottom:1px solid #333;margin-bottom:4px}
-
+ 
 /* SYNC OVERLAY */
 .sync-ov{position:absolute;inset:0;background:rgba(255,255,255,.92);display:none;align-items:center;justify-content:center;flex-direction:column;gap:12px;z-index:100;backdrop-filter:blur(2px)}
 .sync-ov.visible{display:flex}
@@ -164,104 +227,65 @@ body{font-family:var(--font);background:#E8EAED;color:var(--gray-800);overflow-x
 @keyframes spin{to{transform:rotate(360deg)}}
 .cpop{font-size:32px;animation:popIn .3s ease}
 @keyframes popIn{from{transform:scale(0)}to{transform:scale(1)}}
-
+ 
 /* TOAST */
 .toast{position:fixed;bottom:20px;right:20px;z-index:9998;background:var(--gray-800);color:#fff;padding:12px 18px;border-radius:6px;box-shadow:var(--shadow-md);font-size:13px;display:none;align-items:center;gap:8px;animation:toastIn .25s ease}
 .toast.visible{display:flex}
 @keyframes toastIn{from{transform:translateY(16px);opacity:0}to{transform:translateY(0);opacity:1}}
-
+ 
 /* PRESENTER NOTES */
 .pn{position:fixed;bottom:0;left:0;right:0;z-index:9990;background:rgba(15,23,42,.95);color:#cbd5e1;padding:10px 20px;font-size:13px;line-height:1.5;transform:translateY(100%);transition:transform .25s ease}
 .pn.visible{transform:translateY(0)}.pn strong{color:#fff}
 .pnt{position:fixed;bottom:8px;left:8px;z-index:9991;background:var(--gray-700);color:var(--gray-400);border:none;padding:4px 8px;border-radius:3px;font-size:10px;cursor:pointer;opacity:.5}
 .pnt:hover{opacity:1}
-
+ 
 /* STAT */
 .stat-row{display:flex;gap:32px;justify-content:center;margin:32px 0}
 .stat-card{text-align:center}.stat-card .num{font-size:36px;font-weight:700}
 .stat-card .num.cb{color:var(--cb-teal)}.stat-card .num.nd{color:var(--purple)}.stat-card .num.gn{color:var(--green)}
 .stat-card .desc{font-size:13px;color:var(--gray-500)}
-
+ 
 /* CLICKABLE HINT */
 .click-hint{position:relative}
 .click-hint::after{content:'👆 Click';position:absolute;top:-22px;left:50%;transform:translateX(-50%);background:var(--purple);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;white-space:nowrap;animation:bounce 1s ease infinite;font-family:var(--font)}
 @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-4px)}}
-
-/* PROGRESS DOTS (in-screen) */
+ 
+/* PROGRESS DOTS */
 .doc-progress{display:flex;gap:8px;align-items:center;justify-content:center;padding:12px;font-size:12px;color:var(--gray-500)}
 .doc-progress .dp{width:10px;height:10px;border-radius:50%;background:var(--gray-200);transition:all .3s}
 .doc-progress .dp.filled{background:var(--green);transform:scale(1.2)}
 .doc-progress .dp-line{width:24px;height:2px;background:var(--gray-200);transition:all .3s}
 .doc-progress .dp-line.filled{background:var(--green)}
-
-/* ═══ ADMIN / FORM SCREENS (new workflow setup screens) ═══ */
-.admin-header{padding:16px 20px;background:#fff;border-bottom:1px solid var(--gray-200)}
-.admin-header h2{font-size:17px;font-weight:600;color:var(--gray-800)}
-.admin-header .crumbs{font-size:12px;color:var(--gray-500);margin-top:2px}
-.admin-header .crumbs a{color:var(--cb-blue-link);text-decoration:none}
-.admin-body{padding:20px;overflow-y:auto;flex:1}
-
-.fm-group{margin-bottom:16px}
-.fm-group label{display:block;font-size:12px;font-weight:600;color:var(--gray-600);margin-bottom:4px}
-.fm-group .hint{font-size:11px;color:var(--gray-400);margin-top:3px}
-.fm-input{width:100%;padding:8px 12px;border:1px solid var(--gray-300);border-radius:var(--radius);font-size:13px;background:#fff;color:var(--gray-800);font-family:var(--font)}
-.fm-input:focus{outline:none;border-color:var(--cb-teal)}
-select.fm-input{appearance:auto}
-.fm-row{display:flex;gap:16px}.fm-row>.fm-group{flex:1}
-.new-box{border:2px dashed var(--purple);border-radius:6px;padding:16px;background:var(--purple-light);position:relative;margin:16px 0}
-.new-box::before{content:'NEW';position:absolute;top:-10px;left:14px;background:var(--purple);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;letter-spacing:.5px}
-
-/* FIELD MAP TABLE */
-.fmt{width:100%;border-collapse:collapse;font-size:12px;margin:8px 0}
-.fmt th{text-align:left;padding:8px 10px;background:var(--gray-50);border:1px solid var(--gray-200);font-weight:600;color:var(--gray-500);font-size:11px}
-.fmt td{padding:7px 10px;border:1px solid var(--gray-200);vertical-align:middle}
-.fmt .drag{color:var(--gray-300);cursor:grab;font-size:14px}
-.fmt .arrow{color:var(--gray-400);font-size:14px;text-align:center}
-.fmt select,.fmt input[type=text]{width:100%;padding:5px 8px;border:1px solid var(--gray-300);border-radius:3px;font-size:12px;font-family:var(--font)}
-.type-tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:600}
-.type-tag.key{background:var(--green-light);color:var(--green)}
-.type-tag.str{background:#E8F0FE;color:#337AB7}
-.type-tag.date{background:var(--purple-light);color:var(--purple)}
-.rm-btn{color:var(--cb-red);cursor:pointer;font-weight:700;border:none;background:none;font-size:16px}
-.add-row{display:flex;align-items:center;gap:8px;padding:6px 0}
-.add-row button{background:none;border:1px dashed var(--cb-blue-link);color:var(--cb-blue-link);padding:4px 12px;border-radius:3px;font-size:12px;cursor:pointer;font-family:var(--font)}
-.chk-row{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--gray-600);margin:6px 0}
-.chk-row input{width:16px;height:16px;accent-color:var(--cb-teal)}
-
-/* Gear dropdown for workflow detail */
-.gear-menu{position:relative;display:inline-block}
-.gear-btn{background:none;border:none;font-size:14px;color:var(--gray-400);cursor:pointer;padding:2px 4px;border-radius:3px}
-.gear-btn:hover{background:var(--gray-100);color:var(--gray-700)}
-.gear-drop{display:none;position:absolute;right:0;top:100%;background:#fff;border:1px solid var(--gray-200);border-radius:4px;box-shadow:var(--shadow-md);min-width:180px;z-index:50;font-size:12px}
-.gear-drop.open{display:block}
-.gear-drop div{padding:8px 14px;cursor:pointer;color:var(--gray-700)}
-.gear-drop div:hover{background:var(--gray-50)}
-.gear-drop div.hl{color:var(--purple);font-weight:600;background:var(--purple-light)}
-
-@media(max-width:900px){.cb-sidebar{display:none}}
+ 
+@media(max-width:900px){.cb-sidebar{display:none}.field-grid{grid-template-columns:repeat(3,1fr)}}
 </style>
 </head>
 <body>
-
+ 
+<script>
+// Logo SVG as base64
+const LOGO = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTI1IiBoZWlnaHQ9IjI5IiB2aWV3Qm94PSIwIDAgMTI1IDI5IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcDBfMTE0NzZfNzk4OTkpIj4KPHBhdGggZD0iTTM1LjU2ODkgMTAuNjk5NEMzNi4xNTU3IDEwLjQ3MjQgMzYuNzgyNSAxMC4zNjYxIDM3LjQxMTUgMTAuMzg2OUMzOC4wNzAyIDEwLjM2ODggMzguNzE4OCAxMC41NTEzIDM5LjI3MTEgMTAuOTA5OUMzOS44MjMzIDExLjI2ODUgNDAuMjUzIDExLjc4NjMgNDAuNTAzIDEyLjM5NDRMNDAuNTk1MiAxMi42MTA5SDQyLjY2MUw0Mi40OTMxIDEyLjEzNTFDNDIuMTM4MSAxMS4wNjY3IDQxLjQ1MzggMTAuMTM3NSA0MC41Mzc4IDkuNDgwMTNDMzkuNTM5NyA4Ljc4Mjg5IDM4LjM0NTIgOC40MjAyOCAzNy4xMjY5IDguNDQ0NzFDMzUuNDA5MiA4LjQ0NDcxIDMzLjk5NDUgOS4wNDEwNSAzMi45MjE2IDEwLjIxOTRDMzEuOTE0MyAxMS4zNDA2IDMxLjQwNDUgMTIuNzcwMiAzMS40MDQ1IDE0LjQ2OTRDMzEuNDA0NSAxNi4xNjg1IDMxLjkxNDMgMTcuNjAwMSAzMi45MjM3IDE4LjcyMzRDMzMuOTk0NSAxOS44OTk3IDM1LjQwOTIgMjAuNDk2IDM3LjEyNjkgMjAuNDk2QzM4LjM0NDQgMjAuNTIzNyAzOS41MzkxIDIwLjE2MzkgNDAuNTM3OCAxOS40Njg4QzQxLjQ1NSAxOC44MTIzIDQyLjE0MDIgMTcuODgyOSA0Mi40OTUxIDE2LjgxMzlMNDIuNjYzIDE2LjM0MDFINDAuNTg3TDQwLjQ5NDkgMTYuNTU2NUM0MC4yNDQ4IDE3LjE2NDcgMzkuODE1MSAxNy42ODI1IDM5LjI2MjkgMTguMDQxMUMzOC43MTA2IDE4LjM5OTcgMzguMDYyIDE4LjU4MjEgMzcuNDAzMyAxOC41NjQxQzM2LjA1NjIgMTguNTY0MSAzNS4wNjMyIDE4LjE4MjIgMzQuMzY5MSAxNy4zOTU5QzMzLjcwNTggMTYuNjUyNSAzMy4zNyAxNS42NzAyIDMzLjM3IDE0LjQ3MTRDMzMuMzcgMTMuMjcyNiAzMy43MDU4IDEyLjI5MjMgMzQuMzY5MSAxMS41NDg5QzM0LjcwMjEgMTEuMTgxOCAzNS4xMTE2IDEwLjg5MTggMzUuNTY4OSAxMC42OTk0Wk00OC4wNjYgMTEuMTYwOUM0Ni43MTY4IDExLjE2MDkgNDUuNjA5MiAxMS42MjI1IDQ0Ljc1MTMgMTIuNTMxM0M0My45NTQ5IDEzLjM5OTIgNDMuNTQ5NSAxNC41MDgyIDQzLjU0OTUgMTUuODMzNkM0My41MTU3IDE3LjA1NjkgNDMuOTY2NiAxOC4yNDQxIDQ0LjgwNDYgMTkuMTM3OUM0NS42NjQ1IDIwLjA0NDcgNDYuNzkwNSAyMC41MDQyIDQ4LjE1IDIwLjUwNDJDNDkuMjE4NyAyMC41MDQyIDUwLjEwOTMgMjAuMjQyOCA1MC44MDEzIDE5LjczMDJDNTEuNDg1NCAxOS4yMjMgNTIuMDA4IDE4LjUyOTQgNTIuMzA2MSAxNy43MzI5TDUyLjQ5MDQgMTcuMjQ4OUg1MC4zNzk1TDUwLjI3OTIgMTcuNDQwOEM0OS44NTEzIDE4LjI1NzcgNDkuMTU5MyAxOC42NTM5IDQ4LjE2NjMgMTguNjUzOUM0Ny44MzY4IDE4LjY2OCA0Ny41MDc5IDE4LjYxNTggNDcuMTk5IDE4LjUwMDRDNDYuODkwMiAxOC4zODQ5IDQ2LjYwNzggMTguMjA4NiA0Ni4zNjg4IDE3Ljk4MkM0NS45OTg3IDE3LjYzNDEgNDUuNzM5NSAxNy4xODUyIDQ1LjYyMzUgMTYuNjkxM0g1Mi41ODQ2VjE1LjgzMzZDNTIuNTg0NiAxNC41MTAyIDUyLjE3NTEgMTMuMzk5MiA1MS4zODI4IDEyLjUyOTJDNTAuOTU5MyAxMi4wNzg5IDUwLjQ0NDQgMTEuNzIzOSA0OS44NzI0IDExLjQ4OEM0OS4zMDA1IDExLjI1MiA0OC42ODQ2IDExLjE0MDUgNDguMDY2IDExLjE2MDlaTTQ2LjM2MjYgMTMuNjM4MkM0Ni44Mzc2IDEzLjIzNTQgNDcuNDQwNiAxMy4wMTQzIDQ4LjA2NCAxMy4wMTQzQzQ4LjY4NzMgMTMuMDE0MyA0OS4yOTA0IDEzLjIzNTQgNDkuNzY1MyAxMy42MzgyQzUwLjEwNjggMTMuOTU0MiA1MC4zNTIzIDE0LjM1OTcgNTAuNDczNyAxNC44MDg0SDQ1LjY1NjNDNDUuNzc2OCAxNC4zNTk5IDQ2LjAyMTYgMTMuOTU0MyA0Ni4zNjI2IDEzLjYzODJaTTU5Ljg2MyAxMS40MjAzQzU5LjM1OTQgMTEuMjM3OCA1OC44MjYzIDExLjE0OTggNTguMjkwNiAxMS4xNjA5QzU3LjY5NDEgMTEuMTU0MyA1Ny4xMDg2IDExLjMyMSA1Ni42MDU2IDExLjY0MDhDNTYuNDEwOSAxMS43NjMzIDU2LjIyNTQgMTEuODk5OCA1Ni4wNTA4IDEyLjA0OTNWMTEuMjkzN0g1NC4wNzcxVjIwLjM2OTRINTYuMDUwOFYxNS4xOTY0QzU2LjAzODcgMTQuOTAzOSA1Ni4wODgyIDE0LjYxMjEgNTYuMTk2MSAxNC4zMzk4QzU2LjMwNCAxNC4wNjc2IDU2LjQ2NzkgMTMuODIwOSA1Ni42NzcyIDEzLjYxNTdDNTYuODgxIDEzLjQxNTUgNTcuMTIzIDEzLjI1ODEgNTcuMzg4OSAxMy4xNTI4QzU3LjY1NDggMTMuMDQ3NiA1Ny45MzkxIDEyLjk5NjYgNTguMjI1MSAxMy4wMDNDNTguNDkxMSAxMi45OTE2IDU4Ljc1NjYgMTMuMDM2OCA1OS4wMDM3IDEzLjEzNThDNTkuMjUwOCAxMy4yMzQ4IDU5LjQ3NCAxMy4zODUxIDU5LjY1ODIgMTMuNTc2OUM2MC4wMzI5IDEzLjk2OSA2MC4yMTMxIDE0LjQ4OTggNjAuMjEzMSAxNS4xNjk5VjIwLjM2OTRINjIuMTg2N1YxNS4xNDc0QzYyLjE4NjcgMTMuOTM4NCA2MS43OTk4IDEyLjk0NzkgNjEuMDQ2MyAxMi4yMDY1QzYwLjcxMzkgMTEuODYxNyA2MC4zMTAxIDExLjU5MzQgNTkuODYzIDExLjQyMDNaTTY2LjkxNDEgOC4zMDE3NUg2NC45NDA0VjExLjI5NTdINjMuMjMwOVYxMy4xMTMzSDY0Ljk0MDRWMjAuMzY5NEg2Ni45MTQxVjEzLjExMzNINjguODQwN1YxMS4yOTU3SDY2LjkxNDFWOC4zMDE3NVpNNzQgMTEuMTYwOUM3Mi42NTA4IDExLjE2MDkgNzEuNTQzMiAxMS42MjI1IDcwLjY4NTMgMTIuNTMxM0M2OS44ODg5IDEzLjM5OTIgNjkuNDgzNSAxNC41MDgyIDY5LjQ4MzUgMTUuODMzNkM2OS40NDg2IDE3LjA1NyA2OS44OTk3IDE4LjI0NDcgNzAuNzM4NiAxOS4xMzc5QzcxLjU5ODUgMjAuMDQ0NyA3Mi43MjQ1IDIwLjUwNDIgNzQuMDg0IDIwLjUwNDJDNzUuMTUwNyAyMC41MDQyIDc2LjA0MzMgMjAuMjQyOCA3Ni43MzUzIDE5LjczMDJDNzcuNDE5NSAxOS4yMjM1IDc3Ljk0MTUgMTguNTI5NyA3OC4yMzgxIDE3LjczMjlMNzguNDI0NCAxNy4yNDg5SDc2LjMxMzZMNzYuMjEzMiAxNy40NDA4Qzc1Ljc4NTMgMTguMjU3NyA3NS4wOTMzIDE4LjY1MzkgNzQuMTAwNCAxOC42NTM5QzczLjc3MDkgMTguNjY4IDczLjQ0MTkgMTguNjE1OCA3My4xMzMxIDE4LjUwMDRDNzIuODI0MiAxOC4zODQ5IDcyLjU0MTggMTguMjA4NiA3Mi4zMDI4IDE3Ljk4MkM3MS45MzI3IDE3LjYzNDEgNzEuNjczNSAxNy4xODUyIDcxLjU1NzUgMTYuNjkxM0g3OC41MTg2VjE1LjgzMzZDNzguNTE4NiAxNC41MTAyIDc4LjEwOTEgMTMuMzk5MiA3Ny4zMTQ3IDEyLjUyOTJDNzYuNDYzIDExLjYyMjUgNzUuMzQzMSAxMS4xNjA5IDc0IDExLjE2MDlaTTcyLjI5NjYgMTMuNjM4MkM3Mi43NzE2IDEzLjIzNTQgNzMuMzc0NiAxMy4wMTQzIDczLjk5OCAxMy4wMTQzQzc0LjYyMTQgMTMuMDE0MyA3NS4yMjQ0IDEzLjIzNTQgNzUuNjk5MyAxMy42MzgyQzc2LjA0MDggMTMuOTU0MiA3Ni4yODYzIDE0LjM1OTcgNzYuNDA3NyAxNC44MDg0SDcxLjU5MDNDNzEuNzEwOCAxNC4zNTk5IDcxLjk1NTYgMTMuOTU0MyA3Mi4yOTY2IDEzLjYzODJaTTgzLjIxNzMgMTEuNDYzMkM4Mi43NTA2IDExLjY3MjIgODIuMzMyMyAxMS45NzU0IDgxLjk4ODkgMTIuMzUzNlYxMS4yOTU3SDgwLjAxMTFWMjAuMzY5NEg4MS45ODQ4VjE2LjMzOEM4MS45NjI4IDE1LjUyODQgODIuMjE5MyAxNC43MzU2IDgyLjcxMTYgMTQuMDkxNUM4Mi45MzMzIDEzLjc4OTggODMuMjI0OCAxMy41NDU4IDgzLjU2MTMgMTMuMzgwNUM4My44OTc4IDEzLjIxNTIgODQuMjY5MyAxMy4xMzMzIDg0LjY0NDMgMTMuMTQxOUg4NS4xNTJWMTEuMTYwOUg4NC43MTE5Qzg0LjE5NzIgMTEuMTQ4NCA4My42ODY0IDExLjI1MTcgODMuMjE3MyAxMS40NjMyWk05MS4wODEyIDExLjE2MDlDOTAuMTIwOCAxMS4xMjgxIDg5LjE4MjEgMTEuNDUxMSA4OC40NDYzIDEyLjA2NzdWNy45NTA0OUg4Ni40NzQ2VjIwLjM2OTRIODguNDQ2M1YxOS42MTc5Qzg5LjE1NjUgMjAuMjE5NSA5MC4wNjYgMjAuNTM1NSA5MC45OTczIDIwLjUwNDJDOTIuMzY3IDIwLjUwNDIgOTMuNDc0NiAyMC4wNDI3IDk0LjI4NzQgMTkuMTMxOEM5NS4wOTk4IDE4LjIyNzUgOTUuNTM0OSAxNy4wNDc1IDk1LjUwMzUgMTUuODMzNkM5NS41MzY3IDE0LjYxOTcgOTUuMTAyMiAxMy40Mzk0IDk0LjI4OTUgMTIuNTM1M0M5My44ODg4IDEyLjA4NTIgOTMuMzkzNiAxMS43Mjg3IDkyLjgzOTEgMTEuNDkxMUM5Mi4yODQ1IDExLjI1MzYgOTEuNjg0NCAxMS4xNDA4IDkxLjA4MTIgMTEuMTYwOVpNOTMuNTIzNyAxNS44MzM2QzkzLjU1NDIgMTYuNTY1NiA5My4zMDQ2IDE3LjI4MTcgOTIuODI1NiAxNy44MzdDOTIuNTg3NyAxOC4xMDYzIDkyLjI5MjYgMTguMzE5NCA5MS45NjE5IDE4LjQ2MDdDOTEuNjMxMSAxOC42MDIgOTEuMjcyOSAxOC42NjggOTAuOTEzMyAxOC42NTM5QzkwLjU1OTEgMTguNjcxMSA5MC4yMDU2IDE4LjYwNjMgODkuODgwNiAxOC40NjQ2Qzg5LjU1NTYgMTguMzIyOSA4OS4yNjc5IDE4LjEwODEgODkuMDQgMTcuODM3Qzg4LjU3NyAxNy4yNzE5IDg4LjMzODcgMTYuNTU2NiA4OC4zNzA1IDE1LjgyNzVDODguMzM4NiAxNS4wOTczIDg4LjU3NzcgMTQuMzgxMSA4OS4wNDIgMTMuODE1OEM4OS4yNjk0IDEzLjU0NDYgODkuNTU2NyAxMy4zMjk2IDg5Ljg4MTQgMTMuMTg3OEM5MC4yMDYxIDEzLjA0NjEgOTAuNTU5MyAxMi45ODE0IDkwLjkxMzMgMTIuOTk4OUM5MS4yNzI5IDEyLjk4NDcgOTEuNjMxMSAxMy4wNTA3IDkxLjk2MTkgMTMuMTkyQzkyLjI5MjcgMTMuMzMzMyA5Mi41ODc4IDEzLjU0NjQgOTIuODI1NiAxMy44MTU4QzkzLjMwNzkgMTQuMzc0OSA5My41NTc3IDE1LjA5NjggOTMuNTIzNyAxNS44MzM2Wk0xMDMuNjMyIDEyLjA2MTVDMTAyLjkyMiAxMS40NTIgMTAyLjAwOCAxMS4xMzA2IDEwMS4wNzIgMTEuMTYwOUM5OS43MTA5IDExLjE2MDkgOTguNjAxMiAxMS42MjI1IDk3Ljc3MiAxMi41MzUzQzk2Ljk2OTUgMTMuNDQ0NCA5Ni41NDE2IDE0LjYyMjcgOTYuNTc0MyAxNS44MzM2Qzk2LjU0MjIgMTcuMDQ0NyA5Ni45NzA4IDE4LjIyMzEgOTcuNzc0MSAxOS4xMzE4Qzk4LjE3NzcgMTkuNTc5OCA5OC42NzQ0IDE5LjkzNDYgOTkuMjI5NSAyMC4xNzE2Qzk5Ljc4NDcgMjAuNDA4NiAxMDAuMzg1IDIwLjUyMjEgMTAwLjk4OCAyMC41MDQyQzEwMi4wNTkgMjAuNTA0MiAxMDIuOTQ2IDIwLjIwNCAxMDMuNjMyIDE5LjYxMzhWMjAuMzY5NEgxMDUuNjA1VjExLjI5NTdIMTAzLjYzMlYxMi4wNjE1Wk0xMDMuNjk5IDE1LjgzMzZDMTAzLjczMSAxNi41NjI3IDEwMy40OTMgMTcuMjc4IDEwMy4wMyAxNy44NDMyQzEwMi44MDMgMTguMTE0NyAxMDIuNTE1IDE4LjMyOTggMTAyLjE5MSAxOC40NzE2QzEwMS44NjYgMTguNjEzNCAxMDEuNTEyIDE4LjY3NzkgMTAxLjE1OCAxOC42NjAxQzEwMC43OTkgMTguNjc0MSAxMDAuNDQxIDE4LjYwODEgMTAwLjExIDE4LjQ2NjhDOTkuNzc5MSAxOC4zMjU1IDk5LjQ4NCAxOC4xMTI1IDk5LjI0NjEgMTcuODQzMkM5OC43NjcxIDE3LjI4NzkgOTguNTE3NSAxNi41NzE3IDk4LjU0OCAxNS44Mzk3Qzk4LjUxNjcgMTUuMTA3NiA5OC43NjYzIDE0LjM5MTEgOTkuMjQ2MSAxMy44MzYzQzk5LjQ4MzcgMTMuNTY2NiA5OS43Nzg4IDEzLjM1MzMgMTAwLjExIDEzLjIxMkMxMDAuNDQgMTMuMDcwNyAxMDAuNzk5IDEzLjAwNDggMTAxLjE1OCAxMy4wMTk0QzEwMS41MTMgMTMuMDAyMiAxMDEuODY2IDEzLjA2NyAxMDIuMTkxIDEzLjIwODdDMTAyLjUxNiAxMy4zNTA0IDEwMi44MDQgMTMuNTY1MiAxMDMuMDMyIDEzLjgzNjNDMTAzLjQ5IDE0LjM5ODkgMTAzLjcyOCAxNS4xMDkgMTAzLjY5OSAxNS44MzM2Wk0xMTMuMjY0IDE1LjM2MThDMTEyLjgwNyAxNS4xNzM4IDExMi4zMzIgMTUuMDMyMSAxMTEuODQ2IDE0LjkzOTFDMTExLjM3MSAxNC44NDcyIDExMC45MjQgMTQuNzM0OSAxMTAuNTIxIDE0LjYzNDhDMTEwLjE5MiAxNC41NTUxIDEwOS44NzggMTQuNDI2NCAxMDkuNTg3IDE0LjI1MjlDMTA5LjUwOCAxNC4yMDY3IDEwOS40NDIgMTQuMTM5MiAxMDkuMzk5IDE0LjA1OEMxMDkuMzU2IDEzLjk3NjggMTA5LjMzNiAxMy44ODUyIDEwOS4zNDIgMTMuNzkzNEMxMDkuMzQyIDEzLjU2MDYgMTA5LjM0MiAxMi45NDU4IDExMC45MjIgMTIuOTQ1OEMxMTIuMzc0IDEyLjk0NTggMTEyLjYxNSAxMy41MTE1IDExMi42NzEgMTMuOTM4NEwxMTIuNzEgMTQuMjQ4OEgxMTQuN0wxMTQuNjUzIDEzLjg1MjZDMTE0LjU4NiAxMy4xMjM0IDExNC4yMzIgMTIuNDUwMiAxMTMuNjcgMTEuOTc5OUMxMTMuMDE1IDExLjQzNjYgMTEyLjEyIDExLjE2MjkgMTExLjAwOCAxMS4xNjI5QzEwOS44NDkgMTEuMTYyOSAxMDguOTUxIDExLjM5OTkgMTA4LjMzNiAxMS44NjM0QzEwOC4wMjEgMTIuMDk5OSAxMDcuNzY3IDEyLjQwOTMgMTA3LjU5OCAxMi43NjVDMTA3LjQyOCAxMy4xMjA3IDEwNy4zNDggMTMuNTEyMiAxMDcuMzY0IDEzLjkwNTdDMTA3LjMzOCAxNC40MzU4IDEwNy41MiAxNC45NTUyIDEwNy44NzIgMTUuMzUzN0MxMDguMTk4IDE1LjY5NTMgMTA4LjU5NCAxNS45NjE2IDEwOS4wMzUgMTYuMTMzOEMxMDkuNDkyIDE2LjMxNSAxMDkuOTY2IDE2LjQ1MTggMTEwLjQ0OSAxNi41NDIyQzExMC45MjYgMTYuNjM2MiAxMTEuMzcxIDE2Ljc0NjUgMTExLjc3MiAxNi44NTI3QzExMi4xIDE2Ljk0IDExMi40MTMgMTcuMDc3OCAxMTIuNjk5IDE3LjI2MTFDMTEyLjc4MyAxNy4zMTM2IDExMi44NTEgMTcuMzg3NiAxMTIuODk1IDE3LjQ3NTRDMTEyLjk0IDE3LjU2MzEgMTEyLjk2IDE3LjY2MTIgMTEyLjk1MyAxNy43NTk0QzExMi45NTMgMTguMDA0NSAxMTIuODg4IDE4LjMxMjkgMTEyLjM3OCAxOC41MTNDMTEyLjE3MiAxOC41OTI1IDExMS45NTYgMTguNjQ3MyAxMTEuNzM3IDE4LjY3NjRDMTExLjQ4OSAxOC43MDk2IDExMS4yMzggMTguNzI1MyAxMTAuOTg4IDE4LjcyMzRDMTEwLjczNCAxOC43MjI3IDExMC40ODIgMTguNjg0MSAxMTAuMjQgMTguNjA5QzEwOS41NzcgMTguMzg2NCAxMDkuMjM3IDE3Ljk5NjMgMTA5LjE3NCAxNy4zNTUxTDEwOS4xNDEgMTcuMDM0NEgxMDcuMTMxTDEwNy4xNTMgMTcuNDEyMkMxMDcuMTY4IDE3LjgzMjQgMTA3LjI3MyAxOC4yNDQzIDEwNy40NjMgMTguNjE5OEMxMDcuNjUyIDE4Ljk5NTMgMTA3LjkyMSAxOS4zMjU0IDEwOC4yNSAxOS41ODcyQzEwOC45NzMgMjAuMTk5OSAxMDkuOTQ4IDIwLjUwODMgMTExLjE0NyAyMC41MDgzQzExMi4yNjcgMjAuNTA4MyAxMTMuMTc4IDIwLjI2OTQgMTEzLjg1IDE5Ljc5OTZDMTE0LjE5OCAxOS41NjA2IDExNC40NzkgMTkuMjM3MyAxMTQuNjY3IDE4Ljg2QzExNC44NTUgMTguNDgyNyAxMTQuOTQ0IDE4LjA2MzkgMTE0LjkyNSAxNy42NDNDMTE0Ljk1MSAxNy4xMDQ5IDExNC43NzEgMTYuNTc3MSAxMTQuNDIxIDE2LjE2NjVDMTE0LjEgMTUuODE1OSAxMTMuNzA1IDE1LjU0MSAxMTMuMjY0IDE1LjM2MThaTTEyNSAxNS44MzM2QzEyNSAxNC41MTAyIDEyNC41OSAxMy4zOTkyIDEyMy43OTggMTIuNTI5MkMxMjIuOTE5IDExLjY1MjYgMTIxLjcyNyAxMS4xNjAyIDEyMC40ODQgMTEuMTYwMkMxMTkuMjQyIDExLjE2MDIgMTE4LjA1IDExLjY1MjYgMTE3LjE3MSAxMi41MjkyQzExNi4zNzQgMTMuMzk3MiAxMTUuOTcxIDE0LjUwNjEgMTE1Ljk3MSAxNS44MzE1QzExNS45MzYgMTcuMDU0NiAxMTYuMzg3IDE4LjI0MTkgMTE3LjIyNCAxOS4xMzU5QzExOC4wODQgMjAuMDQyNyAxMTkuMjEgMjAuNTAyMiAxMjAuNTY5IDIwLjUwMjJDMTIxLjYzOCAyMC41MDIyIDEyMi41MzEgMjAuMjQwOCAxMjMuMjMxIDE5LjcyODJDMTIzLjkxNiAxOS4yMjIxIDEyNC40MzkgMTguNTI4MiAxMjQuNzM2IDE3LjczMDhMMTI0LjkyIDE3LjI0NjhIMTIyLjgwMUwxMjIuNzAxIDE3LjQzODhDMTIyLjI3MSAxOC4yNTU3IDEyMS41NzkgMTguNjUxOSAxMjAuNTg2IDE4LjY1MTlDMTIwLjI1NiAxOC42NjYgMTE5LjkyNyAxOC42MTM4IDExOS42MTkgMTguNDk4M0MxMTkuMzEgMTguMzgyOSAxMTkuMDI3IDE4LjIwNjYgMTE4Ljc4OCAxNy45OEMxMTguNDE4IDE3LjYzMjUgMTE4LjE1OSAxNy4xODMzIDExOC4wNDUgMTYuNjg5M0gxMjUuMDA2TDEyNSAxNS44MzM2Wk0xMTguNzgyIDEzLjYzODJDMTE5LjI1NyAxMy4yMzUzIDExOS44NjEgMTMuMDE0IDEyMC40ODQgMTMuMDE0QzEyMS4xMDggMTMuMDE0IDEyMS43MTIgMTMuMjM1MyAxMjIuMTg3IDEzLjYzODJDMTIyLjUyNyAxMy45NTUgMTIyLjc3MiAxNC4zNjAzIDEyMi44OTMgMTQuODA4NEgxMTguMDc4QzExOC4xOTggMTQuMzYwNCAxMTguNDQyIDEzLjk1NSAxMTguNzgyIDEzLjYzODJaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNOC44MDk4MSAyLjAzTDkuMTM5NDQgMS44NDAwN0g5LjE0MTQ5TDguODA5ODEgMi4wM1oiIGZpbGw9InVybCgjcGFpbnQwX2xpbmVhcl8xMTQ3Nl83OTg5OSkiLz4KPHBhdGggZD0iTTMuMzY3OTIgMjMuODM3Mkw0LjQ2OTQgMjQuNDcwM0wxMS44OTUyIDI4Ljc0NjhDMTIuMTgzNSAyOC45MTIzIDEyLjUxMDQgMjguOTk5NSAxMi44NDMxIDI4Ljk5OTVDMTMuMTc1OCAyOC45OTk1IDEzLjUwMjcgMjguOTEyMyAxMy43OTExIDI4Ljc0NjhMMjQuODEgMjIuNDAxNUMyNS4wNzYzIDIyLjI0ODEgMjUuMjk3NSAyMi4wMjc1IDI1LjQ1MTMgMjEuNzYxOUMyNS42MDUxIDIxLjQ5NjMgMjUuNjg2MiAyMS4xOTQ5IDI1LjY4NjMgMjAuODg4MlYxNy4wOTc3TDE3LjkzOSAyMS41NDU4TDEzLjYxNSAyNC4wMzEyQzEzLjU0OTEgMjQuMDY4NiAxMy40ODA3IDI0LjEwMTMgMTMuNDEwMyAyNC4xMjkyQzExLjg0MyAyNC45MTM4IDEwLjEwNSAyNS4yOTc4IDguMzUyMTYgMjUuMjQ2OEM2LjU5OTM2IDI1LjE5NTkgNC44ODY2OSAyNC43MTE1IDMuMzY3OTIgMjMuODM3MloiIGZpbGw9InVybCgjcGFpbnQxX2xpbmVhcl8xMTQ3Nl83OTg5OSkiLz4KPHBhdGggZD0iTTAgMTEuOTA0M1YyMC44MDQ0QzAuMDAwNjk2MDU0IDIxLjEzNTcgMC4wODg2MjY4IDIxLjQ2MSAwLjI1NDk4OSAyMS43NDc4QzAuNDIxMzUxIDIyLjAzNDUgMC42NjAzMDYgMjIuMjcyNiAwLjk0NzkzMSAyMi40MzgyTDMuMzY3OTIgMjMuODMzMUM0Ljg4NTQ0IDI0LjcwNTYgNi41OTYyNSAyNS4xODkgOC4zNDcwOCAyNS4yNEMxMC4wOTc5IDI1LjI5MSAxMS44MzQxIDI0LjkwNzkgMTMuNCAyNC4xMjUxQzEzLjE4NDMgMjQuMjA5NiAxMi45NTIyIDI0LjI0NDUgMTIuNzIxMSAyNC4yMjcyQzEyLjQ5IDI0LjIwOTggMTIuMjY1OCAyNC4xNDA4IDEyLjA2NTEgMjQuMDI1MUw3Ljc0NzI0IDIxLjUzOTZMNS40MTkzOCAyMC4xOTc5TDQuOTU2NjggMTkuOTMyNEw0LjQ5MTkzIDE5LjY2NDlDMy4xMjYyNCAxOC44Nzg0IDEuOTkyMTYgMTcuNzQ3MSAxLjIwMzY3IDE2LjM4NDlDMC40MTUxNzMgMTUuMDIyNiA0LjI5MzZlLTA1IDEzLjQ3NzMgMCAxMS45MDQzWiIgZmlsbD0idXJsKCNwYWludDJfbGluZWFyXzExNDc2Xzc5ODk5KSIvPgo8cGF0aCBkPSJNMTcuMTcxMyAxMi4wMDg1TDEyLjg0MzIgOS41MTQ4Nkw4LjUxNTAxIDEyLjAwODVMMTIuODQzMiAxNC41TDE3LjE3MTMgMTIuMDA4NVoiIGZpbGw9IiNERkUyRTUiLz4KPHBhdGggZD0iTTguNTE1MDEgMTIuMDA4NVYxNi45OTE2TDEyLjg0MzIgMTkuNDg1MVYxNC41TDguNTE1MDEgMTIuMDA4NVoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0yNS42MzcxIDcuMzgyNzRDMjUuNjE0IDcuMzExNSAyNS41ODMxIDcuMjQzMDEgMjUuNTQ1IDcuMTc4NTFMMjEuNDk3NCA5LjUxMjgxTDE3LjE3MTMgMTIuMDA4NEwxMi44NDMxIDE0LjVWMTkuNDg1MUwxNy4xMjYyIDE3LjAxODFIMTcuMTcxM0wxOC45OTk2IDE1Ljk2NDNMMjUuMzQ2NCAxMi4yODgyTDI1LjQyMDEgMTIuMjM5MkwyNS40NzU0IDEyLjE5MDJDMjUuNTM5NyAxMi4xMjY5IDI1LjU5MDkgMTIuMDUxNiAyNS42MjYgMTEuOTY4NUMyNS42NjEyIDExLjg4NTUgMjUuNjc5NiAxMS43OTYzIDI1LjY4MDEgMTEuNzA2MlY3LjY5MTEyQzI1LjY4MzEgNy42NDYyNCAyNS42ODMxIDcuNjAxMjEgMjUuNjgwMSA3LjU1NjMzQzI1LjY3MDkgNy40OTczMiAyNS42NTY1IDcuNDM5MjQgMjUuNjM3MSA3LjM4Mjc0WiIgZmlsbD0idXJsKCNwYWludDNfbGluZWFyXzExNDc2Xzc5ODk5KSIvPgo8cGF0aCBkPSJNOS4xMzk0OCAxLjgzODAzTDAuOTUwMDA3IDYuNTU1NjNDMC42NjIzODEgNi43MjEyOCAwLjQyMzQyNiA2Ljk1OTM5IDAuMjU3MDY0IDcuMjQ2MTJDMC4wOTA3MDIgNy41MzI4NSAwLjAwMjc3MTI1IDcuODU4MTUgMC4wMDIwNzUyIDguMTg5NDRWMTEuOTA0M0MwLjAwMjExODEzIDEzLjQ3NzMgMC40MTcyNDkgMTUuMDIyNiAxLjIwNTc0IDE2LjM4NDlDMS45OTQyNCAxNy43NDcxIDMuMTI4MzIgMTguODc4NCA0LjQ5NCAxOS42NjQ5TDQuOTU4NzUgMTkuOTMyNEM0LjcyMzUzIDE5Ljc5NzIgNC41MjgxNiAxOS42MDI1IDQuMzkyMzEgMTkuMzY4MUM0LjI1NjQ1IDE5LjEzMzYgNC4xODQ5IDE4Ljg2NzYgNC4xODQ4NSAxOC41OTY4VjEwLjQwMzJDNC4xODUyMiA4LjY2NzU1IDQuNjQzMiA2Ljk2MjQ4IDUuNTEyODMgNS40NTkxMUM2LjM4MjQ3IDMuOTU1NzQgNy42MzMxOSAyLjcwNjk1IDkuMTM5NDggMS44MzgwM1oiIGZpbGw9InVybCgjcGFpbnQ0X2xpbmVhcl8xMTQ3Nl83OTg5OSkiLz4KPHBhdGggZD0iTTIxLjkyNTIgNC45MzgxN0wyMS4yMTA3IDQuNTI5NzJMMjEuNzA0MSA0LjgxNTYzTDEzLjc5MSAwLjI1MzIzNkMxMy41MDI3IDAuMDg3NjU0MSAxMy4xNzU4IDAuMDAwNTAzNTQgMTIuODQzMSAwLjAwMDUwMzU0QzEyLjUxMDQgMC4wMDA1MDM1NCAxMi4xODM1IDAuMDg3NjU0MSAxMS44OTUyIDAuMjUzMjM2TDkuMTM5NDIgMS44MzgwM0M3LjYzMzA0IDIuNzA2NTEgNi4zODIxMSAzLjk1NDg3IDUuNTEyMTIgNS40NTc4N0M0LjY0MjEzIDYuOTYwODcgNC4xODM2NyA4LjY2NTY1IDQuMTgyNzQgMTAuNDAxMkM0LjE4Mjk0IDEwLjEzMDcgNC4yNTQ1OCA5Ljg2NTAxIDQuMzkwNDQgOS42MzA4OUM0LjUyNjMgOS4zOTY3OCA0LjcyMTU4IDkuMjAyNSA0Ljk1NjY0IDkuMDY3Nkw4Ljg3NTMxIDYuODIxMTJMOS40ODk1MiA2LjQ2MzczTDEyLjA3OTQgNC45NzA4NEwxMi4xMzY4IDQuOTM4MTdDMTMuNjI1IDQuMDgxNzkgMTUuMzEyOSAzLjYzMDk4IDE3LjAzMSAzLjYzMDk4QzE4Ljc0OTEgMy42MzA5OCAyMC40MzcgNC4wODE3OSAyMS45MjUyIDQuOTM4MTdaIiBmaWxsPSJ1cmwoI3BhaW50NV9saW5lYXJfMTE0NzZfNzk4OTkpIi8+CjxwYXRoIGQ9Ik0yNS41MDYxIDcuMTE3MjZDMjUuNDg0NiA3LjA4NjA0IDI1LjQ2MTMgNy4wNTYwNCAyNS40MzY1IDcuMDI3NEMyNS4zNjQ4IDYuOTQxMzIgMjUuMjc5IDYuODY4MSAyNS4xODI2IDYuODEwOTJMMjEuOTMxNCA0LjkzODE3QzIwLjQ0MjIgNC4wODAyOCAxOC43NTI4IDMuNjI4NjMgMTcuMDMzIDMuNjI4NjNDMTUuMzEzMyAzLjYyODYzIDEzLjYyMzkgNC4wODAyOCAxMi4xMzQ3IDQuOTM4MTdMMTIuMDc3NCA0Ljk3MDg1QzEyLjMxMTkgNC44MzUzIDEyLjU3ODIgNC43NjM5MSAxMi44NDkyIDQuNzYzOTFDMTMuMTIwMyA0Ljc2MzkxIDEzLjM4NjYgNC44MzUzIDEzLjYyMTEgNC45NzA4NUwyMS40OTczIDkuNTEyODJMMjUuNTM4OCA3LjE4NDY1QzI1LjUyOSA3LjE2MTcgMjUuNTE4IDcuMTM5MjEgMjUuNTA2MSA3LjExNzI2WiIgZmlsbD0idXJsKCNwYWludDZfbGluZWFyXzExNDc2Xzc5ODk5KSIvPgo8L2c+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9InBhaW50MF9saW5lYXJfMTE0NzZfNzk4OTkiIHgxPSIxNi40MTM4IiB5MT0iLTIuMzExODMiIHgyPSItMTguNzE4NiIgeTI9IjE3Ljg0NTUiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KPHN0b3Agc3RvcC1jb2xvcj0iIzAwMkM4NCIvPgo8c3RvcCBvZmZzZXQ9IjAuMTYiIHN0b3AtY29sb3I9IiMwMDM2OTEiLz4KPHN0b3Agb2Zmc2V0PSIwLjQ2IiBzdG9wLWNvbG9yPSIjMDA1MEIzIi8+CjxzdG9wIG9mZnNldD0iMC44NiIgc3RvcC1jb2xvcj0iIzAwN0JFQSIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwMDhCRkYiLz4KPC9saW5lYXJHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDFfbGluZWFyXzExNDc2Xzc5ODk5IiB4MT0iOS41OTYwMSIgeTE9IjI1Ljc0NjciIHgyPSIyMy44Mjk3IiB5Mj0iMTguMDY4NyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgo8c3RvcCBzdG9wLWNvbG9yPSJ3aGl0ZSIvPgo8c3RvcCBvZmZzZXQ9IjAuNDk5NTY4IiBzdG9wLWNvbG9yPSJ3aGl0ZSIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IndoaXRlIi8+CjwvbGluZWFyR3JhZGllbnQ+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQyX2xpbmVhcl8xMTQ3Nl83OTg5OSIgeDE9Ii0wLjI5Mjc3NCIgeTE9IjE1LjIyNyIgeDI9IjkuOTc0MzQiIHkyPSIyNS41MjU2IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IndoaXRlIi8+CjxzdG9wIG9mZnNldD0iMC4yNzE2NTMiIHN0b3AtY29sb3I9IndoaXRlIi8+CjxzdG9wIG9mZnNldD0iMC41NyIgc3RvcC1jb2xvcj0id2hpdGUiLz4KPHN0b3Agb2Zmc2V0PSIwLjc1NjMxNCIgc3RvcC1jb2xvcj0iI0Y2RjdGOCIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNEMEQ1REQiLz4KPC9saW5lYXJHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDNfbGluZWFyXzExNDc2Xzc5ODk5IiB4MT0iMjYuNSIgeTE9IjkuNSIgeDI9IjEyLjUiIHkyPSIxNy41IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IndoaXRlIi8+CjxzdG9wIG9mZnNldD0iMC4zNyIgc3RvcC1jb2xvcj0iI0ZBRkJGQiIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNEOUQ5RDkiLz4KPC9saW5lYXJHcmFkaWVudD4KPGxpbmVhckdyYWRpZW50IGlkPSJwYWludDRfbGluZWFyXzExNDc2Xzc5ODk5IiB4MT0iNS41IiB5MT0iMSIgeDI9IjEuNTQwMzQiIHkyPSIxOC41MDkxIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IndoaXRlIi8+CjxzdG9wIG9mZnNldD0iMC4zOSIgc3RvcC1jb2xvcj0id2hpdGUiLz4KPHN0b3Agb2Zmc2V0PSIwLjc0IiBzdG9wLWNvbG9yPSIjRkVGRUZFIi8+CjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0QwRDVERCIvPgo8L2xpbmVhckdyYWRpZW50Pgo8bGluZWFyR3JhZGllbnQgaWQ9InBhaW50NV9saW5lYXJfMTE0NzZfNzk4OTkiIHgxPSIyMS44MzcyIiB5MT0iNS4yMDE2MiIgeDI9IjQuNSIgeTI9IjciIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KPHN0b3Agc3RvcC1jb2xvcj0iI0ZBRkJGRCIvPgo8c3RvcCBvZmZzZXQ9IjAuMjMzMTc1IiBzdG9wLWNvbG9yPSJ3aGl0ZSIvPgo8c3RvcCBvZmZzZXQ9IjAuNSIgc3RvcC1jb2xvcj0iI0Y5RjlGQSIvPgo8c3RvcCBvZmZzZXQ9IjAuNzYiIHN0b3AtY29sb3I9IiNFRUYwRjEiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRDBENUREIi8+CjwvbGluZWFyR3JhZGllbnQ+CjxsaW5lYXJHcmFkaWVudCBpZD0icGFpbnQ2X2xpbmVhcl8xMTQ3Nl83OTg5OSIgeDE9IjE3LjQ3NjMiIHkxPSIzLjY0NzQ3IiB4Mj0iMjEuMDEyOCIgeTI9IjEwLjEzMjkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KPHN0b3Agc3RvcC1jb2xvcj0iI0UxRTNFNiIvPgo8c3RvcCBvZmZzZXQ9IjAuMjU0ODA4IiBzdG9wLWNvbG9yPSIjRTlFQUVEIi8+CjxzdG9wIG9mZnNldD0iMC40NjYzNDYiIHN0b3AtY29sb3I9IiNFQUVDRUUiLz4KPHN0b3Agb2Zmc2V0PSIwLjcyNTk2MiIgc3RvcC1jb2xvcj0iI0U1RTdFQSIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNERUUxRTQiLz4KPC9saW5lYXJHcmFkaWVudD4KPGNsaXBQYXRoIGlkPSJjbGlwMF8xMTQ3Nl83OTg5OSI+CjxyZWN0IHdpZHRoPSIxMjUiIGhlaWdodD0iMjkiIGZpbGw9IndoaXRlIi8+CjwvY2xpcFBhdGg+CjwvZGVmcz4KPC9zdmc+Cg==';
+</script>
+ 
 <!-- DEMO BAR -->
 <div class="demo-bar">
-  <div class="brand"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImcxIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNFMEUwRTAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjODg4Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJnMiIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjRkZGIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0NDQyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZzMiIHgxPSIxIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzk5OSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1NTUiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxwYXRoIGQ9Ik04LDI4IEwyMCwzNCBMMzIsMjggTDMyLDE4IEwyMCwyNCBMOCwxOCBaIiBmaWxsPSJ1cmwoI2cxKSIvPgogIDxwYXRoIGQ9Ik0yMCwxMiBMMzIsNiBMMzIsMTggTDIwLDI0IFoiIGZpbGw9InVybCgjZzMpIi8+CiAgPHBhdGggZD0iTTgsMTggTDIwLDEyIEwyMCwyNCBMOCwxOCBaIiBmaWxsPSJ1cmwoI2cyKSIvPgogIDxwYXRoIGQ9Ik04LDE4IEwyMCwxMiBMMzIsNiBMMzIsMTggTDIwLDI0IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjMpIiBzdHJva2Utd2lkdGg9IjAuNSIvPgogIDxwYXRoIGQ9Ik0xNSwxNSBRMTIsMjAgMTUsMjUgTDIwLDI4IEwyMCwyNCBMMTcsMjIgUTE1LDIwIDE3LDE4IEwyMCwxNiBMMjAsMTIgWiIgZmlsbD0icmdiYSgwLDAsMCwwLjE1KSIvPgo8L3N2Zz4K" alt="" style="width:22px;height:22px"><div class="bt">Centerbase <span>× NetDocs</span></div><div class="bs">ndMax Integration Demo</div></div>
+  <div class="brand"><img id="barLogo" alt="" style="height:16px;width:auto"><div class="bt"><span>× NetDocs</span></div><div class="bs">ndMax Integration Demo</div></div>
   <div class="demo-steps" id="demoSteps"></div>
   <div class="nav-btns"><button class="db bk" id="prevBtn" onclick="prev()" disabled>← Back</button><button class="db nx" id="nextBtn" onclick="next()">Next →</button></div>
 </div>
-
+ 
 <!-- SHELL -->
 <div class="cb-shell">
   <div class="cb-sidebar">
-    <div class="cb-sidebar-logo"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImcxIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNFMEUwRTAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjODg4Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJnMiIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjRkZGIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0NDQyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZzMiIHgxPSIxIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzk5OSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1NTUiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxwYXRoIGQ9Ik04LDI4IEwyMCwzNCBMMzIsMjggTDMyLDE4IEwyMCwyNCBMOCwxOCBaIiBmaWxsPSJ1cmwoI2cxKSIvPgogIDxwYXRoIGQ9Ik0yMCwxMiBMMzIsNiBMMzIsMTggTDIwLDI0IFoiIGZpbGw9InVybCgjZzMpIi8+CiAgPHBhdGggZD0iTTgsMTggTDIwLDEyIEwyMCwyNCBMOCwxOCBaIiBmaWxsPSJ1cmwoI2cyKSIvPgogIDxwYXRoIGQ9Ik04LDE4IEwyMCwxMiBMMzIsNiBMMzIsMTggTDIwLDI0IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjMpIiBzdHJva2Utd2lkdGg9IjAuNSIvPgogIDxwYXRoIGQ9Ik0xNSwxNSBRMTIsMjAgMTUsMjUgTDIwLDI4IEwyMCwyNCBMMTcsMjIgUTE1LDIwIDE3LDE4IEwyMCwxNiBMMjAsMTIgWiIgZmlsbD0icmdiYSgwLDAsMCwwLjE1KSIvPgo8L3N2Zz4K" alt="Centerbase" style="width:28px;height:28px"><span>Centerbase</span></div>
+    <div class="cb-sidebar-logo"><img id="sidebarLogo" alt="Centerbase" style="height:18px;width:auto"></div>
     <div class="sb-search">🔍 search for anything</div>
     <div class="ni"><span class="ic">📊</span> Dashboard</div>
     <div class="ni"><span class="ic">📅</span> Calendar</div>
     <div class="ni"><span class="ic">🕐</span> Recent <span class="ch">▾</span></div>
     <div class="ni"><span class="ic">⏱</span> Timekeeping <span class="ch">▾</span></div>
-    <div class="ni active" id="sM"><span class="ic">📁</span> Matters</div>
+    <div class="ni" id="sM"><span class="ic">📁</span> Matters</div>
     <div class="ni"><span class="ic">📋</span> Pre-Bill Approval</div>
-    <div class="ni"><span class="ic">👤</span> Contacts</div>
+    <div class="ni" id="sCon"><span class="ic">👤</span> Contacts</div>
     <div class="ni"><span class="ic">⚖</span> Conflict Check</div>
     <div class="ni"><span class="ic">📌</span> Activities <span class="ch">▾</span></div>
     <div class="nd-div"></div>
@@ -272,717 +296,384 @@ select.fm-input{appearance:auto}
     <div class="nd-div"></div>
     <div class="ni" id="sNav"><span class="ic">⚙</span> Settings</div>
   </div>
-
+ 
   <div class="cb-main" id="mainContent">
-
-    <!-- ═══════════════════════════════════════════════════════
-         S0: TITLE + USE CASE SELECTOR
-         ═══════════════════════════════════════════════════════ -->
+ 
+    <!-- S0: TITLE -->
     <div class="screen active" id="s0">
       <div class="ts">
         <div>
-          <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:16px"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImcxIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNFMEUwRTAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjODg4Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJnMiIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjRkZGIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0NDQyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZzMiIHgxPSIxIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzk5OSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1NTUiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxwYXRoIGQ9Ik04LDI4IEwyMCwzNCBMMzIsMjggTDMyLDE4IEwyMCwyNCBMOCwxOCBaIiBmaWxsPSJ1cmwoI2cxKSIvPgogIDxwYXRoIGQ9Ik0yMCwxMiBMMzIsNiBMMzIsMTggTDIwLDI0IFoiIGZpbGw9InVybCgjZzMpIi8+CiAgPHBhdGggZD0iTTgsMTggTDIwLDEyIEwyMCwyNCBMOCwxOCBaIiBmaWxsPSJ1cmwoI2cyKSIvPgogIDxwYXRoIGQ9Ik04LDE4IEwyMCwxMiBMMzIsNiBMMzIsMTggTDIwLDI0IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjMpIiBzdHJva2Utd2lkdGg9IjAuNSIvPgogIDxwYXRoIGQ9Ik0xNSwxNSBRMTIsMjAgMTUsMjUgTDIwLDI4IEwyMCwyNCBMMTcsMjIgUTE1LDIwIDE3LDE4IEwyMCwxNiBMMjAsMTIgWiIgZmlsbD0icmdiYSgwLDAsMCwwLjE1KSIvPgo8L3N2Zz4K" alt="Centerbase" style="width:56px;height:56px"><span style="font-size:34px;font-weight:700;color:var(--gray-800);letter-spacing:-0.5px">Centerbase</span></div>
-          <h1 style="font-size:32px"><span>× NetDocs</span></h1>
-          <p class="sub">Create a matter. Your documents are already waiting in NetDocs.</p>
+          <div style="display:flex;align-items:center;justify-content:center;gap:24px;margin-bottom:24px"><img id="titleLogoCB" alt="Centerbase" style="height:60px;width:auto"><span style="font-size:28px;font-weight:300;color:var(--gray-400)">×</span><img id="titleLogoND" alt="NetDocuments" style="height:22px;width:auto"></div>
           <p style="font-size:14px;color:var(--gray-600);margin-top:24px;font-weight:600">Choose a use case to demo:</p>
           <div class="uc-grid">
-            <div class="uc-card" id="uc1" onclick="selectUC(1)">
-              <div class="uc-icon">📄</div>
-              <h3>Engagement Letter</h3>
-              <p>New matter triggers auto-generated engagement letter</p>
-              <div class="uc-tag">~2 min</div>
-            </div>
-            <div class="uc-card" id="uc2" onclick="selectUC(2)">
-              <div class="uc-icon">📋</div>
-              <h3>Document Package</h3>
-              <p>Full package: engagement letter + conflict check + fee agreement</p>
-              <div class="uc-tag">~3 min</div>
-            </div>
-            <div class="uc-card" id="uc3" onclick="selectUC(3)">
-              <div class="uc-icon">🤝</div>
-              <h3>NDA from Contact</h3>
-              <p>Contact creation triggers NDA auto-generation</p>
-              <div class="uc-tag">~2 min</div>
-            </div>
+            <div class="uc-card" id="uc1" onclick="selectUC(1)"><div class="uc-icon">📄</div><h3>Engagement Letter</h3><p>New matter triggers auto-generated engagement letter</p><div class="uc-tag">~2 min</div></div>
+            <div class="uc-card" id="uc2" onclick="selectUC(2)"><div class="uc-icon">📋</div><h3>Document Package</h3><p>Full package: engagement letter + conflict check + fee agreement</p><div class="uc-tag">~3 min</div></div>
+            <div class="uc-card" id="uc3" onclick="selectUC(3)"><div class="uc-icon">🤝</div><h3>NDA from Contact</h3><p>Contact creation triggers NDA auto-generation</p><div class="uc-tag">~2 min</div></div>
           </div>
           <p style="font-size:12px;color:var(--gray-400);margin-top:24px">Select a card above, or press <strong>Next →</strong> for the full demo</p>
         </div>
       </div>
     </div>
-
-    <!-- ═══════════════════════════════════════════════════════
-         S1: CREATE ACTION (new — from lo-fi Screen 1)
-         ═══════════════════════════════════════════════════════ -->
+ 
+    <!-- S1: CREATE ACTION (full-page, matching real CB Edit Action panel) -->
     <div class="screen" id="s1">
-      <div class="admin-header">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px"><span style="font-size:16px">⚙</span><h2>Create Action</h2></div>
-        <div class="crumbs"><a href="#">Settings</a> → <a href="#">Workflows</a> → <a href="#" id="s1WfCrumb">New Matter Onboarding</a> → <a href="#">Start Node</a> → <strong>Create Action</strong></div>
-      </div>
-      <div class="admin-body">
-        <div style="max-width:640px">
-          <div class="fm-group">
-            <label>Name</label>
-            <input type="text" class="fm-input" id="s1ActName" value="Send Matter Data to NetDocs" readonly>
-          </div>
-
-          <div class="fm-group">
-            <label>Description <span style="color:var(--gray-400);font-weight:normal">(Optional)</span></label>
-            <input type="text" class="fm-input" value="Sends matter fields to NetDocs data table for document generation" readonly style="color:var(--gray-500)">
-          </div>
-
-          <div class="new-box">
-            <div class="fm-group" style="margin-bottom:0">
-              <label>Type</label>
-              <select class="fm-input" style="border-color:var(--purple);font-weight:600;color:var(--purple)">
-                <option>User Action</option>
-                <option>Automatic Action</option>
-                <option selected>Send to NetDocs Data Table</option>
-              </select>
-              <div class="hint">New action type — sends Centerbase field data to a NetDocs data table when this action fires.</div>
-            </div>
-          </div>
-
-          <div class="fm-row">
-            <div class="fm-group">
-              <label>From Node</label>
-              <select class="fm-input">
-                <option selected>Start</option>
-              </select>
-            </div>
-            <div class="fm-group">
-              <label>To Node</label>
-              <select class="fm-input">
-                <option selected>Wait for Retainer</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="fm-group">
-            <label>Source Entity</label>
-            <select class="fm-input" id="s1Entity">
-              <option selected>Matter</option>
-              <option>Contact</option>
-            </select>
-            <div class="hint">Which Centerbase entity's fields will be sent to NetDocs.</div>
-          </div>
-
-          <div class="fm-group">
-            <label>Query <span style="color:var(--gray-400);font-weight:normal">(Optional)</span></label>
-            <select class="fm-input">
-              <option selected>(None — always fire)</option>
-              <option>WF: Matter is Assigned</option>
-              <option>WF: Retainer Already Received</option>
-            </select>
-            <div class="hint">Optionally restrict when this action fires, just like existing Automatic Actions.</div>
-          </div>
-
-          <div style="margin-top:20px;display:flex;gap:10px;align-items:center">
-            <button class="mb pp click-hint" style="padding:8px 24px;font-size:13px" onclick="next()">💾 Save Action</button>
-            <span style="font-size:12px;color:var(--gray-400)">Cancel</span>
-          </div>
-
-          <div style="margin-top:24px;padding:14px 16px;background:var(--purple-light);border-radius:6px;border-left:3px solid var(--purple)">
-            <div style="font-size:12px;font-weight:600;color:var(--purple);margin-bottom:4px">Design Note</div>
-            <div style="font-size:12px;color:var(--gray-600);line-height:1.5">Same form layout as existing Automatic Actions. The only additions are the new <strong>Type</strong> option and <strong>Source Entity</strong> dropdown. After saving, the admin configures field mapping via the gear menu — same pattern as gear → "Add Form" for User Actions.</div>
+      <div style="display:flex;flex:1;overflow:hidden">
+        <!-- Left: Workflow Details context -->
+        <div style="width:45%;border-right:1px solid var(--gray-200);overflow-y:auto;background:#fff">
+          <div class="fp-header"><h1>Workflow Details</h1><div class="btn-bar"><button>Edit</button><button>New Node</button></div><div class="crumbs"><a href="#" id="s1WfCrumb">Workflow: Matter</a> / Details</div></div>
+          <div class="fp-body">
+            <div class="wf-node"><span class="circle s">S</span><span class="chip s">Start</span><span class="meta">Is-Multi-Result ✓</span><span class="gear">⚙</span></div>
+            <div class="wf-node"><span class="circle w">W</span><span class="chip w">Wait</span><span class="meta">Is-Multi-Result ✓</span><span class="gear">⚙</span></div>
+            <div class="wf-node"><span class="circle w">W</span><span class="chip w" style="min-width:0">Closed Matter Limbo</span><span class="meta">Is-Multi-Result ✓</span><span class="gear">⚙</span></div>
+            <div class="wf-node"><span class="circle w">W</span><span class="chip w">Estate Planning</span><span class="gear">⚙</span></div>
+            <div class="wf-node"><span class="circle w">W</span><span class="chip w">Trial Date</span><span class="gear">⚙</span></div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════════════════════
-         S2: FIELD MAPPING CONFIGURATION (new — from lo-fi Screen 2)
-         ═══════════════════════════════════════════════════════ -->
-    <div class="screen" id="s2">
-      <div class="admin-header">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:2px"><span style="font-size:16px">🔗</span><h2>Configure Field Mapping</h2><span style="display:inline-block;padding:3px 10px;border-radius:10px;font-size:10px;font-weight:600;background:var(--purple-light);color:var(--purple)">NetDocs Integration</span></div>
-        <div class="crumbs"><a href="#">Settings</a> → <a href="#">Workflows</a> → <a href="#" id="s2WfCrumb">New Matter Onboarding</a> → <a href="#" id="s2ActCrumb">Send Matter Data to NetDocs</a> → <strong>Field Mapping</strong></div>
-      </div>
-      <div class="admin-body">
-        <p style="font-size:13px;color:var(--gray-500);margin-bottom:16px">Map Centerbase fields to NetDocs data table columns. The gear menu on the action opens this panel — same pattern as "Add Form" for User Actions.</p>
-
-        <!-- Target Data Table -->
-        <div class="new-box" style="margin-bottom:24px">
-          <div class="fm-row">
-            <div class="fm-group">
-              <label>Target Data Table</label>
-              <select class="fm-input" style="border-color:var(--purple)">
-                <option selected>Centerbase Matters</option>
-                <option>Centerbase Contacts</option>
-                <option>+ Create New Data Table...</option>
-              </select>
-              <div class="hint">Select an existing NetDocs data table or create a new one.</div>
-            </div>
-            <div class="fm-group">
-              <label>NetDocs Repository</label>
-              <select class="fm-input">
-                <option selected>Main Repository (CA-12345678)</option>
-              </select>
-              <div class="hint">Auto-detected from your firm's NetDocs configuration.</div>
-            </div>
+        <!-- Right: Edit Action form -->
+        <div style="flex:1;display:flex;flex-direction:column;overflow-y:auto">
+          <div class="edit-panel-header">
+            <div><h2>Create Action</h2><div style="font-size:12px;color:var(--gray-500);margin-top:4px"><a href="#" style="color:var(--cb-blue-link);text-decoration:none">Workflow: Matter</a> / <a href="#" style="color:var(--cb-blue-link);text-decoration:none">Node: Start</a> / <span style="color:var(--cb-orange)">Action: New</span> / Create</div></div>
+            <button class="close-x">×</button>
           </div>
-        </div>
-
-        <!-- Field Mapping Table -->
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
-          <div>
-            <span style="font-size:14px;font-weight:600;color:var(--gray-700)">Field Mappings</span>
-            <span style="font-size:11px;color:var(--gray-400);margin-left:8px" id="fieldCountLabel">7 fields mapped</span>
-          </div>
-        </div>
-        <p style="font-size:11px;color:var(--gray-400);margin-bottom:10px">Select Centerbase fields and map them to NetDocs data table column names. The first field marked as "Key" prevents duplicate rows.</p>
-
-        <table class="fmt">
-          <thead>
-            <tr><th style="width:30px"></th><th>Centerbase Field</th><th style="width:36px"></th><th>NetDocs Column Name</th><th style="width:70px">Type</th><th style="width:46px">Key?</th><th style="width:30px"></th></tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="drag">⋮⋮</td>
-              <td><select><option selected>Matter ID</option><option>Matter Name</option><option>Client Name</option></select></td>
-              <td class="arrow">→</td>
-              <td><input type="text" value="Key" readonly style="background:var(--gray-50)"></td>
-              <td><span class="type-tag key">key</span></td>
-              <td style="text-align:center"><input type="radio" name="keyF" checked></td>
-              <td><button class="rm-btn">×</button></td>
-            </tr>
-            <tr>
-              <td class="drag">⋮⋮</td>
-              <td><select><option>Matter ID</option><option selected>Matter Name</option></select></td>
-              <td class="arrow">→</td>
-              <td><input type="text" value="Matter Name"></td>
-              <td><span class="type-tag str">string</span></td>
-              <td style="text-align:center"><input type="radio" name="keyF"></td>
-              <td><button class="rm-btn">×</button></td>
-            </tr>
-            <tr>
-              <td class="drag">⋮⋮</td>
-              <td><select><option selected>Client Name</option></select></td>
-              <td class="arrow">→</td>
-              <td><input type="text" value="Client Name"></td>
-              <td><span class="type-tag str">string</span></td>
-              <td style="text-align:center"><input type="radio" name="keyF"></td>
-              <td><button class="rm-btn">×</button></td>
-            </tr>
-            <tr>
-              <td class="drag">⋮⋮</td>
-              <td><select><option selected>Practice Area</option></select></td>
-              <td class="arrow">→</td>
-              <td><input type="text" value="Practice Area"></td>
-              <td><span class="type-tag str">string</span></td>
-              <td style="text-align:center"><input type="radio" name="keyF"></td>
-              <td><button class="rm-btn">×</button></td>
-            </tr>
-            <tr>
-              <td class="drag">⋮⋮</td>
-              <td><select><option selected>Responsible Attorney</option></select></td>
-              <td class="arrow">→</td>
-              <td><input type="text" value="Responsible Attorney"></td>
-              <td><span class="type-tag str">string</span></td>
-              <td style="text-align:center"><input type="radio" name="keyF"></td>
-              <td><button class="rm-btn">×</button></td>
-            </tr>
-            <tr>
-              <td class="drag">⋮⋮</td>
-              <td><select><option selected>Open Date</option></select></td>
-              <td class="arrow">→</td>
-              <td><input type="text" value="Open Date"></td>
-              <td><span class="type-tag date">date</span></td>
-              <td style="text-align:center"><input type="radio" name="keyF"></td>
-              <td><button class="rm-btn">×</button></td>
-            </tr>
-            <tr>
-              <td class="drag">⋮⋮</td>
-              <td><select><option selected>Status</option></select></td>
-              <td class="arrow">→</td>
-              <td><input type="text" value="Status"></td>
-              <td><span class="type-tag str">string</span></td>
-              <td style="text-align:center"><input type="radio" name="keyF"></td>
-              <td><button class="rm-btn">×</button></td>
-            </tr>
-          </tbody>
-        </table>
-
-        <div class="add-row">
-          <button>+ Add Field Mapping</button>
-          <span style="font-size:11px;color:var(--gray-400)">Select another Centerbase field to include</span>
-        </div>
-
-        <div style="border-top:1px solid var(--gray-200);margin:20px 0;padding-top:16px">
-          <div class="chk-row"><input type="checkbox" checked><span>Auto-create data table in NetDocs if it doesn't exist</span></div>
-          <div class="chk-row"><input type="checkbox" checked><span>Use upsert mode (update existing row if key matches, create new row otherwise)</span></div>
-        </div>
-
-        <div style="display:flex;gap:10px;align-items:center">
-          <button class="mb pp click-hint" style="padding:8px 24px;font-size:13px" onclick="next()">💾 Save Mapping</button>
-          <span style="font-size:12px;color:var(--gray-400)">Cancel</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══════════════════════════════════════════════════════
-         S3: WORKFLOW DETAILS WITH ND BADGE (new — from lo-fi Screen 3)
-         ═══════════════════════════════════════════════════════ -->
-    <div class="screen" id="s3">
-      <div style="padding:16px 20px;background:#fff;border-bottom:1px solid var(--gray-200)">
-        <div style="display:flex;align-items:center;gap:8px"><h2 style="font-size:17px;font-weight:600">Workflow Details</h2><button class="mb tl" style="font-size:11px;padding:3px 10px">Edit</button><button class="mb gr" style="font-size:11px;padding:3px 10px">New Node</button></div>
-        <p style="font-size:12px;color:var(--gray-500)" id="wfDetailName">Workflow: New Matter Onboarding + NetDocs / Details</p>
-      </div>
-      <div style="padding:20px;overflow-y:auto;flex:1">
-        <div style="display:flex;flex-direction:column;gap:4px">
-
-          <!-- Start Node -->
-          <div style="display:flex;align-items:center;gap:8px;padding:8px 12px"><span class="wnb" style="background:var(--green)">S</span><strong>Start</strong> <span style="font-size:14px;color:var(--gray-400);cursor:pointer">⚙</span></div>
-          <div class="wfa"><span class="wab">AA</span> Start Action → <span style="background:var(--gray-500);color:#fff;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600">Splitter</span></div>
-          <div class="wfc"></div>
-
-          <!-- Splitter -->
-          <div style="display:flex;align-items:center;gap:8px;padding:8px 12px"><span class="wnb" style="background:var(--cb-orange)">C</span><strong>Splitter</strong><span style="font-size:11px;color:var(--gray-400);margin-left:4px">Is-Multi-Result ✓</span></div>
-          <div class="wfa"><span class="wab">AA</span> Send Welcome Email → <span style="background:var(--gray-500);color:#fff;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600">Wait for Retainer</span></div>
-          <div class="wfa"><span class="wab">AA</span> Create NetDocs Workspace → <span style="background:var(--gray-500);color:#fff;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600">Wait for Retainer</span></div>
-
-          <!-- NEW: NetDocs Action (highlighted) -->
-          <div class="wfh">
-            <div class="wfa" style="border-left:2px solid var(--purple);margin-left:0"><span class="wab nd">ND</span><strong style="color:var(--purple)" id="wfActionLabel">Send Matter Data to NetDocs Data Table</strong> → <span style="background:var(--gray-500);color:#fff;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600">Wait for Retainer</span>
-              <!-- Gear dropdown -->
-              <div class="gear-menu" style="margin-left:auto">
-                <button class="gear-btn" onclick="event.stopPropagation();this.nextElementSibling.classList.toggle('open')">⚙ ▾</button>
-                <div class="gear-drop" id="gearDrop">
-                  <div>Edit</div>
-                  <div class="hl">Configure Field Mapping</div>
-                  <div>View Sync Log</div>
-                  <div style="color:var(--cb-red)">Delete</div>
-                </div>
+          <div class="edit-panel-body">
+            <div class="fm-group"><label>Name</label><input type="text" class="fm-input" id="s1ActName" value="Send Matter Data to NetDocs" readonly></div>
+            <div class="fm-group"><label>Description</label><textarea class="fm-input" rows="3" readonly style="resize:vertical;color:var(--gray-500)">Sends matter fields to NetDocs data table for document generation</textarea></div>
+            <div class="new-box">
+              <div class="fm-group" style="margin-bottom:0"><label>Type</label>
+                <select class="fm-input" style="border-color:var(--purple);font-weight:600;color:var(--purple)"><option>User Action</option><option>Automatic Action</option><option selected>Send to NetDocs Data Table</option></select>
+                <div class="hint">New action type — sends Centerbase field data to a NetDocs data table when this action fires.</div>
               </div>
             </div>
-            <div style="margin-left:32px;padding:4px 12px;font-size:12px;color:var(--gray-500);display:flex;align-items:center;gap:6px">
-              <span style="display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;background:var(--purple-light);color:var(--purple);border-radius:3px;font-size:9px">↗</span>
-              <span id="wfActionDetail">Target: <strong>Centerbase Matters</strong> table · Key: Matter ID · Mode: Upsert · 7 fields mapped</span>
-            </div>
+            <div class="fm-group"><label>From Node</label><select class="fm-input"><option selected>Start</option></select></div>
+            <div class="fm-group"><label>To Node</label><select class="fm-input"><option selected>Wait</option></select></div>
+            <div class="fm-group"><label>Query</label><select class="fm-input"><option selected></option><option>WF: Matter is Assigned</option></select></div>
+            <div style="margin-top:20px"><button class="mb pp click-hint" style="padding:8px 24px;font-size:13px" onclick="next()">Save</button><span style="font-size:13px;color:var(--cb-blue-link);margin-left:16px;cursor:pointer">Cancel</span></div>
           </div>
-
-          <div class="wfa"><span class="wab">AA</span> Split to Always Available</div>
-          <div class="wfc"></div>
-
-          <!-- Wait for Retainer -->
-          <div style="display:flex;align-items:center;gap:8px;padding:8px 12px"><span class="wnb" style="background:var(--gray-500)">W</span><strong>Wait for Retainer</strong></div>
-          <div class="wfa"><span class="wab">UA</span> Retainer Received → <span style="background:var(--cb-orange);color:#fff;padding:1px 6px;border-radius:3px;font-size:11px;font-weight:600">Is Matter Assigned?</span></div>
-          <div class="wfc"></div>
-
-          <!-- Always Available -->
-          <div style="display:flex;align-items:center;gap:8px;padding:8px 12px"><span class="wnb" style="background:var(--gray-500)">W</span><strong>Always Available</strong></div>
-        </div>
-
-        <div style="margin-top:24px;text-align:center">
-          <button class="mb pp click-hint" style="padding:8px 24px;font-size:13px" onclick="next()">Continue to Live Demo →</button>
         </div>
       </div>
     </div>
-
-    <!-- ═══════════════════════════════════════════════════════
-         S4: MATTER CREATION WITH TYPING (was s3)
-         ═══════════════════════════════════════════════════════ -->
+ 
+    <!-- S2: FIELD MAPPING (simplified — CB field picker + remove only) -->
+    <div class="screen" id="s2">
+      <div style="display:flex;flex:1;overflow:hidden">
+        <div style="width:45%;border-right:1px solid var(--gray-200);overflow-y:auto;background:#fff">
+          <div class="fp-header"><h1>Workflow Details</h1><div class="btn-bar"><button>Edit</button><button>New Node</button></div><div class="crumbs"><a href="#" id="s2WfCrumb">Workflow: Matter</a> / Details</div></div>
+          <div class="fp-body">
+            <div class="wf-node"><span class="circle s">S</span><span class="chip s">Start</span><span class="meta">Is-Multi-Result ✓</span><span class="gear">⚙</span></div>
+            <div class="nd-highlight">
+              <div class="wf-node"><span class="circle s" style="background:var(--purple)">ND</span><span class="chip s" style="background:var(--purple)" id="s2ActChip">Send Matter Data to NetDocs</span><span class="gear">⚙</span></div>
+            </div>
+            <div class="wf-node"><span class="circle w">W</span><span class="chip w">Wait</span><span class="meta">Is-Multi-Result ✓</span><span class="gear">⚙</span></div>
+          </div>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;overflow-y:auto">
+          <div class="edit-panel-header">
+            <div><h2>Configure Field Mapping</h2><div style="font-size:12px;color:var(--gray-500);margin-top:4px"><a href="#" style="color:var(--cb-blue-link);text-decoration:none">Workflow: Matter</a> / <a href="#" style="color:var(--cb-blue-link);text-decoration:none" id="s2ActCrumb">Action: Send Matter Data to NetDocs</a> / <span style="color:var(--cb-orange)">Field Mapping</span></div></div>
+            <button class="close-x">×</button>
+          </div>
+          <div class="edit-panel-body">
+            <p style="font-size:13px;color:var(--gray-500);margin-bottom:16px">Select which Centerbase fields to send to NetDocs when this action fires.</p>
+            <div class="new-box" style="margin-bottom:20px">
+              <div class="fm-group" style="margin-bottom:0"><label>Target Data Table</label>
+                <select class="fm-input" style="border-color:var(--purple)"><option selected>Centerbase Matters</option><option>Centerbase Contacts</option><option>+ Create New Data Table...</option></select>
+                <div class="hint">Select an existing NetDocs data table or create a new one.</div>
+              </div>
+            </div>
+            <label style="font-size:13px;font-weight:600;color:var(--gray-800);margin-bottom:8px;display:block">Centerbase Fields</label>
+            <table class="fpt">
+              <thead><tr><th>Centerbase Field</th><th style="width:30px"></th></tr></thead>
+              <tbody>
+                <tr><td><select><option selected>Matter ID</option><option>Matter Name</option><option>Client Name</option></select></td><td><button class="rm-btn">×</button></td></tr>
+                <tr><td><select><option>Matter ID</option><option selected>Matter Name</option></select></td><td><button class="rm-btn">×</button></td></tr>
+                <tr><td><select><option selected>Client Name</option></select></td><td><button class="rm-btn">×</button></td></tr>
+                <tr><td><select><option selected>Practice Area</option></select></td><td><button class="rm-btn">×</button></td></tr>
+                <tr><td><select><option selected>Responsible Attorney</option></select></td><td><button class="rm-btn">×</button></td></tr>
+                <tr><td><select><option selected>Open Date</option></select></td><td><button class="rm-btn">×</button></td></tr>
+                <tr><td><select><option selected>Status</option></select></td><td><button class="rm-btn">×</button></td></tr>
+              </tbody>
+            </table>
+            <div class="add-row"><button>+ Add Field</button></div>
+            <div style="border-top:1px solid var(--gray-200);margin:16px 0;padding-top:12px">
+              <div class="chk-row"><input type="checkbox" checked><span>Auto-create data table if it doesn't exist</span></div>
+              <div class="chk-row"><input type="checkbox" checked><span>Use upsert mode (update if key matches)</span></div>
+            </div>
+            <button class="mb pp click-hint" style="padding:8px 24px;font-size:13px" onclick="next()">Save Mapping</button><span style="font-size:13px;color:var(--cb-blue-link);margin-left:16px;cursor:pointer">Cancel</span>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- S3: WORKFLOW DETAILS full-page (matching real CB layout) -->
+    <div class="screen" id="s3">
+      <div class="fp">
+        <div class="fp-header"><h1>Workflow Details</h1><div class="btn-bar"><button>Edit</button><button>New Node</button></div><div class="crumbs" id="wfDetailName"><a href="#">Workflow: Matter</a> / Details</div></div>
+        <div class="fp-body">
+          <div class="wf-node"><span class="circle s">S</span><span class="chip s">Start</span><span class="meta">Is-Multi-Result ✓</span><span class="gear">⚙</span></div>
+          <div class="wf-node"><span class="circle w">W</span><span class="chip w">Wait</span><span class="meta">Is-Multi-Result ✓</span><span class="gear">⚙</span></div>
+          <div class="wf-node"><span class="circle w">W</span><span class="chip w">Closed Matter Limbo</span><span class="meta">Is-Multi-Result ✓</span><span class="gear">⚙</span></div>
+          <div class="nd-highlight">
+            <div class="wf-node"><span class="circle s" style="background:var(--purple);font-size:9px">ND</span><span class="chip s" style="background:var(--purple)" id="wfActionLabel">Send Matter Data to NetDocs</span><span class="gear">⚙</span></div>
+            <div style="padding:4px 0 0 34px;font-size:12px;color:var(--gray-500)" id="wfActionDetail">Target: Centerbase Matters · Key: Matter ID · Upsert · 7 fields</div>
+          </div>
+          <div class="wf-node"><span class="circle w">W</span><span class="chip w">Estate Planning</span><span class="gear">⚙</span></div>
+          <div class="wf-node"><span class="circle w">W</span><span class="chip w">Trial Date</span><span class="gear">⚙</span></div>
+          <div class="wf-node"><span class="circle c">C</span><span class="chip c">Estate Planning Phase 3</span><span class="gear">⚙</span></div>
+          <div class="wf-node"><span class="circle w">W</span><span class="chip w">Loan Representation - Initial Creation</span><span class="gear">⚙</span></div>
+          <div class="wf-node"><span class="circle w">W</span><span class="chip w">Receive Discovery</span><span class="gear">⚙</span></div>
+          <div class="wf-node"><span class="circle w">W</span><span class="chip w">Create Subpoena</span><span class="gear">⚙</span></div>
+          <div class="wf-node"><span class="circle w">W</span><span class="chip w">Next Case Review</span><span class="gear">⚙</span></div>
+          <div style="margin-top:24px;text-align:center"><button class="mb pp click-hint" style="padding:8px 24px;font-size:13px" onclick="next()">Continue to Live Demo →</button></div>
+        </div>
+      </div>
+    </div>
+ 
+    <!-- S4: MATTER/CONTACT CREATION (full-page multi-column, matching real CB) -->
     <div class="screen" id="s4">
-      <div style="padding:20px;background:#fff;border-bottom:1px solid var(--gray-200)">
-        <h2 style="font-size:17px;font-weight:600" id="s4Title">New Matter</h2>
-        <p style="font-size:12px;color:var(--gray-500)">Fill in details. The workflow fires automatically on save.</p>
+      <div class="matter-form-header">
+        <div class="left"><span style="font-size:20px;color:var(--gray-400);cursor:pointer">‹</span><div><h1 id="s4Title">New Matter</h1><div class="sub" id="s4Sub">Matter</div></div></div>
+        <div class="right"><button class="mb gr click-hint" id="saveBtn" style="padding:6px 20px;font-size:13px;opacity:.4;pointer-events:none" onclick="next()">Save</button><button class="mb outline" style="padding:6px 16px;font-size:13px">Cancel</button></div>
       </div>
-      <div style="padding:20px">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:700px">
-          <div><span class="field-label" id="fl0">MATTER NAME</span><div class="field-box" id="f0"></div></div>
-          <div><span class="field-label" id="fl1">MATTER NUMBER</span><div class="field-box auto" id="f1"></div></div>
-          <div><span class="field-label" id="fl2">CLIENT</span><div class="field-box" id="f2"></div></div>
-          <div><span class="field-label" id="fl3">PRACTICE AREA</span><div class="field-box" id="f3"></div></div>
-          <div><span class="field-label" id="fl4">RESPONSIBLE ATTORNEY</span><div class="field-box" id="f4"></div></div>
-          <div><span class="field-label" id="fl5">BILLING RATE</span><div class="field-box" id="f5"></div></div>
-          <div><span class="field-label" id="fl6">OPEN DATE</span><div class="field-box" id="f6"></div></div>
-          <div><span class="field-label" id="fl7">STATUS</span><div class="field-box" id="f7"></div></div>
-        </div>
-        <div style="margin-top:20px;display:flex;gap:8px">
-          <button class="mb gr click-hint" id="saveBtn" style="padding:8px 24px;font-size:13px;opacity:.4;pointer-events:none" onclick="next()">💾 Save Matter</button>
-          <button class="mb tl" style="padding:8px 16px;font-size:13px;opacity:.5">Cancel</button>
+      <div class="matter-form-body" id="formBody">
+        <div class="editing-label" id="editingLabel">Editing New Matter</div>
+        <div class="section-label">Details</div>
+        <div class="field-grid" id="fieldGrid">
+          <!-- Populated dynamically by applyUC() -->
         </div>
       </div>
     </div>
-
-    <!-- ═══════════════════════════════════════════════════════
-         S5: MATTER DETAIL + SYNC + NETDOCS IFRAME (was s4)
-         ═══════════════════════════════════════════════════════ -->
+ 
+    <!-- S5: MATTER DETAIL + SYNC + NETDOCS IFRAME -->
     <div class="screen" id="s5" style="position:relative">
       <div class="mh">
-        <div style="display:flex;align-items:center;gap:12px"><span style="font-size:18px;color:var(--gray-500);cursor:pointer">‹</span><div><h1 id="matterTitle">Whitfield Commercial RE Closing - 2026-0148 - Whitfield Properties</h1><div class="mt">Matter</div></div></div>
-        <div class="ab"><button class="mb gr">Matter Actions ▾</button><button class="mb tl">Workflow ▾</button><span style="font-size:14px;color:var(--gray-400);cursor:pointer">⚙ &nbsp;❓</span></div>
+        <div style="display:flex;align-items:center;gap:12px"><span style="font-size:18px;color:var(--gray-500);cursor:pointer">‹</span><div><h1 id="matterTitle">Whitfield Commercial RE Closing</h1><div class="mt">Matter</div></div></div>
+        <div class="ab"><button class="mb gr">Matter Actions ▾</button><button class="mb tl">Workflow ▾</button><span style="font-size:14px;color:var(--gray-400);cursor:pointer">⚙ ❓</span></div>
       </div>
-      <div class="fr">
-        <div class="fc"><div class="am" style="color:var(--green)">Active</div><div class="lb">Status</div></div>
-        <div class="fc"><div class="am" style="color:var(--green)">$0.00</div><div class="lb">Fee WIP</div></div>
-        <div class="fc"><div class="am">$0.00</div><div class="lb">Unbilled Costs</div></div>
-        <div class="fc"><div class="am">$0.00</div><div class="lb">Fees Collected</div></div>
-        <div class="fc"><div class="am">$0.00</div><div class="lb">Matter Balance</div></div>
-        <div class="fc"><div class="am" style="color:var(--cb-red)">$5,000.00</div><div class="lb">Trust Balance</div></div>
-      </div>
-      <div class="tb">
-        <div class="ti">Details</div><div class="ti">Contacts</div><div class="ti">Chat</div><div class="ti">Matter Metrics</div><div class="ti">Secure Chat</div><div class="ti active">NetDocuments</div><div class="ti">Deadlines</div><div class="ti">File Explorer</div><div class="ti">EMail</div><div class="ti">Documents</div><div class="ti">Activity</div><div class="ti">Notes</div><div class="ti">Billing Entries</div><div class="ti">Workflow History</div>
-      </div>
+      <div class="fr"><div class="fc"><div class="am" style="color:var(--green)">Active</div><div class="lb">Status</div></div><div class="fc"><div class="am" style="color:var(--green)">$0.00</div><div class="lb">Fee WIP</div></div><div class="fc"><div class="am">$0.00</div><div class="lb">Unbilled Costs</div></div><div class="fc"><div class="am">$0.00</div><div class="lb">Fees Collected</div></div><div class="fc"><div class="am">$0.00</div><div class="lb">Matter Balance</div></div><div class="fc"><div class="am" style="color:var(--cb-red)">$5,000.00</div><div class="lb">Trust Balance</div></div></div>
+      <div class="tb"><div class="ti">Details</div><div class="ti">Contacts</div><div class="ti">Chat</div><div class="ti">Matter Metrics</div><div class="ti">Secure Chat</div><div class="ti active">NetDocuments</div><div class="ti">Deadlines</div><div class="ti">File Explorer</div><div class="ti">EMail</div><div class="ti">Documents</div><div class="ti">Activity</div><div class="ti">Notes</div><div class="ti">Billing Entries</div><div class="ti">Workflow History</div></div>
       <div class="ndi" id="ndIframe">
-        <div class="ndh">
-          <div class="ndl">net<strong>documents</strong><span>·</span></div>
-          <div class="ndsb">🔍 Search Whitfield - 2026-0148...</div>
-          <div style="display:flex;align-items:center;gap:8px"><span style="font-size:14px">➕ Add</span><div style="font-size:12px;color:var(--gray-500)">Hi, Centerbase ▾</div></div>
-        </div>
+        <div class="ndh"><div class="ndl">net<strong>documents</strong><span>·</span></div><div class="ndsb">🔍 Search...</div><div style="display:flex;align-items:center;gap:8px"><span style="font-size:14px">➕ Add</span><div style="font-size:12px;color:var(--gray-500)">Hi, Centerbase ▾</div></div></div>
         <div class="ndt"><div class="nt active">DOCUMENTS</div><div class="nt">LAWBETA MATTERS</div><div class="nt">MY TASKS</div><div class="nt">APPS</div></div>
-        <div class="ndwh"><span style="font-size:24px;color:#E8A100">📁</span><span style="font-size:15px;font-weight:500;color:var(--gray-700)" id="ndWsName">Whitfield - 2026-0148 - Whitfield Properties (005910.003492) ▾</span></div>
+        <div class="ndwh"><span style="font-size:24px;color:#E8A100">📁</span><span style="font-size:15px;font-weight:500;color:var(--gray-700)" id="ndWsName">Workspace ▾</span></div>
         <div class="nddt"><div class="nddti">OVERVIEW</div><div class="nddti active">DOCUMENTS</div><div class="nddti">COLLABSPACES</div><div class="nddti">SETS</div></div>
         <div style="padding:12px 16px;font-size:12px;color:var(--gray-500)">🔽 ≡ <span id="docCount">0 items</span></div>
         <div id="ndEmpty" style="text-align:center;padding:40px;color:var(--gray-400)"><div style="font-size:32px;margin-bottom:8px">📂</div><p>Workspace created. Waiting for documents...</p></div>
-        <div id="ndDocs" style="display:none;padding:0 16px">
-          <table class="dt"><thead><tr><th></th><th>Name</th><th>Versions</th><th>Created by</th><th>Last modified</th><th>Practice Area</th></tr></thead><tbody id="ndDocBody"></tbody></table>
-        </div>
-        <div class="doc-progress" id="docProgress" style="display:none">
-          <span id="dpLabel">Generating documents...</span>
-          <div class="dp" id="dp1"></div><div class="dp-line" id="dpl1"></div>
-          <div class="dp" id="dp2"></div><div class="dp-line" id="dpl2"></div>
-          <div class="dp" id="dp3"></div>
-        </div>
+        <div id="ndDocs" style="display:none;padding:0 16px"><table class="dt"><thead><tr><th></th><th>Name</th><th>Versions</th><th>Created by</th><th>Last modified</th><th>Practice Area</th></tr></thead><tbody id="ndDocBody"></tbody></table></div>
+        <div class="doc-progress" id="docProgress" style="display:none"><span id="dpLabel">Generating...</span><div class="dp" id="dp1"></div><div class="dp-line" id="dpl1"></div><div class="dp" id="dp2"></div><div class="dp-line" id="dpl2"></div><div class="dp" id="dp3"></div></div>
       </div>
-      <div class="sync-ov" id="syncOv">
-        <div class="spinner" id="syncSp"></div>
-        <div class="st" id="syncTxt">Sending matter data to NetDocs...</div>
-        <div class="ss" id="syncSub">7 fields → Centerbase Matters data table</div>
-      </div>
+      <div class="sync-ov" id="syncOv"><div class="spinner" id="syncSp"></div><div class="st" id="syncTxt">Sending data to NetDocs...</div><div class="ss" id="syncSub">7 fields → data table</div></div>
     </div>
-
-    <!-- ═══════════════════════════════════════════════════════
-         S6: CLOSING (was s5)
-         ═══════════════════════════════════════════════════════ -->
+ 
+    <!-- S6: CLOSING -->
     <div class="screen" id="s6">
       <div class="ts">
         <div>
-          <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:16px"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MCA0MCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImcxIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMSI+CiAgICAgIDxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNFMEUwRTAiLz4KICAgICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjODg4Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJnMiIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPgogICAgICA8c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjRkZGIi8+CiAgICAgIDxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI0NDQyIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICAgIDxsaW5lYXJHcmFkaWVudCBpZD0iZzMiIHgxPSIxIiB5MT0iMCIgeDI9IjAiIHkyPSIxIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzk5OSIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1NTUiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxwYXRoIGQ9Ik04LDI4IEwyMCwzNCBMMzIsMjggTDMyLDE4IEwyMCwyNCBMOCwxOCBaIiBmaWxsPSJ1cmwoI2cxKSIvPgogIDxwYXRoIGQ9Ik0yMCwxMiBMMzIsNiBMMzIsMTggTDIwLDI0IFoiIGZpbGw9InVybCgjZzMpIi8+CiAgPHBhdGggZD0iTTgsMTggTDIwLDEyIEwyMCwyNCBMOCwxOCBaIiBmaWxsPSJ1cmwoI2cyKSIvPgogIDxwYXRoIGQ9Ik04LDE4IEwyMCwxMiBMMzIsNiBMMzIsMTggTDIwLDI0IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgyNTUsMjU1LDI1NSwwLjMpIiBzdHJva2Utd2lkdGg9IjAuNSIvPgogIDxwYXRoIGQ9Ik0xNSwxNSBRMTIsMjAgMTUsMjUgTDIwLDI4IEwyMCwyNCBMMTcsMjIgUTE1LDIwIDE3LDE4IEwyMCwxNiBMMjAsMTIgWiIgZmlsbD0icmdiYSgwLDAsMCwwLjE1KSIvPgo8L3N2Zz4K" alt="Centerbase" style="width:44px;height:44px"><span style="font-size:18px;font-weight:600;color:var(--gray-500)">Centerbase × NetDocs</span></div>
+          <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:16px"><img id="closingLogo" alt="Centerbase" style="height:28px;width:auto;filter:brightness(0) saturate(100%)"><span style="font-size:18px;font-weight:600;color:var(--gray-500)">× NetDocs</span></div>
           <h1>One matter. Zero re-typing.<br><span>Documents in seconds.</span></h1>
           <p class="sub">Matter created in Centerbase → data synced to NetDocs → documents auto-generated by PatternBuilder — all inside the same window your team already uses.</p>
-          <div class="stat-row">
-            <div class="stat-card"><div class="num cb">0</div><div class="desc">Fields re-typed</div></div>
-            <div class="stat-card"><div class="num nd">&lt;30s</div><div class="desc">Matter to documents</div></div>
-            <div class="stat-card"><div class="num gn">100%</div><div class="desc">Data accuracy</div></div>
-          </div>
-          <div style="display:flex;gap:12px;justify-content:center">
-            <button class="mb gr" style="padding:10px 28px;font-size:14px" onclick="goTo(0)">↻ Restart Demo</button>
-          </div>
+          <div class="stat-row"><div class="stat-card"><div class="num cb">0</div><div class="desc">Fields re-typed</div></div><div class="stat-card"><div class="num nd">&lt;30s</div><div class="desc">Matter to documents</div></div><div class="stat-card"><div class="num gn">100%</div><div class="desc">Data accuracy</div></div></div>
+          <div style="display:flex;gap:12px;justify-content:center"><button class="mb gr" style="padding:10px 28px;font-size:14px" onclick="goTo(0)">↻ Restart Demo</button></div>
         </div>
       </div>
     </div>
-
+ 
   </div>
 </div>
-
+ 
 <!-- DOC PREVIEW OVERLAY -->
 <div class="doc-overlay" id="docOv" onclick="closeDoc()">
   <div class="doc-panel" onclick="event.stopPropagation()">
-    <div class="doc-panel-bar"><span class="title" id="docOvTitle">📄 Client Engagement Letter</span><button class="doc-close" onclick="closeDoc()">✕</button></div>
-    <div class="doc-body" id="docOvBody">
+    <div class="doc-panel-bar"><span class="title" id="docOvTitle">📄 Document</span><button class="doc-close" onclick="closeDoc()">✕</button></div>
+    <div class="doc-body">
       <div class="lh"><h2>MITCHELL PARK & ASSOCIATES</h2><p>ATTORNEYS AT LAW · 200 COMMERCE STREET, SUITE 1400 · DALLAS, TX 75201</p></div>
-      <p class="dt-lbl">March 16, 2026</p>
-      <p><span class="fval" id="dClient">Whitfield Properties LLC</span><br>Attn: Managing Partner<br>4200 Main Street, Dallas, TX 75226</p>
-      <p>Re: <span class="fval" id="dMatter">Whitfield Commercial RE Closing</span> (Matter No. <span class="fval" id="dNum">2026-0148</span>)</p>
+      <p class="dt-lbl">March 17, 2026</p>
+      <p><span class="fval" id="dClient">Client</span><br>Attn: Managing Partner<br>4200 Main Street, Dallas, TX 75226</p>
+      <p>Re: <span class="fval" id="dMatter">Matter</span> (Matter No. <span class="fval" id="dNum">0000</span>)</p>
       <p>Dear Client:</p>
-      <p>Thank you for selecting Mitchell Park & Associates to represent <span class="fval" id="dClient2">Whitfield Properties LLC</span> in connection with the above-referenced <span class="fval" id="dArea">Real Estate</span> matter. We are pleased to confirm the terms of our engagement.</p>
-      <p><strong>Scope of Representation.</strong> <span class="fval" id="dAtty">James Park</span> will serve as the responsible attorney for this matter and will be your primary point of contact.</p>
-      <p><strong>Fee Arrangement.</strong> Our services will be billed at the rate of <span class="fval" id="dRate">$425.00 per hour</span> for attorney time.</p>
+      <p>Thank you for selecting Mitchell Park & Associates to represent <span class="fval" id="dClient2">Client</span> in connection with the above-referenced <span class="fval" id="dArea">Practice</span> matter.</p>
+      <p><strong>Scope of Representation.</strong> <span class="fval" id="dAtty">Attorney</span> will serve as the responsible attorney.</p>
+      <p><strong>Fee Arrangement.</strong> Our services will be billed at the rate of <span class="fval" id="dRate">$0</span> for attorney time.</p>
       <p>We look forward to working with you on this matter.</p>
-      <div class="sig"><p>Sincerely,</p><div class="ln"></div><p><strong><span class="fval" id="dAtty2">James Park</span></strong><br>Partner, Mitchell Park & Associates</p></div>
+      <div class="sig"><p>Sincerely,</p><div class="ln"></div><p><strong><span class="fval" id="dAtty2">Attorney</span></strong><br>Partner, Mitchell Park & Associates</p></div>
     </div>
   </div>
 </div>
-
+ 
 <!-- TOAST -->
 <div class="toast" id="toast"><span id="tI">⚡</span> <span id="tM"></span></div>
-
+ 
 <!-- NOTES -->
 <button class="pnt" onclick="document.getElementById('pn').classList.toggle('visible')">📝 Notes</button>
 <div class="pn" id="pn"><span id="nT"></span></div>
-
+ 
 <script>
-/* ═══════════════════════════════════════════
-   CONFIG
-   ═══════════════════════════════════════════ */
+const LOGO_CB_STACKED = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNDU2LjE1IDIyMy4yNiI+PGRlZnM+PHN0eWxlPi5jbHMtMXtmaWxsOiMwMDBkNDU7fS5jbHMtMntmaWxsOnVybCgjbGluZWFyLWdyYWRpZW50KTt9LmNscy0ze2ZpbGw6dXJsKCNsaW5lYXItZ3JhZGllbnQtMik7fS5jbHMtNHtmaWxsOnVybCgjbGluZWFyLWdyYWRpZW50LTMpO30uY2xzLTV7ZmlsbDp1cmwoI2xpbmVhci1ncmFkaWVudC00KTt9LmNscy02e2ZpbGw6dXJsKCNsaW5lYXItZ3JhZGllbnQtNSk7fS5jbHMtN3tmaWxsOiMwMDJhZjI7fS5jbHMtOHtmaWxsOiMwMDllZmY7fS5jbHMtOXtmaWxsOnVybCgjbGluZWFyLWdyYWRpZW50LTYpO30uY2xzLTEwe2ZpbGw6dXJsKCNsaW5lYXItZ3JhZGllbnQtNyk7fS5jbHMtMTF7ZmlsbDp1cmwoI2xpbmVhci1ncmFkaWVudC04KTt9LmNscy0xMntmaWxsOnVybCgjbGluZWFyLWdyYWRpZW50LTkpO30uY2xzLTEze2ZpbGw6dXJsKCNsaW5lYXItZ3JhZGllbnQtMTApO308L3N0eWxlPjxsaW5lYXJHcmFkaWVudCBpZD0ibGluZWFyLWdyYWRpZW50IiB4MT0iMTg2LjY1IiB5MT0iMTE5LjAyIiB4Mj0iMTg1LjI1IiB5Mj0iMTE5LjgyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMDAyYzg0Ii8+PHN0b3Agb2Zmc2V0PSIwLjE2IiBzdG9wLWNvbG9yPSIjMDAzNjkxIi8+PHN0b3Agb2Zmc2V0PSIwLjQ2IiBzdG9wLWNvbG9yPSIjMDA1MGIzIi8+PHN0b3Agb2Zmc2V0PSIwLjg2IiBzdG9wLWNvbG9yPSIjMDA3YmVhIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDA4YmZmIi8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImxpbmVhci1ncmFkaWVudC0yIiB4MT0iMjQ1LjU5IiB5MT0iLTExLjMyIiB4Mj0iNzMuNzgiIHkyPSI4Ny4wMSIgeGxpbms6aHJlZj0iI2xpbmVhci1ncmFkaWVudCIvPjxsaW5lYXJHcmFkaWVudCBpZD0ibGluZWFyLWdyYWRpZW50LTMiIHgxPSIyMTIuMjkiIHkxPSIxMjYuMDciIHgyPSIyODEuOSIgeTI9Ijg4LjYyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMDA5ZWZmIi8+PHN0b3Agb2Zmc2V0PSIwLjExIiBzdG9wLWNvbG9yPSIjMDA5NmZmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDA1Y2ZmIi8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImxpbmVhci1ncmFkaWVudC00IiB4MT0iMjgyLjY4IiB5MT0iNTMuNDkiIHgyPSIxMTAuODciIHkyPSIxNTEuODEiIHhsaW5rOmhyZWY9IiNsaW5lYXItZ3JhZGllbnQiLz48bGluZWFyR3JhZGllbnQgaWQ9ImxpbmVhci1ncmFkaWVudC01IiB4MT0iMTYzLjk5IiB5MT0iNzQuNTYiIHgyPSIyMDUuOTkiIHkyPSIxMjAuMzQiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMwMDllZmYiLz48c3RvcCBvZmZzZXQ9IjAuMiIgc3RvcC1jb2xvcj0iIzAwOWFmZiIvPjxzdG9wIG9mZnNldD0iMC4zOCIgc3RvcC1jb2xvcj0iIzAwOGZmZiIvPjxzdG9wIG9mZnNldD0iMC41NyIgc3RvcC1jb2xvcj0iIzAwN2JmZiIvPjxzdG9wIG9mZnNldD0iMC43NSIgc3RvcC1jb2xvcj0iIzAwNjBmZiIvPjxzdG9wIG9mZnNldD0iMC45MyIgc3RvcC1jb2xvcj0iIzAwM2RmZiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzAwMmVmZiIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQtNiIgeDE9IjI5MC44OCIgeTE9IjY1LjI5IiB4Mj0iMjMxLjUyIiB5Mj0iNjUuMjkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMwMDllZmYiLz48c3RvcCBvZmZzZXQ9IjAuMzciIHN0b3AtY29sb3I9IiMwMDcwZmYiLz48c3RvcCBvZmZzZXQ9IjAuNzkiIHN0b3AtY29sb3I9IiMwMDQwZmYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwMDJlZmYiLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0ibGluZWFyLWdyYWRpZW50LTciIHgxPSIyNTUuNzYiIHkxPSI2LjQ1IiB4Mj0iODMuOTUiIHkyPSIxMDQuNzgiIHhsaW5rOmhyZWY9IiNsaW5lYXItZ3JhZGllbnQiLz48bGluZWFyR3JhZGllbnQgaWQ9ImxpbmVhci1ncmFkaWVudC04IiB4MT0iMjAzLjQyIiB5MT0iMjguNDMiIHgyPSIxNzAuOTkiIHkyPSI3Ny4zMyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzAwOWVmZiIvPjxzdG9wIG9mZnNldD0iMC4yMSIgc3RvcC1jb2xvcj0iIzAwOWFmZiIvPjxzdG9wIG9mZnNldD0iMC4zOSIgc3RvcC1jb2xvcj0iIzAwOTBmZiIvPjxzdG9wIG9mZnNldD0iMC41NyIgc3RvcC1jb2xvcj0iIzAwN2RmZiIvPjxzdG9wIG9mZnNldD0iMC43NCIgc3RvcC1jb2xvcj0iIzAwNjRmZiIvPjxzdG9wIG9mZnNldD0iMC45MSIgc3RvcC1jb2xvcj0iIzAwNDNmZiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzAwMmVmZiIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQtOSIgeDE9IjI3Mi4wOCIgeTE9IjI1LjQ3IiB4Mj0iMTkzLjcxIiB5Mj0iMjUuNDciIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMwMDllZmYiLz48c3RvcCBvZmZzZXQ9IjAuMzIiIHN0b3AtY29sb3I9IiMwMDljZmYiLz48c3RvcCBvZmZzZXQ9IjAuNSIgc3RvcC1jb2xvcj0iIzAwOTRmZiIvPjxzdG9wIG9mZnNldD0iMC42NCIgc3RvcC1jb2xvcj0iIzAwODZmZiIvPjxzdG9wIG9mZnNldD0iMC43NiIgc3RvcC1jb2xvcj0iIzAwNzNmZiIvPjxzdG9wIG9mZnNldD0iMC44NyIgc3RvcC1jb2xvcj0iIzAwNTlmZiIvPjxzdG9wIG9mZnNldD0iMC45NiIgc3RvcC1jb2xvcj0iIzAwM2JmZiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzAwMmVmZiIvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQtMTAiIHgxPSIyNTAuNzkiIHkxPSIxNy44NiIgeDI9IjI2OC4xMiIgeTI9IjQ5LjU4IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMDAyZWZmIi8+PHN0b3Agb2Zmc2V0PSIwLjI0IiBzdG9wLWNvbG9yPSIjMDA2MGZmIi8+PHN0b3Agb2Zmc2V0PSIwLjQyIiBzdG9wLWNvbG9yPSIjMDA4MWZmIi8+PHN0b3Agb2Zmc2V0PSIwLjUzIiBzdG9wLWNvbG9yPSIjMDA4ZGZmIi8+PHN0b3Agb2Zmc2V0PSIwLjYxIiBzdG9wLWNvbG9yPSIjMDhmIi8+PHN0b3Agb2Zmc2V0PSIwLjcyIiBzdG9wLWNvbG9yPSIjMDA3YWZmIi8+PHN0b3Agb2Zmc2V0PSIwLjgzIiBzdG9wLWNvbG9yPSIjMDA2MmZmIi8+PHN0b3Agb2Zmc2V0PSIwLjk1IiBzdG9wLWNvbG9yPSIjMDA0MGZmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDAyZWZmIi8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHRpdGxlPlN0YWNrZWRfQmx1ZURhcms8L3RpdGxlPjxnIGlkPSJMYXllcl8yIiBkYXRhLW5hbWU9IkxheWVyIDIiPjxnIGlkPSJMYXllcl8xLTIiIGRhdGEtbmFtZT0iTGF5ZXIgMSI+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMjAuMzMsMTc1LjM2YTIyLjcyLDIyLjcyLDAsMCwxLDguOTQtMS41MywxNS44NCwxNS44NCwwLDAsMSwxNS4wNyw5LjgxbC40NSwxLjA2SDU0Ljg1TDU0LDE4Mi4zOGEyNiwyNiwwLDAsMC05LjU0LTEyLjkzLDI3LjkxLDI3LjkxLDAsMCwwLTE2LjYyLTUuMDdjLTguMzcsMC0xNS4yNiwyLjkyLTIwLjQ5LDguNjdDMi40OSwxNzguNTMsMCwxODUuNTIsMCwxOTMuODJzMi40OSwxNS4yOSw3LjQsMjAuNzhjNS4yMiw1Ljc0LDEyLjExLDguNjYsMjAuNDgsOC42NkEyOCwyOCwwLDAsMCw0NC41LDIxOC4yLDI2LjA4LDI2LjA4LDAsMCwwLDU0LDIwNS4yNmwuODEtMi4zMkg0NC43OUw0NC4zNCwyMDRhMTUuODQsMTUuODQsMCwwLDEtMTUuMDcsOS44MWMtNi41NiwwLTExLjQtMS44Ny0xNC43OS01LjcxLTMuMjMtMy42My00Ljg3LTguNDMtNC44Ny0xNC4yOHMxLjY0LTEwLjY1LDQuODctMTQuMjhBMTYuNjMsMTYuNjMsMCwwLDEsMjAuMzMsMTc1LjM2WiIvPjxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTgxLjIzLDE3Ny42MmMtNi41NywwLTEyLDIuMjQtMTYuMTUsNi42OS0zLjg4LDQuMjMtNS44NSw5LjY2LTUuODUsMTYuMTNhMjIuNjYsMjIuNjYsMCwwLDAsNi4xMSwxNi4xNGM0LjE5LDQuNDMsOS42Nyw2LjY4LDE2LjMsNi42OCw1LjIxLDAsOS41NS0xLjI3LDEyLjkzLTMuNzhhMjEuNTMsMjEuNTMsMCwwLDAsNy4zMi05Ljc2bC45MS0yLjM3SDkyLjUxbC0uNDkuOTRjLTIuMDksNC01LjQ2LDUuOTMtMTAuMyw1LjkzQTEyLDEyLDAsMCwxLDczLDIxMC45NGExMi42MSwxMi42MSwwLDAsMS0zLjYzLTYuMzFoMzMuOXYtNC4xOWMwLTYuNDctMi0xMS45LTUuODYtMTYuMTRDOTMuMjMsMTc5Ljg2LDg3LjgsMTc3LjYyLDgxLjIzLDE3Ny42MlptLTguMywxMi4wOWExMi44MiwxMi44MiwwLDAsMSwxNi41OSwwQTEyLjE0LDEyLjE0LDAsMCwxLDkzLDE5NS40M0g2OS40OUExMi4xMiwxMi4xMiwwLDAsMSw3Mi45MywxODkuNzFaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTM4LjcyLDE3OC44OGgwYTIxLjEzLDIxLjEzLDAsMCwwLTcuNjYtMS4yNiwxNSwxNSwwLDAsMC04LjIxLDIuMzEsMjQuODUsMjQuODUsMCwwLDAtMi43MSwydi0zLjY5aC05LjYxVjIyMi42aDkuNjFWMTk3LjMzYTEwLjI0LDEwLjI0LDAsMCwxLDMuMDYtNy43MiwxMC4zOSwxMC4zOSwwLDAsMSw3LjU0LTMsOS4xNyw5LjE3LDAsMCwxLDcsMi44YzEuODIsMS45MiwyLjcsNC40NywyLjcsNy43OVYyMjIuNkgxNTBWMTk3LjA5YzAtNS45MS0xLjg4LTEwLjc1LTUuNTUtMTQuMzdBMTYsMTYsMCwwLDAsMTM4LjcyLDE3OC44OFoiLz48cG9seWdvbiBjbGFzcz0iY2xzLTEiIHBvaW50cz0iMTczLjA4IDE2My42NSAxNjMuNDcgMTYzLjY1IDE2My40NyAxNzguMjcgMTU1LjE0IDE3OC4yNyAxNTUuMTQgMTg3LjE1IDE2My40NyAxODcuMTUgMTYzLjQ3IDIyMi42IDE3My4wOCAyMjIuNiAxNzMuMDggMTg3LjE1IDE4Mi40OCAxODcuMTUgMTgyLjQ4IDE3OC4yNyAxNzMuMDggMTc4LjI3IDE3My4wOCAxNjMuNjUiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0yMDcuNjEsMTc3LjYyYy02LjU3LDAtMTIsMi4yNC0xNi4xNSw2LjY5LTMuODgsNC4yMy01Ljg1LDkuNjYtNS44NSwxNi4xM2EyMi43LDIyLjcsMCwwLDAsNi4xMSwxNi4xNGM0LjE5LDQuNDMsOS42OCw2LjY4LDE2LjMsNi42OCw1LjIxLDAsOS41Ni0xLjI3LDEyLjkzLTMuNzhhMjEuNTMsMjEuNTMsMCwwLDAsNy4zMi05Ljc2bC45MS0yLjM3SDIxOC44OWwtLjQ5Ljk0Yy0yLjA5LDQtNS40Niw1LjkzLTEwLjMsNS45M2ExMiwxMiwwLDAsMS04Ljc2LTMuMjgsMTIuNTksMTIuNTksMCwwLDEtMy42Mi02LjMxaDMzLjg5di00LjE5YzAtNi40Ny0yLTExLjktNS44Ni0xNi4xNEMyMTkuNjIsMTc5Ljg2LDIxNC4xOCwxNzcuNjIsMjA3LjYxLDE3Ny42MlptLTguMywxMi4wOWExMi44MiwxMi44MiwwLDAsMSwxNi41OSwwLDEyLjE0LDEyLjE0LDAsMCwxLDMuNDUsNS43M0gxOTUuODhBMTIsMTIsMCwwLDEsMTk5LjMxLDE4OS43MVoiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0yNTIuNTMsMTc5LjA5YTE4LjE4LDE4LjE4LDAsMCwwLTYsNC4zNXYtNS4xN2gtOS42MVYyMjIuNmg5LjYxVjIwMi44OWExNy4zNywxNy4zNywwLDAsMSwzLjU1LTExLDExLjM2LDExLjM2LDAsMCwxLDkuNDItNC42NEgyNjJ2LTkuNjFoLTIuMTVBMTYuNjgsMTYuNjgsMCwwLDAsMjUyLjUzLDE3OS4wOVoiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0yOTAuODYsMTc3LjYyQTE4LjkyLDE4LjkyLDAsMCwwLDI3OCwxODJWMTYxLjkzaC05LjYyVjIyMi42SDI3OHYtMy42N2ExOC4yNCwxOC4yNCwwLDAsMCwxMi40Myw0LjMzYzYuNjcsMCwxMi4wNy0yLjI2LDE2LTYuN2EyNC44OCwyNC44OCwwLDAsMCwwLTMyLjIzQTIwLDIwLDAsMCwwLDI5MC44NiwxNzcuNjJabTExLjksMjIuODJhMTQuMDYsMTQuMDYsMCwwLDEtMy40LDkuNzgsMTEuOCwxMS44LDAsMCwxLTkuMzIsNCwxMS4yLDExLjIsMCwwLDEtOS4xMy00LDE2LjQyLDE2LjQyLDAsMCwxLDAtMTkuNjUsMTEuMTYsMTEuMTYsMCwwLDEsOS4xMi00LDExLjgsMTEuOCwwLDAsMSw5LjMyLDRBMTQuMTIsMTQuMTIsMCwwLDEsMzAyLjc2LDIwMC40NFoiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0zNTIsMTgyYTE4LjE4LDE4LjE4LDAsMCwwLTEyLjQ3LTQuNGMtNi42NCwwLTEyLjA1LDIuMjUtMTYuMDksNi43MWEyNS4xNCwyNS4xNCwwLDAsMCwwLDMyLjIzLDIwLjI5LDIwLjI5LDAsMCwwLDE1LjY3LDYuN2M1LjIyLDAsOS41My0xLjQ2LDEyLjg4LTQuMzZ2My43aDkuNjFWMTc4LjI3SDM1MlptLjMzLDE4LjQyYTE0LjUxLDE0LjUxLDAsMCwxLTMuMjcsOS44MmgwYTExLjIsMTEuMiwwLDAsMS05LjEzLDQsMTEuNzksMTEuNzksMCwwLDEtOS4zMS00LDE1LjgxLDE1LjgxLDAsMCwxLDAtMTkuNTgsMTEuOCwxMS44LDAsMCwxLDkuMzItNCwxMS4xNywxMS4xNywwLDAsMSw5LjEzLDRBMTQuNDksMTQuNDksMCwwLDEsMzUyLjM1LDIwMC40NFoiLz48cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik0zOTksMTk4LjE0aDBhMzUuODIsMzUuODIsMCwwLDAtNi45Mi0yLjA3Yy0yLjMxLS40NS00LjQ4LS45NS02LjQ2LTEuNDhhMTYuNzcsMTYuNzcsMCwwLDEtNC41NC0xLjg4LDIuMzksMi4zOSwwLDAsMS0xLjE5LTIuMjRjMC0xLjEzLDAtNC4xNCw3LjY5LTQuMTQsNy4wOCwwLDguMjYsMi43Nyw4LjUyLDQuODVsLjIsMS41Mkg0MDZsLS4yMy0xLjk0YTEzLjU3LDEzLjU3LDAsMCwwLTQuNzgtOS4xNWMtMy4yLTIuNjUtNy41Ni00LTEzLTQtNS42NSwwLTEwLDEuMTUtMTMsMy40MWExMS44OSwxMS44OSwwLDAsMC00LjczLDEwLDkuOTQsOS45NCwwLDAsMCwyLjQ3LDcuMDgsMTUuODgsMTUuODgsMCwwLDAsNS42NCwzLjc3LDM3LjgyLDM3LjgyLDAsMCwwLDYuOSwyYzIuMzEuNDYsNC40OCwxLDYuNDMsMS41MmExNi4wNSwxNi4wNSwwLDAsMSw0LjUzLDIsMi42NSwyLjY1LDAsMCwxLDEuMjMsMi40M2MwLDEuMi0uMzIsMi43LTIuOCwzLjY4YTEzLjU4LDEzLjU4LDAsMCwxLTMuMTMuOCwyNS44MywyNS44MywwLDAsMS0zLjY0LjIzLDEyLjM5LDEyLjM5LDAsMCwxLTMuNjUtLjU2Yy0zLjIzLTEuMDktNC44OS0zLTUuMi02LjEybC0uMTYtMS41N2gtOS43OWwuMTEsMS44NGExNC4yLDE0LjIsMCwwLDAsNS4zNSwxMC42M2MzLjUyLDMsOC4yNyw0LjUsMTQuMTEsNC41LDUuNDYsMCw5LjktMS4xNywxMy4xNy0zLjQ2YTEyLjEzLDEyLjEzLDAsMCwwLDUuMjQtMTAuNTRBMTAuMzksMTAuMzksMCwwLDAsNDA0LjYsMjAyLDE1Ljc4LDE1Ljc4LDAsMCwwLDM5OSwxOTguMTRaIi8+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNNDU2LjE1LDIwMC40NGMwLTYuNDctMi0xMS45LTUuODYtMTYuMTQtNC4xNC00LjQ0LTkuNTctNi42OC0xNi4xNC02LjY4cy0xMiwyLjI0LTE2LjE2LDYuNjljLTMuODgsNC4yMy01Ljg1LDkuNjYtNS44NSwxNi4xM2EyMi42NiwyMi42NiwwLDAsMCw2LjEyLDE2LjE0YzQuMTksNC40Myw5LjY3LDYuNjgsMTYuMyw2LjY4LDUuMiwwLDkuNTUtMS4yNywxMi45Mi0zLjc4YTIxLjQ4LDIxLjQ4LDAsMCwwLDcuMzMtOS43NmwuOS0yLjM3SDQ0NS40M2wtLjQ5Ljk0Yy0yLjA5LDQtNS40Niw1LjkzLTEwLjMsNS45M2ExMiwxMiwwLDAsMS04Ljc2LTMuMjgsMTIuNjEsMTIuNjEsMCwwLDEtMy42My02LjMxaDMzLjlabS0zMC4zLTEwLjczYTEyLjgyLDEyLjgyLDAsMCwxLDE2LjU5LDAsMTIuMTIsMTIuMTIsMCwwLDEsMy40NCw1LjczSDQyMi40MUExMi4xMiwxMi4xMiwwLDAsMSw0MjUuODUsMTg5LjcxWiIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtMiIgcG9pbnRzPSIxODcuMjUgMTE5LjgyIDE4Ny4yNSAxMTkuODIgMTg1LjI2IDExOC42NyAxODcuMjUgMTE5LjgyIi8+PHBvbHlnb24gY2xhc3M9ImNscy0zIiBwb2ludHM9IjIwOC40NSA5Ljk0IDIxMC4wNyA5LjAxIDIxMC4wNyA5LjAxIDIwOC40NSA5Ljk0Ii8+PHBhdGggY2xhc3M9ImNscy00IiBkPSJNMTgxLjg4LDExNi43MmgwbDUuMzcsMy4xaDBsMzYuMjcsMjAuOTRhOS4zLDkuMywwLDAsMCw5LjI3LDBsNTMuODItMzEuMDdhOC41Nyw4LjU3LDAsMCwwLDQuMjctNy40MVY4My43MkwyNTMuMDUsMTA1LjVsLjA2LDAtLjA2LDAtMjEuMTMsMTIuMTdhOC40NCw4LjQ0LDAsMCwxLTEsLjQ4QTUxLjcyLDUxLjcyLDAsMCwxLDE4MS44OCwxMTYuNzJaIi8+PHBvbHlnb24gY2xhc3M9ImNscy01IiBwb2ludHM9IjIwMy4yNiAxMDUuNDcgMTkxLjg5IDk4LjkgMjAzLjI2IDEwNS40NyAyMDMuMjYgMTA1LjQ3Ii8+PHBhdGggY2xhc3M9ImNscy02IiBkPSJNMTY1LjQyLDU4LjI5djQzLjU4YTkuMjUsOS4yNSwwLDAsMCw0LjY0LDhsMTEuODIsNi44M2gwYTUxLjcyLDUxLjcyLDAsMCwwLDQ5LDEuNDMsNy41Miw3LjUyLDAsMCwxLTYuNTItLjQ5bC0yMS4xMy0xMi4xOWgwTDE5MS44OSw5OC45bC0yLjI2LTEuM2gwbC0yLjI2LTEuMzFBNDMuODksNDMuODksMCwwLDEsMTY1LjQyLDU4LjI5WiIvPjxwb2x5Z29uIGNsYXNzPSJjbHMtNyIgcG9pbnRzPSIyNDkuMjkgNTguOCAyMjguMTUgNDYuNTkgMjA3LjAxIDU4LjggMjA3LjAxIDU4LjggMjI4LjE1IDcxIDI0OS4yOSA1OC44Ii8+PHBvbHlnb24gY2xhc3M9ImNscy04IiBwb2ludHM9IjIwNy4wMSA1OC44IDIwNy4wMSA1OC44IDIwNy4wMSA4My4yIDIyOC4xNSA5NS40MSAyMjguMTUgOTUuNDEgMjI4LjE1IDcxIDIwNy4wMSA1OC44Ii8+PHBhdGggY2xhc3M9ImNscy05IiBkPSJNMjkwLjY0LDM2LjE1YTUuNjUsNS42NSwwLDAsMC0uNDQtMWwtMTkuNzUsMTEuNGgwTDI0OS4yOSw1OC44aDBMMjI4LjE1LDcxVjk1LjQxbDIwLjkzLTEyLjA0aC4yMWw4LjkzLTUuMTZoMGwzMS0xOCwuMzYtLjI0LjI3LS4yNCwwLDBhMy4zMiwzLjMyLDAsMCwwLDEtMi4zN1YzNy42NmE0LjY4LDQuNjgsMCwwLDAsMC0uNjZBNC43OCw0Ljc4LDAsMCwwLDI5MC42NCwzNi4xNVoiLz48cG9seWdvbiBjbGFzcz0iY2xzLTEwIiBwb2ludHM9IjIwOC43OCAzMy4zNSAyMTEuOCAzMS42IDIwOC43OCAzMy4zNSAyMDguNzggMzMuMzUiLz48cGF0aCBjbGFzcz0iY2xzLTExIiBkPSJNMjEwLjA3LDlsLTQwLDIzLjFhOS4yNSw5LjI1LDAsMCwwLTQuNjQsOFY1OC4yOWE0My44OSw0My44OSwwLDAsMCwyMiwzOGwyLjI2LDEuMzFhNy41Niw3LjU2LDAsMCwxLTMuNzctNi41NFY1MC45NGgwQTQ4LjQxLDQ4LjQxLDAsMCwxLDIxMC4wNyw5WiIvPjxwYXRoIGNsYXNzPSJjbHMtMTIiIGQ9Ik0yNzIuNTEsMjQuMThoMGwtMy40OS0yaDBsMi40MiwxLjRMMjMyLjc5LDEuMjRhOS4zLDkuMywwLDAsMC05LjI3LDBMMjEwLjA3LDloMGE0OC40MSw0OC40MSwwLDAsMC0yNC4yMSw0MS45Miw3LjU1LDcuNTUsMCwwLDEsMy43Ny02LjUzbDE5LjE0LTExaDBsMy0xLjc1LDEyLjU4LTcuMjZoMGwuMjgtLjE2QTQ3Ljg0LDQ3Ljg0LDAsMCwxLDI3Mi41MSwyNC4xOFoiLz48cGF0aCBjbGFzcz0iY2xzLTEzIiBkPSJNMjkwLDM0Ljg1YTMuNjgsMy42OCwwLDAsMC0uMzQtLjQ0LDQuOTQsNC45NCwwLDAsMC0xLjI2LTEuMDZsLTE1Ljg5LTkuMTdoMGE0Ny44NCw0Ny44NCwwLDAsMC00Ny44NSwwbC0uMjguMTZhNy41NCw3LjU0LDAsMCwxLDcuNTUsMGwzOC41MiwyMi4yNCwxOS43NS0xMS40QzI5MC4xMywzNS4wNywyOTAuMDcsMzUsMjkwLDM0Ljg1WiIvPjwvZz48L2c+PC9zdmc+';
+const LOGO_ND = 'data:image/svg+xml;base64,PHN2ZyBmaWxsPSJub25lIiBoZWlnaHQ9IjI2IiB2aWV3Qm94PSIwIDAgMjAwIDI2IiB3aWR0aD0iMjAwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8ZyBjbGlwLXBhdGg9InVybCgjY2xpcDBfMTAyOTJfMTQwNjMpIj4KPHBhdGggZD0iTTE0LjM2ODYgMjMuMzA0NUgxMC4yMTQ2VjE0LjkyMjhDMTAuMjE0NiAxMy4xNTQ0IDEwLjEyMjUgMTIuMDAzIDkuOTQ3NSAxMS40ODcyQzkuNzcyNSAxMC45NzE0IDkuNDc3NzYgMTAuNTU3IDkuMDcyNDkgMTAuMjcxNEM4LjY2NzIyIDkuOTc2NjkgOC4xNzkwNiA5LjgzODUzIDcuNjE3MjEgOS44Mzg1M0M2Ljg4OTU2IDkuODM4NTMgNi4yMzU2MSAxMC4wNTA0IDUuNjU1MzQgMTAuNDU1NkM1LjA3NTA3IDEwLjg3MDEgNC42NzkwMSAxMS40MTM1IDQuNDY3MTYgMTIuMDk1MUM0LjI1NTMyIDEyLjc3NjcgNC4xNDQ3OSAxNC4wMjk0IDQuMTQ0NzkgMTUuODYyM1YyMy4zMDQ1SDBWNi44MjY2NUgzLjg0MDg0VjkuMjM5ODRDNS4yMjI0NCA3LjQxNjEzIDYuOTU0MDQgNi41MDQyNyA5LjA1NDA3IDYuNTA0MjdDOS45NzUxMyA2LjUwNDI3IDEwLjgyMjUgNi42NzkyNyAxMS41ODcgNy4wMjAwN0MxMi4zNTE1IDcuMzcwMDcgMTIuOTIyNSA3LjgwMjk3IDEzLjMxODYgOC4zNDY0QzEzLjcxNDcgOC44ODA2MiAxMy45ODE4IDkuNDg4NTIgMTQuMTM4MyAxMC4xNzAxQzE0LjI5NDkgMTAuODUxNyAxNC4zNjg2IDExLjgxODggMTQuMzY4NiAxMy4wODk5VjIzLjI5NTNWMjMuMzA0NVoiIGZpbGw9IiMzNDM0MzQiPjwvcGF0aD4KPHBhdGggZD0iTTI2LjcyMDQgMTguMDgyTDMwLjg3NDQgMTguODE4OUMzMC4zNDAyIDIwLjQyMTUgMjkuNDkyOCAyMS42MzczIDI4LjMzMjIgMjIuNDc1NUMyNy4xODA5IDIzLjMxMzYgMjUuNzM0OCAyMy43MjgxIDI0LjAwMzIgMjMuNzI4MUMyMS4yNTg1IDIzLjcyODEgMTkuMjIyOSAyMi43OTc5IDE3LjkxNSAyMC45MTg5QzE2Ljg3NDIgMTkuNDE3NSAxNi4zNTg0IDE3LjUyOTQgMTYuMzU4NCAxNS4yNDUxQzE2LjM1ODQgMTIuNTE4OCAxNy4wNCAxMC4zNzI3IDE4LjQwMzIgOC44MzQ1MUMxOS43NjYzIDcuMjg3MTIgMjEuNDg4NyA2LjUxMzQzIDIzLjU3OTUgNi41MTM0M0MyNS45MTkxIDYuNTEzNDMgMjcuNzc5NiA3LjMyMzk3IDI5LjEzMzYgOC45NDUwNEMzMC40ODc1IDEwLjU2NjEgMzEuMTMyMyAxMy4wNDM4IDMxLjA3NyAxNi4zODcySDIwLjYwNDVDMjAuNjMyMSAxNy42Njc1IDIwLjk3MjkgMTguNjcxNSAyMS42MTc3IDE5LjM4MDdDMjIuMjcxNiAyMC4wODk5IDIzLjA4MjIgMjAuNDQ5MSAyNC4wNDkzIDIwLjQ0OTFDMjQuNzAzMiAyMC40NDkxIDI1LjI2NTEgMjAuMjY0OSAyNS43MDcyIDE5Ljg4NzNDMjYuMTU4NSAxOS41MTg5IDI2LjQ5OTMgMTguOTExIDI2LjcyOTYgMTguMDcyOE0yNi45MjMgMTMuNzUzQzI2Ljg5NTQgMTIuNDcyNyAyNi41ODIyIDExLjUwNTYgMjUuOTgzNSAxMC44NDI0QzI1LjM4NDggMTAuMTc5MyAyNC42NjY0IDkuODQ3NjggMjMuODA5OCA5Ljg0NzY4QzIyLjg5OCA5Ljg0NzY4IDIyLjE0MjcgMTAuMjA2OSAyMS41NDQgMTAuODk3N0MyMC45NDUzIDExLjU5NzcgMjAuNjU5OCAxMi41NDY0IDIwLjY2OSAxMy43NTNIMjYuOTIzWiIgZmlsbD0iIzM0MzQzNCI+PC9wYXRoPgo8cGF0aCBkPSJNNDAuODk1IDYuODI2NThWMTAuMzE3NEgzOC4wNTgxVjE2Ljk5NTFDMzguMDU4MSAxOC4zNDkxIDM4LjA4NTcgMTkuMTQxMiAzOC4xNDEgMTkuMzYyM0MzOC4xOTYzIDE5LjU4MzMgMzguMzE2IDE5Ljc2NzUgMzguNTE4NiAxOS45MTQ5QzM4LjcxMjEgMjAuMDYyMyAzOC45NDIzIDIwLjEzNiAzOS4yMjc5IDIwLjEzNkMzOS42MjM5IDIwLjEzNiA0MC4xODU4IDE5Ljk5NzggNDAuOTIyNiAxOS43MjE1TDQxLjE5ODkgMjMuMDgzNEM0MC4yNDEgMjMuNTE2MyAzOS4xNTQyIDIzLjcyODEgMzcuOTQ3NiAyMy43MjgxQzM3LjIxMDcgMjMuNzI4MSAzNi41MzgzIDIzLjU5OTIgMzUuOTM5NiAyMy4zMzIxQzM1LjM0MSAyMy4wNzQyIDM0LjkwODEgMjIuNzI0MiAzNC42MjI1IDIyLjMwOTdDMzQuMzQ2MiAyMS44ODYgMzQuMTUyOCAyMS4zMjQxIDM0LjA0MjMgMjAuNjA1N0MzMy45NTAxIDIwLjA5OTEgMzMuOTEzMyAxOS4wNzY3IDMzLjkxMzMgMTcuNTI5NFYxMC4zMjY2SDMxLjk4ODNWNi44MzU3OUgzMy45MTMzVjMuNTY2MDFMMzguMDU4MSAxLjAzMzA4VjYuODM1NzlINDAuODk1VjYuODI2NThaIiBmaWxsPSIjMzQzNDM0Ij48L3BhdGg+CjxwYXRoIGQ9Ik01OC4yNzUzIDIzLjMwNDVINTQuNDM0NVYyMC44OTEzQzUzLjc4OTggMjEuODMwOCA1My4wMjUzIDIyLjU0IDUyLjE1MDMgMjMuMDA5N0M1MS4yNzUyIDIzLjQ4ODcgNTAuMzkxIDIzLjcxODkgNDkuNDk3NiAyMy43MTg5QzQ3LjY4MzEgMjMuNzE4OSA0Ni4xMzU3IDIyLjk1NDUgNDQuODM3IDIxLjQzNDdDNDMuNTQ3NSAxOS45MDU3IDQyLjg5MzYgMTcuNzc4MSA0Mi44OTM2IDE1LjA1MTdDNDIuODkzNiAxMi4zMjU0IDQzLjUxOTkgMTAuMTQyNSA0NC43ODE3IDguNjc3OTZDNDYuMDM0NCA3LjIyMjY4IDQ3LjYyNzggNi40OTUwMyA0OS41NDM2IDYuNDk1MDNDNTEuMzEyMSA2LjQ5NTAzIDUyLjgzMTggNy4yNTk1MiA1NC4xMjEzIDguNzg4NDlWMC42MDAyMkg1OC4yNzUzVjIzLjMwNDVaTTQ3LjEzOTcgMTQuNzY2MkM0Ny4xMzk3IDE2LjUzNDYgNDcuMzc5MSAxNy44MDU3IDQ3Ljg0ODkgMTguNTk3OEM0OC41MzA1IDE5LjczMDcgNDkuNDcgMjAuMzAxOCA1MC42OTUgMjAuMzAxOEM1MS42NjIxIDIwLjMwMTggNTIuNDkxMSAxOS44NzgxIDUzLjE2MzQgMTkuMDIxNUM1My44MzU4IDE4LjE2NDkgNTQuMTc2NiAxNi44OTM5IDU0LjE3NjYgMTUuMTg5OUM1NC4xNzY2IDEzLjI5MjUgNTMuODQ1IDExLjkyOTMgNTMuMTkxMSAxMS4wOTExQzUyLjUyNzkgMTAuMjYyMiA1MS42ODk3IDkuODM4NSA1MC42NTgxIDkuODM4NUM0OS42MjY1IDkuODM4NSA0OC44MjUyIDEwLjI1MyA0OC4xNTI4IDExLjA3MjdDNDcuNDgwNSAxMS45MDE3IDQ3LjEzOTcgMTMuMTI2NyA0Ny4xMzk3IDE0Ljc1NyIgZmlsbD0iIzM0MzQzNCI+PC9wYXRoPgo8cGF0aCBkPSJNNTkuOTMzNiAxNC44ODU5QzU5LjkzMzYgMTMuNDM5OCA2MC4yNzQ0IDEyLjAzOTggNjAuOTU2IDEwLjY4NTlDNjEuNjM3NiA5LjMzMTg5IDYyLjYwNDcgOC4zMDAyOSA2My44NjY1IDcuNTgxODZDNjUuMTE5MiA2Ljg3MjY0IDY2LjUxOTIgNi41MTM0MyA2OC4wNjY2IDYuNTEzNDNDNzAuNDUyMiA2LjUxMzQzIDcyLjQxNCA3LjMyMzk3IDczLjkzMzggOC45NDUwNEM3NS40NTM1IDEwLjU2NjEgNzYuMjI3MiAxMi42MTA5IDc2LjIyNzIgMTUuMDc5M0M3Ni4yMjcyIDE3LjU0NzggNzUuNDUzNSAxOS42Mzg2IDczLjkxNTQgMjEuMjc4MUM3Mi4zNzcyIDIyLjkxNzYgNzAuNDMzNyAyMy43MzczIDY4LjA5NDIgMjMuNzM3M0M2Ni42NDgyIDIzLjczNzMgNjUuMjY2NiAyMy4zOTY1IDYzLjk0OTQgMjIuNzE1QzYyLjY0MTUgMjIuMDMzNCA2MS42Mzc2IDIxLjAyOTQgNjAuOTU2IDE5LjcxMjNDNjAuMjc0NCAxOC4zOTUyIDU5LjkzMzYgMTYuNzgzMyA1OS45MzM2IDE0Ljg5NTFNNjQuMTc5NyAxNS4xMTYyQzY0LjE3OTcgMTYuNzU1NyA2NC41NTczIDE4LjAwODMgNjUuMzAzNCAxOC44ODMzQzY2LjA0MDMgMTkuNzU4MyA2Ni45NjEzIDIwLjE4MiA2OC4wNTc0IDIwLjE4MkM2OS4xNTM1IDIwLjE4MiA3MC4wNjUzIDE5Ljc0OTEgNzAuODExNCAxOC44ODMzQzcxLjU0ODIgMTguMDA4MyA3MS45MjU5IDE2Ljc0NjUgNzEuOTI1OSAxNS4wODg1QzcxLjkyNTkgMTMuNDMwNiA3MS41NTc0IDEyLjIzMzIgNzAuODExNCAxMS4zNTgyQzcwLjA2NTMgMTAuNDgzMiA2OS4xNTM1IDEwLjA1MDMgNjguMDU3NCAxMC4wNTAzQzY2Ljk2MTMgMTAuMDUwMyA2Ni4wNDAzIDEwLjQ4MzIgNjUuMzAzNCAxMS4zNTgyQzY0LjU1NzMgMTIuMjMzMiA2NC4xNzk3IDEzLjQ4NTkgNjQuMTc5NyAxNS4xMTYyWiIgZmlsbD0iIzM0MzQzNCI+PC9wYXRoPgo8cGF0aCBkPSJNOTIuNDEwNCAxMS42ODk4TDg4LjMxMTcgMTIuNDgxOUM4OC4xNjQzIDExLjY0MzggODcuODUxMSAxMS4wMDgyIDg3LjM2MyAxMC41ODQ1Qzg2Ljg2NTYgMTAuMTYwOCA4Ni4yMzAxIDkuOTQ5IDg1LjQzOCA5Ljk0OUM4NC4zODc5IDkuOTQ5IDgzLjU0OTggMTAuMzI2NiA4Mi45MjM0IDExLjA3MjdDODIuMjk3MSAxMS44MjggODEuOTkzMiAxMy4wODA2IDgxLjk5MzIgMTQuODM5OUM4MS45OTMyIDE2Ljc5MjUgODIuMzA2MyAxOC4xNzQxIDgyLjk0MTkgMTguOTg0NkM4My41Nzc0IDE5Ljc5NTIgODQuNDI0OCAyMC4xOTEyIDg1LjQ5MzIgMjAuMTkxMkM4Ni4yODUzIDIwLjE5MTIgODYuOTM5MyAxOS45NTE4IDg3LjQ0NTkgMTkuNDcyOEM4Ny45NTI1IDE5LjAwMzEgODguMzExNyAxOC4xODMzIDg4LjUyMzUgMTcuMDEzNkw5Mi42MjIzIDE3Ljc1OTZDOTIuMTg5NCAxOS43MzA3IDkxLjM3ODggMjEuMjEzNiA5MC4xNzIyIDIyLjIxNzZDODguOTY1NiAyMy4yMjE1IDg3LjM1MzggMjMuNzI4MSA4NS4zMTgyIDIzLjcyODFDODMuMDE1NiAyMy43MjgxIDgxLjE3MzQgMjIuOTcyOSA3OS44MDEgMjEuNDQzOUM3OC40Mjg3IDE5LjkyNDEgNzcuNzQ3MSAxNy44MjQxIDc3Ljc0NzEgMTUuMTM0NkM3Ny43NDcxIDEyLjQ0NTEgNzguNDM3OSAxMC4yOTkgNzkuODEwMyA4Ljc4ODQ2QzgxLjE4MjYgNy4yNzc5MSA4My4wNDMyIDYuNTEzNDMgODUuMzkxOSA2LjUxMzQzQzg3LjMwNzcgNi41MTM0MyA4OC44MzY3IDYuOTM3MTIgODkuOTc4OCA3Ljc5MzcxQzkxLjExMTcgOC42NDEwOSA5MS45MjIzIDkuOTM5NzkgOTIuNDI4OCAxMS42ODk4IiBmaWxsPSIjMzQzNDM0Ij48L3BhdGg+CjxwYXRoIGQ9Ik0xMDQuOTM3IDIzLjMwNDRWMjAuODQ1MkMxMDQuMzU2IDIxLjcyMDIgMTAzLjU5MiAyMi40MjAyIDEwMi42NjEgMjIuOTQ1MkMxMDEuNzIyIDIzLjQ3MDIgMTAwLjcyNyAyMy43MjgxIDk5LjY4NjUgMjMuNzI4MUM5OC42NDU3IDIzLjcyODEgOTcuNjYwMSAyMy40ODg3IDk2LjgyMTkgMjMuMDAwNUM5NS45NzQ2IDIyLjUxMjMgOTUuMzU3NSAyMS44MzA3IDk0Ljk3OTggMjAuOTQ2NUM5NC42MDIyIDIwLjA2MjMgOTQuNDE4IDE4Ljg0NjUgOTQuNDE4IDE3LjI4OTlWNi44MjY1OUg5OC41NjI4VjE0LjQyNTRDOTguNTYyOCAxNi43NDY1IDk4LjYzNjQgMTguMTc0MSA5OC43OTMgMTguNjg5OUM5OC45NDk2IDE5LjIxNDkgOTkuMjM1MSAxOS42Mjk0IDk5LjY0MDQgMTkuOTMzM0MxMDAuMDU1IDIwLjIzNzMgMTAwLjU3MSAyMC4zOTM5IDEwMS4yMDYgMjAuMzkzOUMxMDEuOTI1IDIwLjM5MzkgMTAyLjU2OSAyMC4xOTEyIDEwMy4xNCAxOS43NzY4QzEwMy43MTIgMTkuMzYyMyAxMDQuMDk4IDE4Ljg2NDkgMTA0LjMxIDE4LjI0NzhDMTA0LjUyMiAxNy42Mzk5IDEwNC42MjMgMTYuMTU3IDEwNC42MjMgMTMuNzg5OFY2LjgxNzM4SDEwOC43NzdWMjMuMjk1MkgxMDQuOTI3TDEwNC45MzcgMjMuMzA0NFoiIGZpbGw9IiMzNDM0MzQiPjwvcGF0aD4KPHBhdGggZD0iTTExMS43MjUgNi44MjY1OUgxMTUuNTc1VjkuMDczOTlDMTE2Ljk0NyA3LjM3MDAyIDExOC41NzggNi41MTM0MyAxMjAuNDY2IDYuNTEzNDNDMTIxLjQ3IDYuNTEzNDMgMTIyLjM0NSA2LjczNDQ4IDEyMy4wODIgNy4xNjczOEMxMjMuODE5IDcuNjAwMjggMTI0LjQyNyA4LjI1NDI0IDEyNC45MDUgOS4xMjkyNUMxMjUuNTg3IDguMjU0MjQgMTI2LjMzMyA3LjYwMDI4IDEyNy4xMzQgNy4xNjczOEMxMjcuOTM2IDYuNzM0NDggMTI4Ljc5MiA2LjUxMzQzIDEyOS42OTUgNi41MTM0M0MxMzAuODQ2IDYuNTEzNDMgMTMxLjgyMyA2Ljc2MjExIDEzMi42MjQgNy4yNTAyOEMxMzMuNDE2IDcuNzM4NDQgMTM0LjAxNSA4LjQ1Njg3IDEzNC40MTEgOS40MDU1N0MxMzQuNjk2IDEwLjEwNTYgMTM0LjgzNSAxMS4yMzg1IDEzNC44MzUgMTIuODA0M1YyMy4zMDQ0SDEzMC42OVYxMy45MTg4QzEzMC42OSAxMi4yODg1IDEzMC41NDIgMTEuMjM4NSAxMzAuMjU3IDEwLjc1OTVDMTI5Ljg3IDEwLjE0MjQgMTI5LjI4MSA5LjgyOTI2IDEyOC40NzkgOS44MjkyNkMxMjcuODkgOS44MjkyNiAxMjcuMzM3IDEwLjAxMzUgMTI2LjgzIDEwLjM5MTFDMTI2LjMyNCAxMC43NTk1IDEyNS45MzcgMTEuMzAzIDEyNS43MTYgMTIuMDIxNEMxMjUuNDg2IDEyLjczOTggMTI1LjM4NCAxMy44NzI3IDEyNS4zODQgMTUuNDIwMVYyMy4zMDQ0SDEyMS4yM1YxNC4zMDU2QzEyMS4yMyAxMi43MTIyIDEyMS4xNTcgMTEuNjgwNiAxMjEuMDA5IDExLjIxMDlDMTIwLjg2MiAxMC43NTAzIDEyMC42MzIgMTAuNDAwMyAxMjAuMzA5IDEwLjE3OTNDMTE5Ljk5NiA5Ljk0OSAxMTkuNTczIDkuODM4NDcgMTE5LjA0NyA5LjgzODQ3QzExOC4zOTQgOS44Mzg0NyAxMTcuODIyIDEwLjAyMjcgMTE3LjMwNyAxMC4zODE5QzExNi43OTEgMTAuNzQxMSAxMTYuNDIyIDExLjI2NjEgMTE2LjIwMSAxMS45Mzg1QzExNS45OCAxMi42MjAxIDExNS44NyAxMy43NTMgMTE1Ljg3IDE1LjMyOFYyMy4zMDQ0SDExMS43MTZWNi44MjY1OUgxMTEuNzI1WiIgZmlsbD0iIzM0MzQzNCI+PC9wYXRoPgo8cGF0aCBkPSJNMTQ3LjA4NSAxOC4wODJMMTUxLjIzIDE4LjgxODlDMTUwLjY5NiAyMC40MjE1IDE0OS44NDggMjEuNjM3MyAxNDguNjk3IDIyLjQ3NTVDMTQ3LjU0NiAyMy4zMTM2IDE0Ni4xIDIzLjcyODEgMTQ0LjM2OCAyMy43MjgxQzE0MS42MjMgMjMuNzI4MSAxMzkuNTg4IDIyLjc5NzkgMTM4LjI4IDIwLjkxODlDMTM3LjIzIDE5LjQxNzUgMTM2LjcxNCAxNy41Mjk0IDEzNi43MTQgMTUuMjQ1MUMxMzYuNzE0IDEyLjUxODggMTM3LjM5NSAxMC4zNzI3IDEzOC43NjggOC44MzQ1MUMxNDAuMTMxIDcuMjg3MTIgMTQxLjg2MyA2LjUxMzQzIDE0My45NDQgNi41MTM0M0MxNDYuMjkzIDYuNTEzNDMgMTQ4LjEzNSA3LjMyMzk3IDE0OS40OTggOC45NDUwNEMxNTAuODUyIDEwLjU2NjEgMTUxLjQ5NyAxMy4wNDM4IDE1MS40NDIgMTYuMzg3MkgxNDAuOTY5QzE0MC45OTcgMTcuNjY3NSAxNDEuMzM4IDE4LjY3MTUgMTQxLjk5MiAxOS4zODA3QzE0Mi42MzYgMjAuMDg5OSAxNDMuNDQ3IDIwLjQ0OTEgMTQ0LjQyMyAyMC40NDkxQzE0NS4wNzcgMjAuNDQ5MSAxNDUuNjMgMjAuMjY0OSAxNDYuMDgxIDE5Ljg4NzNDMTQ2LjUzMiAxOS41MTg5IDE0Ni44NjQgMTguOTExIDE0Ny4wOTQgMTguMDcyOE0xNDcuMjk3IDEzLjc1M0MxNDcuMjYgMTIuNDcyNyAxNDYuOTU2IDExLjUwNTYgMTQ2LjM1NyAxMC44NDI0QzE0NS43NTkgMTAuMTc5MyAxNDUuMDQgOS44NDc2OCAxNDQuMTg0IDkuODQ3NjhDMTQzLjI3MiA5Ljg0NzY4IDE0Mi41MTcgMTAuMjA2OSAxNDEuOTI3IDEwLjg5NzdDMTQxLjMyOCAxMS41OTc3IDE0MS4wMzQgMTIuNTQ2NCAxNDEuMDUyIDEzLjc1M0gxNDcuMzA2SDE0Ny4yOTdaIiBmaWxsPSIjMzQzNDM0Ij48L3BhdGg+CjxwYXRoIGQ9Ik0xNjcuNjggMjMuMzA0NUgxNjMuNTM1VjE0LjkyMjhDMTYzLjUzNSAxMy4xNTQ0IDE2My40NDMgMTIuMDAzIDE2My4yNTkgMTEuNDg3MkMxNjMuMDc1IDEwLjk3MTQgMTYyLjc4OSAxMC41NTcgMTYyLjM4NCAxMC4yNzE0QzE2MS45ODggOS45NzY2OSAxNjEuNSA5LjgzODUzIDE2MC45MjkgOS44Mzg1M0MxNjAuMjAxIDkuODM4NTMgMTU5LjU0NyAxMC4wNTA0IDE1OC45NjcgMTAuNDU1NkMxNTguMzk2IDEwLjg3MDEgMTU3Ljk5MSAxMS40MTM1IDE1Ny43NzkgMTIuMDk1MUMxNTcuNTY3IDEyLjc3NjcgMTU3LjQ1NiAxNC4wMjk0IDE1Ny40NTYgMTUuODYyM1YyMy4zMDQ1SDE1My4zMTJWNi44MjY2NUgxNTcuMTYyVjkuMjM5ODRDMTU4LjU0MyA3LjQxNjEzIDE2MC4yNzUgNi41MDQyNyAxNjIuMzY2IDYuNTA0MjdDMTYzLjI5NiA2LjUwNDI3IDE2NC4xMzQgNi42NzkyNyAxNjQuODk5IDcuMDIwMDdDMTY1LjY1NCA3LjM3MDA3IDE2Ni4yNDMgNy44MDI5NyAxNjYuNjMgOC4zNDY0QzE2Ny4wMjYgOC44ODA2MiAxNjcuMzAzIDkuNDg4NTIgMTY3LjQ1IDEwLjE3MDFDMTY3LjYwNiAxMC44NTE3IDE2Ny42OCAxMS44MTg4IDE2Ny42OCAxMy4wODk5VjIzLjI5NTNWMjMuMzA0NVoiIGZpbGw9IiMzNDM0MzQiPjwvcGF0aD4KPHBhdGggZD0iTTE3OC4yMDcgNi44MjY1OFYxMC4zMTc0SDE3NS4zNzFWMTYuOTk1MUMxNzUuMzcxIDE4LjM0OTEgMTc1LjM5OCAxOS4xNDEyIDE3NS40NTQgMTkuMzYyM0MxNzUuNTA5IDE5LjU4MzMgMTc1LjYzOCAxOS43Njc1IDE3NS44MzEgMTkuOTE0OUMxNzYuMDI1IDIwLjA2MjMgMTc2LjI1NSAyMC4xMzYgMTc2LjU0IDIwLjEzNkMxNzYuOTM2IDIwLjEzNiAxNzcuNDg5IDE5Ljk5NzggMTc4LjIzNSAxOS43MjE1TDE3OC41MTEgMjMuMDgzNEMxNzcuNTU0IDIzLjUxNjMgMTc2LjQ2NyAyMy43MjgxIDE3NS4yNTEgMjMuNzI4MUMxNzQuNTE0IDIzLjcyODEgMTczLjg0MiAyMy41OTkyIDE3My4yNDMgMjMuMzMyMUMxNzIuNjUzIDIzLjA3NDIgMTcyLjIxMSAyMi43MjQyIDE3MS45MzUgMjIuMzA5N0MxNzEuNjU5IDIxLjg4NiAxNzEuNDY1IDIxLjMyNDEgMTcxLjM1NSAyMC42MDU3QzE3MS4yNjMgMjAuMDk5MSAxNzEuMjI2IDE5LjA3NjcgMTcxLjIyNiAxNy41Mjk0VjEwLjMyNjZIMTY5LjMwMVY2LjgzNTc5SDE3MS4yMjZWMy41NjYwMUwxNzUuMzcxIDEuMDMzMDhWNi44MzU3OUgxNzguMjA3VjYuODI2NThaIiBmaWxsPSIjMzQzNDM0Ij48L3BhdGg+CjxwYXRoIGQ9Ik0xNzkuNTA2IDE4Ljk4NDdMMTgzLjcwNiAxOC4zMTI0QzE4My44ODEgMTkuMTQxMyAxODQuMjQxIDE5Ljc2NzYgMTg0Ljc3NSAyMC4yMDA1QzE4NS4zMTggMjAuNjMzNCAxODYuMDczIDIwLjg1NDUgMTg3LjA1IDIwLjg1NDVDMTg4LjExOCAyMC44NTQ1IDE4OC45MjkgMjAuNjUxOSAxODkuNDcyIDIwLjIzNzRDMTg5Ljg0MSAxOS45NDI2IDE5MC4wMTYgMTkuNTU1OCAxOTAuMDE2IDE5LjA1ODRDMTkwLjAxNiAxOC43MjY4IDE4OS45MTQgMTguNDUwNSAxODkuNzIxIDE4LjIyOTVDMTg5LjUwOSAxOC4wMTc2IDE4OS4wNDkgMTcuODI0MiAxODguMzIxIDE3LjY0QzE4NC45NTkgMTYuODQ3OSAxODIuODMxIDE2LjEyOTQgMTgxLjkyOSAxNS40OTM5QzE4MC42ODUgMTQuNjAwNSAxODAuMDU5IDEzLjM2NjIgMTgwLjA1OSAxMS43ODJDMTgwLjA1OSAxMC4zNTQ0IDE4MC42MDIgOS4xNTY5NyAxODEuNjg5IDguMTg5ODVDMTgyLjc2NyA3LjIyMjczIDE4NC40NDMgNi43MzQ1NyAxODYuNzA5IDYuNzQzNzhDMTg4Ljg3NCA2Ljc0Mzc4IDE5MC40NjcgNy4xMjE0MiAxOTEuNTI2IDcuODQ5MDZDMTkyLjU2NyA4LjU3NjcgMTkzLjI5NSA5LjY2MzU2IDE5My42ODEgMTEuMDkxMkwxODkuNzMgMTEuODE4OEMxODkuNTY0IDExLjE3NDEgMTg5LjI0MiAxMC42NzY3IDE4OC43NzIgMTAuMzI2N0MxODguMzEyIDkuOTg1OTMgMTg3LjYzOSA5LjgxMDkzIDE4Ni43NjQgOS44MDE3MkMxODUuNjU5IDkuODAxNzIgMTg0Ljg3NiA5Ljk1ODMgMTg0LjM5NyAxMC4yODA3QzE4NC4wODQgMTAuNTEwOSAxODMuOTE4IDEwLjgwNTcgMTgzLjkxOCAxMS4xNzQxQzE4My45MTggMTEuNDg3MyAxODQuMDU2IDExLjc1NDQgMTg0LjMzMyAxMS45NzU0QzE4NC43MSAxMi4yNzAyIDE4Ni4wMDkgMTIuNjg0NiAxODguMjQ3IDEzLjIxODlDMTkwLjQ3NiAxMy43NjIzIDE5Mi4wMzMgMTQuNDA3IDE5Mi45MTcgMTUuMTgwN0MxOTMuNzkyIDE1Ljk2MzYgMTk0LjIyNSAxNy4wNDEzIDE5NC4yMTYgMTguNDMyMUMxOTQuMjE2IDE5Ljk0MjYgMTkzLjYwOCAyMS4yNTA2IDE5Mi40MDEgMjIuMzM3NEMxOTEuMTk1IDIzLjQyNDMgMTg5LjM5OSAyMy45NTg1IDE4Ny4wNDEgMjMuOTQ5M0MxODQuODk1IDIzLjk0OTMgMTgzLjE5MSAyMy40OTc5IDE4MS45MzggMjIuNjA0NUMxODAuNjg1IDIxLjcxMTEgMTc5Ljg3NSAyMC40OTUzIDE3OS40OTcgMTguOTY2MyIgZmlsbD0iIzM0MzQzNCI+PC9wYXRoPgo8cGF0aCBkPSJNMTk3LjU3OCAxMS4yNTdIMTk3LjU2OEMxOTYuOTQyIDExLjI1NyAxOTYuMzQzIDExLjAxNzUgMTk1Ljg5MiAxMC41NzU0QzE5NS40MTMgMTAuMTE0OSAxOTUuMTU1IDkuNDk3NzQgMTk1LjE1NSA4LjgzNDU4QzE5NS4xNTUgNy41MDgyNCAxOTYuMjQyIDYuNDIxMzkgMTk3LjU3OCA2LjQyMTM5QzE5OC4yMzIgNi40MjEzOSAxOTguODQgNi42NzkyOCAxOTkuMjkxIDcuMTM5ODJDMTk5Ljc0MiA3LjYwMDM1IDE5OS45OTEgOC4yMDgyNSAxOTkuOTkxIDguODUzQzE5OS45OTEgMTAuMTg4NSAxOTguOTA0IDExLjI2NjIgMTk3LjU3OCAxMS4yNjYyTTE5Ny41ODcgNi43MjUzNEMxOTYuNDI2IDYuNzI1MzQgMTk1LjQ3OCA3LjY3NDAzIDE5NS40NzggOC44MzQ1OEMxOTUuNDc4IDkuNDE0ODUgMTk1LjY5OSA5Ljk1ODI4IDE5Ni4xMjIgMTAuMzYzNUMxOTYuNTE4IDEwLjc0MTIgMTk3LjAzNCAxMC45NTMgMTk3LjU3OCAxMC45NTNDMTk4LjcyOSAxMC45NTMgMTk5LjY2OCAxMC4wMDQzIDE5OS42NzggOC44NDM3OUMxOTkuNjc4IDguMjgxOTQgMTk5LjQ2NiA3Ljc0NzcyIDE5OS4wNyA3LjM0MjQ1QzE5OC42NzQgNi45NDYzOSAxOTguMTQ5IDYuNzI1MzQgMTk3LjU4NyA2LjcxNjEzIiBmaWxsPSIjMzQzNDM0Ij48L3BhdGg+CjxwYXRoIGQ9Ik0xOTcuMDA3IDkuOTY3NEgxOTYuNjg1VjcuNTcyNjNIMTk3Ljc5OUMxOTguMTk1IDcuNTcyNjMgMTk4LjU5MSA3LjcxMDc5IDE5OC41OTEgOC4yMTczOEMxOTguNTkxIDguNTc2NTkgMTk4LjQwNyA4LjcwNTU0IDE5OC4yNSA4Ljc4ODQ0QzE5OC4zODkgOC44NDM3IDE5OC41MjcgOC45MDgxOCAxOTguNTM2IDkuMjM5NzZMMTk4LjU1NCA5LjY3MjY2QzE5OC41NTQgOS44MTA4MiAxOTguNTczIDkuODU2ODcgMTk4LjY3NCA5LjkxMjE0VjkuOTY3NEgxOTguMjc4QzE5OC4yMzIgOS44MjAwMyAxOTguMjIzIDkuNDUxNiAxOTguMjIzIDkuMzY4NzFDMTk4LjIyMyA5LjE2NjA3IDE5OC4xODYgOC45NDUwMiAxOTcuNzkgOC45MzU4MUgxOTcuMDA3VjkuOTU4MTlWOS45Njc0Wk0xOTcuMDE2IDguNjU5NDlIMTk3Ljc2MkMxOTguMDAyIDguNjU5NDkgMTk4LjI1IDguNjA0MjIgMTk4LjI1IDguMjQ1MDFDMTk4LjI1IDcuODc2NTggMTk3Ljk4MyA3LjgzOTc0IDE5Ny44MjcgNy44Mzk3NEgxOTcuMDE2VjguNjUwMjhWOC42NTk0OVoiIGZpbGw9IiMzNDM0MzQiPjwvcGF0aD4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMF8xMDI5Ml8xNDA2MyI+CjxyZWN0IGZpbGw9IndoaXRlIiBoZWlnaHQ9IjIzLjM2NzQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgMC42MDAyMikiIHdpZHRoPSIyMDAiPjwvcmVjdD4KPC9jbGlwUGF0aD4KPC9kZWZzPgo8L3N2Zz4=';
+ 
+/* ═══ SET LOGOS ═══ */
+document.getElementById('barLogo').src = LOGO;
+document.getElementById('sidebarLogo').src = LOGO;
+document.getElementById('titleLogoCB').src = LOGO_CB_STACKED;
+document.getElementById('titleLogoND').src = LOGO_ND;
+document.getElementById('closingLogo').src = LOGO;
+ 
+/* ═══ USE CASE CONFIG ═══ */
 const useCases = {
   1: {
-    name: 'Engagement Letter',
-    wfName: 'New Matter Onboarding + NetDocs',
-    wfType: 'Matters', s4Title: 'New Matter',
-    actionLabel: 'Send Matter Data to NetDocs Data Table',
-    actionName: 'Send Matter Data to NetDocs',
-    actionDetail: 'Target: <strong>Centerbase Matters</strong> table · Key: Matter ID · Mode: Upsert · 7 fields mapped',
-    entity: 'Matter',
-    fields: ['Whitfield Commercial RE Closing','2026-0148 (auto)','Whitfield Properties LLC','Real Estate','James Park','$425.00 / hour','March 16, 2026','Active'],
-    fieldLabels: ['MATTER NAME','MATTER NUMBER','CLIENT','PRACTICE AREA','RESPONSIBLE ATTORNEY','BILLING RATE','OPEN DATE','STATUS'],
-    matterTitle: 'Whitfield Commercial RE Closing - 2026-0148 - Whitfield Properties',
-    wsName: 'Whitfield - 2026-0148 - Whitfield Properties (005910.003492) ▾',
-    docs: [
-      { icon:'📝', name:'Client Engagement Letter', area:'Real Estate' }
-    ]
+    name:'Engagement Letter', entity:'Matter', s4Title:'New Matter', s4Sub:'Matter', editingLabel:'Editing New Matter',
+    actionName:'Send Matter Data to NetDocs', actionDetail:'Target: Centerbase Matters · Key: Matter ID · Upsert · 7 fields',
+    matterTitle:'Whitfield Commercial RE Closing - 2026-0148 - Whitfield Properties',
+    wsName:'Whitfield - 2026-0148 - Whitfield Properties ▾',
+    formFields:[
+      {l:'Matter Name',v:'Whitfield Commercial RE Closing',w:2},{l:'Matter Short Description *',v:'',w:1},{l:'Status',v:'',type:'select',w:1},{l:'Matter Open Date',v:'Mar 17, 2026',w:1},{l:'Matter Close Date',v:'',w:1},
+      {l:'Client *',v:'Whitfield Properties LLC',w:1,search:true},{l:'Practice Area',v:'Real Estate',type:'select',w:1},{l:'Matter Number',v:'2026-0148',w:1},{l:'Client Number',v:'',w:1},{l:'Matter Sequence Number',v:'',w:1},
+      {l:'Responsible Attorney *',v:'James Park',w:1,search:true},{l:'Associate *',v:'',w:1,search:true},{l:'Paralegal',v:'',w:1,search:true},{l:'Active Status',v:'Active',w:1,readonly:true},{l:'Fee Arrangement *',v:'',type:'select',w:1},
+      {l:'Bill Delivery',v:'Print',type:'select',w:1},{l:'Bill To Contact Name',v:'',w:1},{l:'Bill To Company Name',v:'',w:1},{l:'Next Case Review Task',v:'',w:1,search:true},{l:'Bill To Address',v:'',w:1}
+    ],
+    typingFields:['Whitfield Commercial RE Closing','2026-0148 (auto)','Whitfield Properties LLC','Real Estate','James Park','$425/hr','Mar 17, 2026','Active'],
+    typingLabels:['Matter Name','Matter Number','Client','Practice Area','Responsible Attorney','Billing Rate','Open Date','Status'],
+    docs:[{icon:'📝',name:'Client Engagement Letter',area:'Real Estate'}]
   },
   2: {
-    name: 'Document Package',
-    wfName: 'New Matter Onboarding + NetDocs',
-    wfType: 'Matters', s4Title: 'New Matter',
-    actionLabel: 'Send Matter Data to NetDocs Data Table',
-    actionName: 'Send Matter Data to NetDocs',
-    actionDetail: 'Target: <strong>Centerbase Matters</strong> table · Key: Matter ID · Mode: Upsert · 7 fields mapped · 3 templates',
-    entity: 'Matter',
-    fields: ['Whitfield Commercial RE Closing','2026-0148 (auto)','Whitfield Properties LLC','Real Estate','James Park','$425.00 / hour','March 16, 2026','Active'],
-    fieldLabels: ['MATTER NAME','MATTER NUMBER','CLIENT','PRACTICE AREA','RESPONSIBLE ATTORNEY','BILLING RATE','OPEN DATE','STATUS'],
-    matterTitle: 'Whitfield Commercial RE Closing - 2026-0148 - Whitfield Properties',
-    wsName: 'Whitfield - 2026-0148 - Whitfield Properties (005910.003492) ▾',
-    docs: [
-      { icon:'📝', name:'Client Engagement Letter', area:'Real Estate' },
-      { icon:'🔍', name:'Conflict Check Form', area:'Real Estate' },
-      { icon:'💰', name:'Fee Agreement', area:'Real Estate' }
-    ]
+    name:'Document Package', entity:'Matter', s4Title:'New Matter', s4Sub:'Matter', editingLabel:'Editing New Matter',
+    actionName:'Send Matter Data to NetDocs', actionDetail:'Target: Centerbase Matters · Key: Matter ID · Upsert · 7 fields · 3 templates',
+    matterTitle:'Whitfield Commercial RE Closing - 2026-0148 - Whitfield Properties',
+    wsName:'Whitfield - 2026-0148 - Whitfield Properties ▾',
+    formFields:[
+      {l:'Matter Name',v:'Whitfield Commercial RE Closing',w:2},{l:'Matter Short Description *',v:'',w:1},{l:'Status',v:'',type:'select',w:1},{l:'Matter Open Date',v:'Mar 17, 2026',w:1},{l:'Matter Close Date',v:'',w:1},
+      {l:'Client *',v:'Whitfield Properties LLC',w:1,search:true},{l:'Practice Area',v:'Real Estate',type:'select',w:1},{l:'Matter Number',v:'2026-0148',w:1},{l:'Client Number',v:'',w:1},{l:'Matter Sequence Number',v:'',w:1},
+      {l:'Responsible Attorney *',v:'James Park',w:1,search:true},{l:'Associate *',v:'',w:1,search:true},{l:'Paralegal',v:'',w:1,search:true},{l:'Active Status',v:'Active',w:1,readonly:true},{l:'Fee Arrangement *',v:'',type:'select',w:1},
+      {l:'Bill Delivery',v:'Print',type:'select',w:1},{l:'Bill To Contact Name',v:'',w:1},{l:'Bill To Company Name',v:'',w:1},{l:'Next Case Review Task',v:'',w:1,search:true},{l:'Bill To Address',v:'',w:1}
+    ],
+    typingFields:['Whitfield Commercial RE Closing','2026-0148 (auto)','Whitfield Properties LLC','Real Estate','James Park','$425/hr','Mar 17, 2026','Active'],
+    typingLabels:['Matter Name','Matter Number','Client','Practice Area','Responsible Attorney','Billing Rate','Open Date','Status'],
+    docs:[{icon:'📝',name:'Client Engagement Letter',area:'Real Estate'},{icon:'🔍',name:'Conflict Check Form',area:'Real Estate'},{icon:'💰',name:'Fee Agreement',area:'Real Estate'}]
   },
   3: {
-    name: 'NDA from Contact',
-    wfName: 'New Contact + NDA Generation',
-    wfType: 'Contacts', s4Title: 'New Contact',
-    actionLabel: 'Send Contact Data to NetDocs Data Table',
-    actionName: 'Send Contact Data to NetDocs',
-    actionDetail: 'Target: <strong>Centerbase Contacts</strong> table · Key: Contact ID · Mode: Upsert · 5 fields mapped · NDA template',
-    entity: 'Contact',
-    fields: ['Sarah Chen','(auto)','TechVault Inc.','Corporate','sarah.chen@techvault.com','VP of Operations','March 16, 2026','Active'],
-    fieldLabels: ['CONTACT NAME','CONTACT ID','COMPANY','PRACTICE AREA','EMAIL','TITLE','CREATED DATE','STATUS'],
-    matterTitle: 'Sarah Chen - TechVault Inc.',
-    wsName: 'TechVault Inc. - Chen (005910.003501) ▾',
-    docs: [
-      { icon:'🤝', name:'Non-Disclosure Agreement - TechVault Inc.', area:'Corporate' }
-    ]
+    name:'NDA from Contact', entity:'Contact', s4Title:'New Contact', s4Sub:'Contact', editingLabel:'Editing New Contact',
+    actionName:'Send Contact Data to NetDocs', actionDetail:'Target: Centerbase Contacts · Key: Contact ID · Upsert · 5 fields',
+    matterTitle:'Sarah Chen - TechVault Inc.',
+    wsName:'TechVault Inc. - Chen ▾',
+    formFields:[
+      {l:'Name',v:'',w:1},{l:'First Name',v:'Sarah',w:1},{l:'Last Name',v:'Chen',w:1},{l:'Middle Name',v:'',w:1},{l:'Prefix',v:'',w:1},{l:'Suffix',v:'',w:1},
+      {l:'Contact Type *',v:'',type:'select',w:1},{l:'Is Client',v:'',type:'checkbox',w:1},{l:'Status',v:'',type:'select',w:1},{l:'Title',v:'VP of Operations',w:1},{l:'Company / Organization',v:'TechVault Inc.',w:1,search:true},{l:'Client Number',v:'',w:1},
+      {l:'Primary E-mail',v:'sarah.chen@techvault.com',w:1},{l:'Last SR Opened',v:'',w:1,search:true},{l:'Mobile Phone',v:'',w:1},{l:'Work Phone',v:'',w:1},{l:'Home Phone',v:'',w:1},{l:'Fax Number',v:'',w:1}
+    ],
+    typingFields:['Sarah Chen','(auto)','TechVault Inc.','Corporate','sarah.chen@techvault.com','VP of Operations','Mar 17, 2026','Active'],
+    typingLabels:['Contact Name','Contact ID','Company','Practice Area','Email','Title','Created Date','Status'],
+    docs:[{icon:'🤝',name:'Non-Disclosure Agreement - TechVault Inc.',area:'Corporate'}]
   }
 };
-let activeUC = 2; // default to package
-
-const steps = [
-  { screen:0, note:"<strong>TITLE</strong> — \"Today I'll show you how creating a single matter in Centerbase automatically generates documents in NetDocs. Let me pick a use case.\" Click a card or press Next." },
-  { screen:1, note:"<strong>CREATE ACTION</strong> — \"First, let me show you how easy it is to set up. In the Workflow Manager, we add a new action. The Type dropdown now has a new option: <em>Send to NetDocs Data Table</em>. Same form layout admins already know.\" <em>Click Save Action.</em>" },
-  { screen:2, note:"<strong>FIELD MAPPING</strong> — \"After saving, we configure which Centerbase fields map to NetDocs columns. Drag to reorder, set a key field to prevent duplicates, and choose upsert mode. This is the same gear-menu pattern as 'Add Form' for User Actions.\" <em>Click Save Mapping.</em>" },
-  { screen:3, note:"<strong>WORKFLOW DETAILS</strong> — \"Here's the finished workflow. Notice the purple 'ND' badge on our new action — it shows the target data table, key field, and sync mode right in the tree view. The gear menu includes 'Configure Field Mapping' and 'View Sync Log'.\" <em>Click Continue.</em>" },
-  { screen:4, note:"<strong>NEW MATTER</strong> — \"Now let's see it in action. Watch the fields fill in...\" <em>Fields type automatically, then the Save button activates. Click Save.</em>", onEnter: startTyping },
-  { screen:5, note:"<strong>SYNC + DOCS</strong> — \"The matter saves, the workflow fires, and watch — the documents appear right here in the NetDocs tab inside Centerbase. Click any document to preview it.\"", onEnter: runSync },
-  { screen:6, note:"<strong>CLOSING</strong> — \"One matter. Zero re-typing. Documents in seconds. That's the Centerbase × NetDocs integration.\" Pause for questions." }
+let activeUC=2,cur=0;
+ 
+const steps=[
+  {screen:0,note:"<strong>TITLE</strong> — \"Today I'll show you how creating a single matter in Centerbase automatically generates documents in NetDocs.\" Click a use case card or press Next."},
+  {screen:1,note:"<strong>CREATE ACTION</strong> — \"In the Workflow Manager, we add a new action. The Type dropdown now has a new option: <em>Send to NetDocs Data Table</em>. Same form layout admins already know — Name, Type, From Node, To Node, Query.\" <em>Click Save.</em>"},
+  {screen:2,note:"<strong>FIELD MAPPING</strong> — \"After saving, we pick which Centerbase fields to send. Just select from the dropdown and add or remove rows. Pick a target data table, enable upsert mode, and save.\" <em>Click Save Mapping.</em>"},
+  {screen:3,note:"<strong>WORKFLOW DETAILS</strong> — \"Here's the finished workflow. The purple 'ND' badge shows our new NetDocs action in the node tree — with target table, key field, and sync mode at a glance.\" <em>Click Continue.</em>"},
+  {screen:4,note:"<strong>NEW MATTER</strong> — \"Now let's see it in action. Watch the fields fill in...\" <em>Fields type automatically, Save activates. Click Save.</em>",onEnter:startTyping},
+  {screen:5,note:"<strong>SYNC + DOCS</strong> — \"Matter saves, workflow fires, documents appear in NetDocs — right inside Centerbase. Click any document to preview.\"",onEnter:runSync},
+  {screen:6,note:"<strong>CLOSING</strong> — \"One matter. Zero re-typing. Documents in seconds. That's the Centerbase × NetDocs integration.\" Pause for questions."}
 ];
-let cur = 0;
-
-function selectUC(n) {
-  activeUC = n;
-  document.querySelectorAll('.uc-card').forEach(c => c.classList.remove('selected'));
-  document.getElementById('uc'+n).classList.add('selected');
-  applyUC();
-  setTimeout(() => next(), 400);
-}
-
-function applyUC() {
-  const uc = useCases[activeUC];
+ 
+function selectUC(n){activeUC=n;document.querySelectorAll('.uc-card').forEach(c=>c.classList.remove('selected'));document.getElementById('uc'+n).classList.add('selected');applyUC();setTimeout(()=>next(),400)}
+ 
+function applyUC(){
+  const uc=useCases[activeUC];
   // Workflow detail
-  document.getElementById('wfDetailName').textContent = 'Workflow: ' + uc.wfName + ' / Details';
-  document.getElementById('wfActionLabel').textContent = uc.actionLabel;
-  document.getElementById('wfActionDetail').innerHTML = uc.actionDetail;
-  // Create Action screen
-  document.getElementById('s1WfCrumb').textContent = uc.wfName;
-  document.getElementById('s1ActName').value = uc.actionName;
-  document.getElementById('s1Entity').value = uc.entity;
-  // Field Mapping screen
-  document.getElementById('s2WfCrumb').textContent = uc.wfName;
-  document.getElementById('s2ActCrumb').textContent = uc.actionName;
-  // Matter creation
-  document.getElementById('s4Title').textContent = uc.s4Title;
-  document.getElementById('matterTitle').textContent = uc.matterTitle;
-  document.getElementById('ndWsName').textContent = uc.wsName;
-  for (let i = 0; i < 8; i++) {
-    document.getElementById('fl'+i).textContent = uc.fieldLabels[i];
-  }
-  // Sidebar highlight
-  const sM = document.getElementById('sM');
-  const sN = document.getElementById('sNav');
-  if (cur <= 3) {
-    sN.classList.add('active'); sM.classList.remove('active');
-  } else {
-    sM.classList.add('active'); sN.classList.remove('active');
-  }
+  document.getElementById('wfActionLabel').textContent=uc.actionName;
+  document.getElementById('wfActionDetail').textContent=uc.actionDetail;
+  document.getElementById('wfDetailName').innerHTML='<a href="#">Workflow: '+uc.entity+'</a> / Details';
+  // Create Action
+  document.getElementById('s1ActName').value=uc.actionName;
+  document.getElementById('s1WfCrumb').textContent='Workflow: '+uc.entity;
+  // Field Mapping
+  document.getElementById('s2WfCrumb').textContent='Workflow: '+uc.entity;
+  document.getElementById('s2ActCrumb').textContent='Action: '+uc.actionName;
+  document.getElementById('s2ActChip').textContent=uc.actionName;
+  // Matter form
+  document.getElementById('s4Title').textContent=uc.s4Title;
+  document.getElementById('s4Sub').textContent=uc.s4Sub;
+  document.getElementById('editingLabel').textContent=uc.editingLabel;
+  document.getElementById('matterTitle').textContent=uc.matterTitle;
+  document.getElementById('ndWsName').textContent=uc.wsName;
+  buildForm(uc.formFields);
+  // Sidebar
+  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));
+  if(cur<=3)document.getElementById('sNav').classList.add('active');
+  else if(activeUC===3)document.getElementById('sCon').classList.add('active');
+  else document.getElementById('sM').classList.add('active');
 }
-
-/* ═══ TYPING ANIMATION ═══ */
-function startTyping() {
-  const uc = useCases[activeUC];
-  const fields = uc.fields;
-  for (let i=0;i<8;i++) { document.getElementById('f'+i).innerHTML = ''; }
-  const sb = document.getElementById('saveBtn');
-  sb.style.opacity = '.4'; sb.style.pointerEvents = 'none';
-  sb.classList.remove('click-hint');
-
-  let fieldIdx = 0;
-  function typeField() {
-    if (fieldIdx >= fields.length) {
-      sb.style.opacity = '1'; sb.style.pointerEvents = 'auto';
-      sb.classList.add('click-hint');
-      return;
-    }
-    const el = document.getElementById('f' + fieldIdx);
-    const text = fields[fieldIdx];
-    const isAuto = fieldIdx === 1;
-    if (isAuto) {
-      el.innerHTML = text;
-      fieldIdx++;
-      setTimeout(typeField, 200);
-      return;
-    }
-    let charIdx = 0;
-    el.innerHTML = '<span class="cursor"></span>';
-    const interval = setInterval(() => {
-      if (charIdx >= text.length) {
-        clearInterval(interval);
-        el.innerHTML = text;
-        fieldIdx++;
-        setTimeout(typeField, 150);
-        return;
-      }
-      el.innerHTML = text.substring(0, charIdx + 1) + '<span class="cursor"></span>';
-      charIdx++;
-    }, 30);
-  }
-  setTimeout(typeField, 500);
-}
-
-/* ═══ SYNC + PROGRESSIVE DOC APPEARANCE ═══ */
-function runSync() {
-  const uc = useCases[activeUC];
-  const ov = document.getElementById('syncOv');
-  const sp = document.getElementById('syncSp');
-  const st = document.getElementById('syncTxt');
-  const ss = document.getElementById('syncSub');
-  const empty = document.getElementById('ndEmpty');
-  const docs = document.getElementById('ndDocs');
-  const body = document.getElementById('ndDocBody');
-  const cnt = document.getElementById('docCount');
-  const prog = document.getElementById('docProgress');
-
-  ov.classList.add('visible');
-  sp.style.display = 'block';
-  st.textContent = 'Sending data to NetDocs...';
-  ss.textContent = uc.docs.length + ' document' + (uc.docs.length>1?'s':'') + ' queued for generation';
-  empty.style.display = 'block';
-  docs.style.display = 'none';
-  body.innerHTML = '';
-  cnt.textContent = '0 items';
-  prog.style.display = 'none';
-  for(let i=1;i<=3;i++){
-    const d=document.getElementById('dp'+i); if(d)d.className='dp';
-    const l=document.getElementById('dpl'+i); if(l)l.className='dp-line';
-  }
-
-  setTimeout(() => {
-    st.textContent = '✓ Data synced to NetDocs';
-    ss.textContent = 'PatternBuilder generating documents...';
-    showToast('Matter data synced to NetDocs','⚡');
-  }, 1600);
-
-  setTimeout(() => {
-    sp.style.display = 'none';
-    st.innerHTML = '<span class="cpop">✅</span>';
-    ss.textContent = '';
-  }, 2800);
-
-  setTimeout(() => {
-    ov.classList.remove('visible');
-    empty.style.display = 'none';
-    docs.style.display = 'block';
-    if(uc.docs.length > 1) { prog.style.display = 'flex'; document.getElementById('dpLabel').textContent = 'Generating...'; }
-    addDocOne(0);
-  }, 3400);
-
-  function addDocOne(idx) {
-    if(idx >= uc.docs.length) {
-      if(prog.style.display !== 'none') document.getElementById('dpLabel').textContent = 'All documents ready ✓';
-      return;
-    }
-    const d = uc.docs[idx];
-    const row = document.createElement('tr');
-    row.className = 'hlr';
-    row.style.animation = 'fadeSlide .3s ease';
-    row.style.cursor = 'pointer';
-    row.onclick = () => openDocPreview(d.name);
-    row.innerHTML = `<td><span style="font-size:16px;margin-right:6px">${d.icon}</span></td><td><span class="dn">${d.name}</span> <span class="ni-tag">NEW</span></td><td><span class="vb">1</span></td><td>Centerbase Workflow</td><td>Just now</td><td>${d.area}</td>`;
-    body.appendChild(row);
-    cnt.textContent = (idx+1) + ' item' + (idx>0?'s':'');
-    showToast(d.name + ' generated','📄');
-    const dp = document.getElementById('dp'+(idx+1));
-    if(dp) dp.classList.add('filled');
-    if(idx > 0) { const l = document.getElementById('dpl'+idx); if(l) l.classList.add('filled'); }
-    setTimeout(() => addDocOne(idx+1), 1200);
-  }
-}
-
-/* ═══ DOC PREVIEW ═══ */
-function openDocPreview(name) {
-  const uc = useCases[activeUC];
-  document.getElementById('docOvTitle').textContent = '📄 ' + name;
-  if(activeUC === 3) {
-    document.getElementById('dClient').textContent = uc.fields[2];
-    document.getElementById('dMatter').textContent = 'Non-Disclosure Agreement';
-    document.getElementById('dNum').textContent = uc.fields[1].replace(' (auto)','');
-    document.getElementById('dClient2').textContent = uc.fields[2];
-    document.getElementById('dArea').textContent = uc.fields[3];
-    document.getElementById('dAtty').textContent = uc.fields[0];
-    document.getElementById('dRate').textContent = '';
-    document.getElementById('dAtty2').textContent = 'Sarah Mitchell';
-  } else {
-    document.getElementById('dClient').textContent = uc.fields[2];
-    document.getElementById('dMatter').textContent = uc.fields[0];
-    document.getElementById('dNum').textContent = uc.fields[1].replace(' (auto)','');
-    document.getElementById('dClient2').textContent = uc.fields[2];
-    document.getElementById('dArea').textContent = uc.fields[3];
-    document.getElementById('dAtty').textContent = uc.fields[4];
-    document.getElementById('dRate').textContent = uc.fields[5];
-    document.getElementById('dAtty2').textContent = uc.fields[4];
-  }
-  document.getElementById('docOv').classList.add('visible');
-}
-function closeDoc() { document.getElementById('docOv').classList.remove('visible'); }
-
-/* ═══ NAVIGATION ═══ */
-function render() {
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById('s'+steps[cur].screen).classList.add('active');
-  document.getElementById('nT').innerHTML = steps[cur].note;
-  document.getElementById('prevBtn').disabled = cur === 0;
-  document.getElementById('nextBtn').textContent = cur === steps.length-1 ? '↻ Restart' : 'Next →';
-  // Close gear menu if open
-  const gd = document.getElementById('gearDrop'); if(gd) gd.classList.remove('open');
-  renderPips();
-  if(steps[cur].onEnter) setTimeout(steps[cur].onEnter, 400);
-}
-function renderPips() {
-  const c = document.getElementById('demoSteps'); c.innerHTML = '';
-  steps.forEach((_,i) => {
-    if(i>0){const cn=document.createElement('div');cn.className='sc'+(i<=cur?' done':'');c.appendChild(cn)}
-    const p=document.createElement('div');p.className='sp'+(i===cur?' active':i<cur?' done':'');
-    p.onclick=()=>goTo(i);c.appendChild(p);
+ 
+function buildForm(fields){
+  const g=document.getElementById('fieldGrid');g.innerHTML='';
+  fields.forEach(f=>{
+    const d=document.createElement('div');d.className='fg';
+    if(f.w===2)d.style.gridColumn='span 2';
+    let inp='';
+    if(f.type==='select')inp=`<select><option>${f.v||''}</option></select>`;
+    else if(f.type==='checkbox')inp=`<input type="checkbox">`;
+    else if(f.search)inp=`<div class="search-field"><input type="text" value="${f.v||''}" id="ff_${f.l.replace(/[^a-zA-Z]/g,'')}"><div class="search-icons"><span>🔍</span><span class="plus">+</span></div></div>`;
+    else inp=`<input type="text" value="${f.v||''}" ${f.readonly?'readonly style="background:var(--gray-50)"':''} id="ff_${f.l.replace(/[^a-zA-Z]/g,'')}">`;
+    d.innerHTML=`<label>${f.l}</label>${inp}`;
+    g.appendChild(d);
   });
 }
-function next(){if(cur>=steps.length-1){goTo(0);return}goTo(cur+1)}
-function prev(){if(cur>0)goTo(cur-1)}
-function goTo(i){cur=i;applyUC();render()}
-
-function showToast(m,ic){const t=document.getElementById('toast');document.getElementById('tM').textContent=m;document.getElementById('tI').textContent=ic||'⚡';t.classList.add('visible');setTimeout(()=>t.classList.remove('visible'),3500)}
-
-// Close gear dropdown on outside click
-document.addEventListener('click', () => { const gd = document.getElementById('gearDrop'); if(gd) gd.classList.remove('open'); });
-
-document.addEventListener('keydown',e=>{
-  if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();next()}
-  if(e.key==='ArrowLeft'){e.preventDefault();prev()}
-  if(e.key==='n')document.getElementById('pn').classList.toggle('visible');
-  if(e.key==='Escape')closeDoc();
-});
-
-applyUC(); render();
+ 
+/* ═══ TYPING ═══ */
+function startTyping(){
+  const uc=useCases[activeUC];
+  // Clear all form field values
+  document.querySelectorAll('#fieldGrid input[type=text]').forEach(i=>{if(!i.readOnly)i.value='';});
+  const sb=document.getElementById('saveBtn');sb.style.opacity='.4';sb.style.pointerEvents='none';sb.classList.remove('click-hint');
+  // Type into the fields that have values in formFields
+  const targets=uc.formFields.filter(f=>f.v&&f.type!=='select'&&f.type!=='checkbox'&&!f.readonly).map(f=>({el:document.getElementById('ff_'+f.l.replace(/[^a-zA-Z]/g,'')),text:f.v})).filter(t=>t.el);
+  let idx=0;
+  function typeNext(){
+    if(idx>=targets.length){sb.style.opacity='1';sb.style.pointerEvents='auto';sb.classList.add('click-hint');return;}
+    const{el,text}=targets[idx];el.value='';
+    let ci=0;
+    const iv=setInterval(()=>{if(ci>=text.length){clearInterval(iv);el.value=text;idx++;setTimeout(typeNext,120);return;}el.value=text.substring(0,ci+1);ci++;},25);
+  }
+  setTimeout(typeNext,500);
+}
+ 
+/* ═══ SYNC ═══ */
+function runSync(){
+  const uc=useCases[activeUC];const ov=document.getElementById('syncOv'),sp=document.getElementById('syncSp'),st=document.getElementById('syncTxt'),ss=document.getElementById('syncSub');
+  const empty=document.getElementById('ndEmpty'),docs=document.getElementById('ndDocs'),body=document.getElementById('ndDocBody'),cnt=document.getElementById('docCount'),prog=document.getElementById('docProgress');
+  ov.classList.add('visible');sp.style.display='block';st.textContent='Sending data to NetDocs...';ss.textContent=uc.docs.length+' document'+(uc.docs.length>1?'s':'')+' queued';
+  empty.style.display='block';docs.style.display='none';body.innerHTML='';cnt.textContent='0 items';prog.style.display='none';
+  for(let i=1;i<=3;i++){const d=document.getElementById('dp'+i);if(d)d.className='dp';const l=document.getElementById('dpl'+i);if(l)l.className='dp-line';}
+  setTimeout(()=>{st.textContent='✓ Data synced';ss.textContent='PatternBuilder generating...';showToast('Data synced to NetDocs','⚡');},1600);
+  setTimeout(()=>{sp.style.display='none';st.innerHTML='<span class="cpop">✅</span>';ss.textContent='';},2800);
+  setTimeout(()=>{ov.classList.remove('visible');empty.style.display='none';docs.style.display='block';if(uc.docs.length>1){prog.style.display='flex';document.getElementById('dpLabel').textContent='Generating...';}addDoc(0);},3400);
+  function addDoc(i){
+    if(i>=uc.docs.length){if(prog.style.display!=='none')document.getElementById('dpLabel').textContent='All ready ✓';return;}
+    const d=uc.docs[i],r=document.createElement('tr');r.className='hlr';r.style.animation='fadeSlide .3s ease';r.style.cursor='pointer';r.onclick=()=>openDocPreview(d.name);
+    r.innerHTML=`<td><span style="font-size:16px">${d.icon}</span></td><td><span class="dn">${d.name}</span> <span class="ni-tag">NEW</span></td><td><span class="vb">1</span></td><td>Centerbase Workflow</td><td>Just now</td><td>${d.area}</td>`;
+    body.appendChild(r);cnt.textContent=(i+1)+' item'+(i>0?'s':'');showToast(d.name+' generated','📄');
+    const dp=document.getElementById('dp'+(i+1));if(dp)dp.classList.add('filled');if(i>0){const l=document.getElementById('dpl'+i);if(l)l.classList.add('filled');}
+    setTimeout(()=>addDoc(i+1),1200);
+  }
+}
+ 
+function openDocPreview(name){
+  const uc=useCases[activeUC];document.getElementById('docOvTitle').textContent='📄 '+name;
+  if(activeUC===3){document.getElementById('dClient').textContent='TechVault Inc.';document.getElementById('dMatter').textContent='Non-Disclosure Agreement';document.getElementById('dNum').textContent='AUTO';document.getElementById('dClient2').textContent='TechVault Inc.';document.getElementById('dArea').textContent='Corporate';document.getElementById('dAtty').textContent='Sarah Chen';document.getElementById('dRate').textContent='';document.getElementById('dAtty2').textContent='Sarah Mitchell';}
+  else{document.getElementById('dClient').textContent='Whitfield Properties LLC';document.getElementById('dMatter').textContent='Whitfield Commercial RE Closing';document.getElementById('dNum').textContent='2026-0148';document.getElementById('dClient2').textContent='Whitfield Properties LLC';document.getElementById('dArea').textContent='Real Estate';document.getElementById('dAtty').textContent='James Park';document.getElementById('dRate').textContent='$425/hr';document.getElementById('dAtty2').textContent='James Park';}
+  document.getElementById('docOv').classList.add('visible');
+}
+function closeDoc(){document.getElementById('docOv').classList.remove('visible');}
+ 
+/* ═══ NAV ═══ */
+function render(){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById('s'+steps[cur].screen).classList.add('active');document.getElementById('nT').innerHTML=steps[cur].note;document.getElementById('prevBtn').disabled=cur===0;document.getElementById('nextBtn').textContent=cur===steps.length-1?'↻ Restart':'Next →';renderPips();if(steps[cur].onEnter)setTimeout(steps[cur].onEnter,400);}
+function renderPips(){const c=document.getElementById('demoSteps');c.innerHTML='';steps.forEach((_,i)=>{if(i>0){const cn=document.createElement('div');cn.className='sc'+(i<=cur?' done':'');c.appendChild(cn);}const p=document.createElement('div');p.className='sp'+(i===cur?' active':i<cur?' done':'');p.onclick=()=>goTo(i);c.appendChild(p);});}
+function next(){if(cur>=steps.length-1){goTo(0);return;}goTo(cur+1);}
+function prev(){if(cur>0)goTo(cur-1);}
+function goTo(i){cur=i;applyUC();render();}
+function showToast(m,ic){const t=document.getElementById('toast');document.getElementById('tM').textContent=m;document.getElementById('tI').textContent=ic||'⚡';t.classList.add('visible');setTimeout(()=>t.classList.remove('visible'),3500);}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();next();}if(e.key==='ArrowLeft'){e.preventDefault();prev();}if(e.key==='n')document.getElementById('pn').classList.toggle('visible');if(e.key==='Escape')closeDoc();});
+applyUC();render();
 </script>
 </body>
 </html>
