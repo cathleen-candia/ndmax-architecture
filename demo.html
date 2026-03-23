@@ -706,10 +706,10 @@ function startTyping(){
 function runSync(){
   const uc=useCases[activeUC];const ov=document.getElementById('syncOv'),sp=document.getElementById('syncSp'),st=document.getElementById('syncTxt'),ss=document.getElementById('syncSub');
   const empty=document.getElementById('ndEmpty'),docs=document.getElementById('ndDocs'),body=document.getElementById('ndDocBody'),cnt=document.getElementById('docCount'),prog=document.getElementById('docProgress');
-  ov.classList.add('visible');sp.style.display='block';st.textContent='Sending data to NetDocs...';ss.textContent=uc.docs.length+' document'+(uc.docs.length>1?'s':'')+' queued';
+  ov.classList.add('visible');sp.style.display='block';st.textContent='Sending data to NetDocuments...';ss.textContent=uc.docs.length+' document'+(uc.docs.length>1?'s':'')+' queued';
   empty.style.display='block';docs.style.display='none';body.innerHTML='';cnt.textContent='0 items';prog.style.display='none';
   for(let i=1;i<=3;i++){const d=document.getElementById('dp'+i);if(d)d.className='dp';const l=document.getElementById('dpl'+i);if(l)l.className='dp-line';}
-  setTimeout(()=>{st.textContent='✓ Data synced';ss.textContent='PatternBuilder generating...';showToast('Data synced to NetDocs','⚡');},1600);
+  setTimeout(()=>{st.textContent='✓ Data synced';ss.textContent='PatternBuilder generating...';showToast('Data synced to NetDocuments','⚡');},1600);
   setTimeout(()=>{sp.style.display='none';st.innerHTML='<span class="cpop">✅</span>';ss.textContent='';},2800);
   setTimeout(()=>{ov.classList.remove('visible');empty.style.display='none';docs.style.display='block';if(uc.docs.length>1){prog.style.display='flex';document.getElementById('dpLabel').textContent='Generating...';}addDoc(0);},3400);
   function addDoc(i){
